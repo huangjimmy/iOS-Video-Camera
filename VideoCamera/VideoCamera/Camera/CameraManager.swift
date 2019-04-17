@@ -12,7 +12,7 @@ import AVFoundation
 import Photos
 
 
-class CameraManager {
+@objc class CameraManager : NSObject,AVCaptureFileOutputRecordingDelegate{
     
     class var sharedInstance : CameraManager {
         struct Singleton {
@@ -53,6 +53,15 @@ class CameraManager {
     public enum PortraitEffectsMatteDeliveryMode {
         case on
         case off
+    }
+    
+    @objc public var isRecording: Bool {
+        get {
+            if let movieFileOutput = self.movieFileOutput {
+                return movieFileOutput.isRecording
+            }
+            return false
+        }
     }
     
     public func isExposureModeSupported(_ mode:AVCaptureDevice.ExposureMode) -> Bool {
@@ -398,6 +407,8 @@ class CameraManager {
     public var depthDataDeliveryMode: DepthDataDeliveryMode = .off
     public var portraitEffectsMatteDeliveryMode: PortraitEffectsMatteDeliveryMode = .off
     
+    private var keyValueObservations = [NSKeyValueObservation]()
+    
     // Call this on the session queue.
     /// - Tag: ConfigureSession
     public func configureSession(with previewView:PreviewView!) {
@@ -525,6 +536,14 @@ class CameraManager {
                 }
             }
             self.movieFileOutput = movieFileOutput
+            
+            let keyValueObservation = movieFileOutput.observe(\.isRecording, options: .new) { (_, change) in
+                self.willChangeValue(for: \.isRecording)
+                
+                self.didChangeValue(for: \.isRecording)
+            }
+            
+            keyValueObservations.append(keyValueObservation)
         }
         else {
             print("Could not add movie output to the session")
@@ -568,6 +587,35 @@ class CameraManager {
             // Remove the existing device input first, since the system doesn't support simultaneous use of the rear and front cameras.
             self.session.removeInput(self.videoDeviceInput)
             
+            if let deviceFormat =
+                device.formats.max (by: { (format1, format2) -> Bool in
+                let dimension1 = CMVideoFormatDescriptionGetDimensions(format1.formatDescription)
+                let dimension2 = CMVideoFormatDescriptionGetDimensions(format2.formatDescription)
+                
+                return dimension1.width*dimension1.height <= dimension2.width*dimension2.height
+                }) {
+                
+                let dimension = CMVideoFormatDescriptionGetDimensions(deviceFormat.formatDescription)
+                if dimension.width >= 3840 && dimension.height >= 2160 {
+                    session.sessionPreset = .hd4K3840x2160
+                }
+                else if dimension.width >= 1920 && dimension.height >= 1080 {
+                    session.sessionPreset = .hd1920x1080
+                }
+                else if dimension.width >= 1280 && dimension.height >= 720 {
+                    session.sessionPreset = .hd1280x720
+                }
+                else if dimension.width >= 960 && dimension.height >= 540 {
+                    session.sessionPreset = .iFrame960x540
+                }
+                else if dimension.width >= 352 && dimension.height >= 288 {
+                    session.sessionPreset = .cif352x288
+                }
+                else{
+                    session.sessionPreset = .cif352x288
+                }
+            }
+            
             if self.session.canAddInput(videoDeviceInput) {
                 
                 self.session.addInput(videoDeviceInput)
@@ -586,6 +634,38 @@ class CameraManager {
             print("Error occurred while creating video device input: \(error)")
         }
     }
+    
+    public func recordVideo(at path:String){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd_HH-mm-ss_ZZZZZ"
+        let outputFileName = dateFormatter.string(from: Date())
+        let outputFilePath = (path as NSString).appendingPathComponent((outputFileName as NSString).appendingPathExtension("mov")!)
+        self.movieFileOutput?.startRecording(to: URL(fileURLWithPath: outputFilePath), recordingDelegate: self)
+    }
+    
+    public func stopRecording(){
+        if isRecording {
+            if let movieFileOutput = self.movieFileOutput {
+                movieFileOutput.stopRecording()
+            }
+        }
+    }
+    
+    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
+        
+    }
+    
+    func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection]) {
+        
+    }
+    
+    deinit {
+        keyValueObservations.forEach { (keyValueObservation) in
+            keyValueObservation.invalidate()
+        }
+        keyValueObservations.removeAll()
+    }
+    
 }
 
 public extension AVCaptureVideoOrientation {

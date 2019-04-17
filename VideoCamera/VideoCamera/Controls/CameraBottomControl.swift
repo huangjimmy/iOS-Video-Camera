@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 class CameraBottomControl: UIView {
-    var cameraRollButton: UIButton
-    var recordButton: UIButton
-    var changeCameraButton: UIButton
+    let cameraRollButton: UIButton
+    let recordButton: UIButton
+    let changeCameraButton: UIButton
     
     var _isRecording: Bool = false
     var isRecording: Bool {

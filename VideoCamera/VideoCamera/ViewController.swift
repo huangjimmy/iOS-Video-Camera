@@ -20,9 +20,11 @@ class ViewController: UIViewController {
     
     private let camera = CameraManager.sharedInstance
     
-    private let sessionQueue = DispatchQueue(label: "session queue") // Communicate with the session and other session objects on this queue.
+    internal let sessionQueue = DispatchQueue(label: "session queue") // Communicate with the session and other session objects on this queue.
     
     private var cameraBottom: CameraBottomControl!
+    
+    private var keyValueObservations = [NSKeyValueObservation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,6 +119,13 @@ class ViewController: UIViewController {
         self.view.addConstraints(portraitConstraints)
         self.view.addConstraints(landscapeConstraints)
         self.view.addConstraints(landscapeRightConstraints)
+        
+        //Add Target for Control Events
+        self.cameraBottom.cameraRollButton.addTarget(self, action: #selector(cameraRollTapped(_:)), for: .touchUpInside)
+        self.cameraBottom.recordButton.addTarget(self, action: #selector(recordTapped(_:)), for: .touchUpInside)
+        self.cameraBottom.changeCameraButton.addTarget(self, action: #selector(changeCameraTapped(_:)), for: .touchUpInside)
+        
+        self.addObservers()
         
     }
     
@@ -257,5 +266,28 @@ class ViewController: UIViewController {
         }
     }
 
+    //////////////////////////////////////////////////////////////////////////////////
+    
+    private func addObservers(){
+        let keyValueObservation = self.camera.observe(\.isRecording) { (_, change) in
+            if self.camera.isRecording {
+                self.cameraBottom.recordButton.setBackgroundImage(UIImage.init(named: "cameraRecordStop"), for: .normal)
+            }
+            else{
+                self.cameraBottom.recordButton.setBackgroundImage(UIImage.init(named: "cameraRecord"), for: .normal)
+            }
+        }
+        
+        keyValueObservations.append(keyValueObservation)
+    }
+    
+    
+    deinit {
+        keyValueObservations.forEach { (keyValueObservation) in
+            keyValueObservation.invalidate()
+        }
+        keyValueObservations.removeAll()
+    }
+    
 }
 
