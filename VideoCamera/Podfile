@@ -1,0 +1,5 @@
+platform :ios, '11.0'
+
+target 'VideoCamera' do
+pod 'PonyDebugger', :git => 'https://github.com/huangjimmy/PonyDebugger.git', :configurations => ['Debug']
+end

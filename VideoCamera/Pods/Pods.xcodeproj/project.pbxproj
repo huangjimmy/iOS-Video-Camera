@@ -1,0 +1,1367 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0019BD71E6B68DCBC4A32A09EE7E6592 /* PDLayerTreeDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3060CAAB3F889435885E0AD0BA15C609 /* PDLayerTreeDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		0170EA3289521C2296F4E925C4C54909 /* PDPowerDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A41DF22D70D3E4EB80BC2DD80BEFC5 /* PDPowerDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		01BCD2F0A5FA5CDE287FE575BDF6D983 /* PDEmulationDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9008828BD414813B6307916C64BB0221 /* PDEmulationDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		0281DB5408FA6CC9C0ABFE91E88D5A3C /* PDApplicationCacheTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F3E2A58C2E8400540CB53D42739434 /* PDApplicationCacheTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		0793D96A63F888672EEC192108544CF3 /* PDAnimationTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B83C10AC6D66F79AE40134C443F4C9C /* PDAnimationTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		086333BD9BE95443F917584ED8ED253F /* PonyDebugger-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A3AEB4DAB6ADC0DE9923A454E91B47 /* PonyDebugger-dummy.m */; };
+		08D2D056EB1F86D85B11C706754398D7 /* PDPageDomainController.h in Headers */ = {isa = PBXBuildFile; fileRef = E55AC3388DCD384A4F3C587850EB50F9 /* PDPageDomainController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		09A7E7674A2E74F4193EBA443F098EAE /* SocketRocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F57A10FC3623FAE701BFD385129A99CC /* SocketRocket-dummy.m */; };
+		0ACA6EFB3375B15458EF45945A391347 /* NSArray+PD_JSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 0710448DAE638E1043EF4D2BA8746EE4 /* NSArray+PD_JSONObject.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0E450FC273DCBFFEC09B30F2FB2026B0 /* SocketRocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F14AE8BDABDCA9DC8A83C4D355C0D69 /* SocketRocket.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0F19EA35F19CF8F5E017ACE5C51CFADF /* PDDeviceOrientationDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF0F73A24F23E09C3C5F5E434716DFB /* PDDeviceOrientationDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		1008FA496A2F25B257FFBAE89DB5BFEB /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 75632581BB25442F1F14C5F30CF8A630 /* SRWebSocket.m */; };
+		1140232D69E8428B10E71D4AD2A434FE /* PDInspectorDomainController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E55106E7CAE4F91836ACFE501ABCF48 /* PDInspectorDomainController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		13E7C601607FC04C1227BF7672D8D458 /* PDNetworkDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B7805A5B5E9651C75A45544B853844 /* PDNetworkDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		161B4DE59717DD884392378507676620 /* PDIndexedDBDomainController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E68D85F2EE1382C3A7D63A66A7C233F /* PDIndexedDBDomainController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		165A77EEC47F474F99AFF3B1B283B552 /* PDServiceWorkerDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1C9F889CE3688B5B635B076BD99176 /* PDServiceWorkerDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		190BD3E6B849A9C67E7E30850E78D962 /* PDAnimationTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 7040CE017A2E64CED61F5B5A513AA534 /* PDAnimationTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		191A0F06575995FAEEAECBB00E281C0E /* PDMemoryDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = C59D42A6CE1C52914CDB8B534FD30B9F /* PDMemoryDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		1B9512709BD972F6122A5D8CD4AA34C0 /* PDPageTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 461D0563160FD93D8B06B7BE58B451A7 /* PDPageTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		1C3D9AE06BB0E7714E9EC0F2D5BB6052 /* PDDatabaseDomainController.h in Headers */ = {isa = PBXBuildFile; fileRef = A172E19C59A345A2B2A390B839733345 /* PDDatabaseDomainController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1CE55EB01BCB1021E66CE39299B33E4C /* PDEmulationDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = C08929723BDBED8CD4D71EE46F3E132F /* PDEmulationDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1EEED7BF6EBE52E5797A01236B4937DF /* PDApplicationCacheDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 4230BEE595C004832E8CE818524CB0D9 /* PDApplicationCacheDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		1F37CBE260DA7EC91036EB438C7AFD50 /* NSDictionary+PDRuntimePropertyDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 362056A2C735C2B2C7C7C7C6300D77A4 /* NSDictionary+PDRuntimePropertyDescriptor.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		202CD06C38F31D1884BF47550EDB9D20 /* PDIndexedDBTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 1065955E5F4F50B8A6278E8313E9BB2A /* PDIndexedDBTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2157C84394FF48BF98982157C7C2679E /* PDDOMDomainController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A874A33C18331323768D5CB55AE616 /* PDDOMDomainController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		2210435A7775D0B501B9DA7E756D8CE3 /* PDDOMStorageDomainController.h in Headers */ = {isa = PBXBuildFile; fileRef = A20DEB41790909BE4E0A724AAD983A73 /* PDDOMStorageDomainController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		22E260AB90C7D41293BA21DA7B0369F8 /* PDDOMDebuggerTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = FA242A900E7C0F74435430BAA0CDCEA9 /* PDDOMDebuggerTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2309772CDAF8BAB7BA370665671B3CEE /* PDInputDomainController.h in Headers */ = {isa = PBXBuildFile; fileRef = F4717EF7A6A9DF04FE068C812973DF40 /* PDInputDomainController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		231884D0FD9653C4CAE6D1F13E41ADD8 /* PDIndexedDBTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = D731516ED8425BD5DC6A42E7BDF251DD /* PDIndexedDBTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		2326E745C42889CB2CCA49806C50C58D /* PDConsoleTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 83BFD03826FEBE20954C476878E5616A /* PDConsoleTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2359728240DC363AFAA4A8F101DD6990 /* PDLayerTreeTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = A6E18AF97DD3DAB81BCD5A8C5623CBB7 /* PDLayerTreeTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2477A4408B807FCC1B352C22B3641A83 /* PDPowerTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = C00A825D56B19A2D12566BF37BC3A8B2 /* PDPowerTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		277E8CA454EE94302A229EF83A1A97F2 /* PDApplicationCacheDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = AD19995DF6939C327461075180447F28 /* PDApplicationCacheDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2831578BCDF1452BDA1DEE457DC4D380 /* PDLayerTreeTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 146B0146F70F54E1A0C2B7374A963688 /* PDLayerTreeTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		285C307ED11FA94C363666815062A352 /* PDFileSystemTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E82228D2B467322F3530D2F7824DA34 /* PDFileSystemTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		29CEC191E9D465277334F40A49BE2ED5 /* PDDOMStorageTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C21A0AC5470F615504FF113879A68B7 /* PDDOMStorageTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		2A9415DDA6069841544DC8EBCE527668 /* NSArray+PDRuntimePropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD00F4C67967B04E9B0DD0CE69CDFC1 /* NSArray+PDRuntimePropertyDescriptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		2AAB675AC4880A45E1658109D85364C5 /* PDDOMDomainController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A53E6BAB9AEF1B76BFAC87038E4D56D /* PDDOMDomainController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2B73FEB2DB219E3DF0B25ACDF1D5AD3E /* PDDOMStorageTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D878DC7E9831FFD675A069A5A79E8D7 /* PDDOMStorageTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2BC60607222FA5342C470D37A1F938FB /* PDNetworkTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BC5073535EF8CCA5822AD7300B0C10 /* PDNetworkTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		2D4B17D5535B90B08A86F5AE13B08E41 /* PDCacheStorageTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3057BE21753DA4D5ECFC552599B644DA /* PDCacheStorageTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		2D8698FBE27CEDC82EC5C319CDE014A5 /* PDScreenOrientationDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3207716C95550B5500285DB56754086C /* PDScreenOrientationDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		2EE3B804CEE427901D5C0187BAC08915 /* PDConsoleTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E250F1FB532C7AAD4CB873562DBC67E /* PDConsoleTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		322D94E28B2D76AE6FA748DF4150E169 /* PDSecurityDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 592338A331FDD8E17D9916E50DA4676E /* PDSecurityDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		3577EE92FE73FCF5217D707EB303D54D /* PDWorkerDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = A2E0F3162677AA6714CB50DF2D252578 /* PDWorkerDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		35B65888E8590BCB5D5EB25FF3B5D135 /* PDPageTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = F018276989875D786E1186053FCB5DD6 /* PDPageTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3925BF08EB5584075D8CB125053C5AC1 /* PDRuntimeDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 25B60643026F95E59B0F501D79BCCDA3 /* PDRuntimeDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3AC204595EEB1700CC82B822E880490A /* PDRenderingDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 433376E66EF6E3911E89E0258EC63E7C /* PDRenderingDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3D4A06794125B13AA761AFB1A2F916E0 /* NSOrderedSet+PDRuntimePropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDEA71492D2BEC6E600ABE3F5FE3080 /* NSOrderedSet+PDRuntimePropertyDescriptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		41FC720354AF426A32BE9AE6D5E869DA /* PDAccessibilityTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 52CC70FCADDEC86744610C0EBB84025F /* PDAccessibilityTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		426ACDB3B63864433D0B1DA0E2704CFE /* PDTracingDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 67766B35D314EE760CC7FA8CDB9F0BC9 /* PDTracingDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		42AA682D888505D40FA200EDC4D8B6AC /* PDPageDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E5DE2D40B5CFB00F9F64C3D0A12311D /* PDPageDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		43642B218F7373BD651FEFFF388C5D48 /* PDConsoleDomainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B7F9A37BDB402FEF1C2D61EF308BA /* PDConsoleDomainController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		4445EB102FE23C13800208F706C4BFE3 /* PDDynamicDebuggerDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E877EF9DF9FED544A4810AF103C53C /* PDDynamicDebuggerDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		45FCAE5222DF038E29345EAC673DBE5D /* PDApplicationCacheTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 36C27C2752B4E92A856AE4F80DE1C3F4 /* PDApplicationCacheTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		46B164126B1A17BF27B1D94F66D5AAD2 /* PDContainerIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = 03C0E47A0F96DDFFB87BF9907C4E62C7 /* PDContainerIndex.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		472C552E014486E29B747104824C8BD8 /* NSObject+PDRuntimePropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F960EBFAEB5C7732B73E67081A74EC /* NSObject+PDRuntimePropertyDescriptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		47BFBC233FF2A8BD47C8694D79771AE4 /* PDCSSDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F53FD3FD113457F9B2B35E6796AD046 /* PDCSSDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		4957F0F18BD3B39EC66CB7429775EB80 /* PDTimelineTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEF6713DCB1D060CEE0C3E20A93338B /* PDTimelineTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		497B0BBF0D3331584677AFFB607D5DE2 /* PDDebuggerTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA9CFDEE2C9975773F33BFC40FA60B0 /* PDDebuggerTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		497CE5C6EB0FCAF76975FAF23E78DE4C /* NSDate+PDDebugger.h in Headers */ = {isa = PBXBuildFile; fileRef = D2CF3A89C655E7CED36A786CCA861D2D /* NSDate+PDDebugger.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4AD13CF571AAC03534672857DF332DE2 /* PDCSSTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 066B0346DE3F000F91797A97A74E10DB /* PDCSSTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4BCC4D3812A4526B3D1AFEA8BF751DA2 /* NSSet+PDRuntimePropertyDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = B9DA1848E9BDD9C0E8588117A29A4466 /* NSSet+PDRuntimePropertyDescriptor.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4D4057E41DDB4DFD1533EAAE8E1522C1 /* PDObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F28C37466A4782099CCB07AC3326976 /* PDObject.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		4EE7074EF9248396BF977D1CFC9E2036 /* PDCacheStorageDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A3E4C6907F7467B4181B394DB607AD /* PDCacheStorageDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		51B1C129B4940C0FD02CC06E8013F7F9 /* NSError+PD_JSONObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7320721C8ED07E93DC06059050D19BAF /* NSError+PD_JSONObject.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		53A6BF12E6F7B9A681DDDB830B1781A5 /* NSArray+PDRuntimePropertyDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = A8467D86E29CB1F150BD628F82CEA8C1 /* NSArray+PDRuntimePropertyDescriptor.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		53D1343150031DA84FA5F6F668B8B4E6 /* PDIndexedDBDomainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D1318DB56EE6E25FA5A2E0C0B402 /* PDIndexedDBDomainController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		55E816CA228A64664849DA50CA8FE786 /* NSDate+PD_JSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 94366FC2A231AB90C06147AF590A9E72 /* NSDate+PD_JSONObject.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		569A199461F78C6F39D495FD9DCD5A51 /* PDInspectorDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8A9C977898C82E34A81B13298F2433 /* PDInspectorDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		56C2B2ABB2F72DFABB9ADD0A3E4382F8 /* PDCSSDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = E8F3646A9B84E189231757664D1973FD /* PDCSSDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5D33A58AE268FB702086335F6FEF9216 /* PDRuntimeDomainController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A72E424219FEA0185FD7AFD6402244E /* PDRuntimeDomainController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5E2199A1A9BA133749E8DA91849D3C68 /* PDCacheStorageTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 707562D036D42EBFA3FF6E5CBE82F5C2 /* PDCacheStorageTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5E54ACD7C4267154C74B4730C502C2BC /* NSValue+PD_JSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 760C07B9F1EE720CA456533B05F65E86 /* NSValue+PD_JSONObject.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5E5B7522DDC2F200D2C8DDBD18C8C057 /* PDCSSDomainController.m in Sources */ = {isa = PBXBuildFile; fileRef = A432C7AA497F1593302D763644ADDE9C /* PDCSSDomainController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		5F8C042E4B5466D3BD94A91E6DA55AE1 /* NSObject+PDRuntimePropertyDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E915B2BB805BF370E0927B7D01BF4AC /* NSObject+PDRuntimePropertyDescriptor.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		60A80FE6691872C1F66D5691E383BA47 /* PDConsoleDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = C624DD54FF9FD5BF36E601CF714E5E33 /* PDConsoleDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		620137CBE34DEF2E936030D1187B065F /* PDDatabaseDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = B69E56047EA68614EE158DC7ACDE56EC /* PDDatabaseDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		632FC4D409EA1319BB857B6D0ACC3201 /* PDPrettyStringPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = F200C4361D3A1DB649A9612E3800BAAF /* PDPrettyStringPrinter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		64232BEA749782B4FD5D5E39C0730940 /* PDConsoleDomainController.h in Headers */ = {isa = PBXBuildFile; fileRef = AAACA740FA6AAC02D1592A65DFDB2F8F /* PDConsoleDomainController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		682BE23448A717D978AE4A5363100079 /* PDDOMDebuggerTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = D42093A8678F2FCF4E88C7E9A70E8A1A /* PDDOMDebuggerTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		68F5B2C179A57C435FAD84647F667F4A /* PDInputTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 359D77A61340E7F3B762ACD383DC570A /* PDInputTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6A45B9B7D162349C6768EDB8DCAF394E /* NSError+PD_JSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 8932120667094527F4B93BF2709A7AC5 /* NSError+PD_JSONObject.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6B39FC960A553363F4A28F8CEAF7EE31 /* PDInspectorDomainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD2F770F7BB94EF4ED4242F632BFF94 /* PDInspectorDomainController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		6CF53776E50A2713B9D6BEC38683227F /* SRWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = C5EA8409BEBF8E3F7E070B9A823A327F /* SRWebSocket.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6E09B2067A038FDBE78E581DA198989F /* NSData+PDDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B178669F3BC0F90E1AD73B27D0F0A1 /* NSData+PDDebugger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		6F071FE2195544804582DC0FBF1902F4 /* PDDOMDebuggerDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = F034B86FDD7214E9D98EF5046105E802 /* PDDOMDebuggerDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6FEAE3635D08C2EE4E865AF0CC5C2CD0 /* PDPowerTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = CA46EC264765A26AC2F5983C97F9C390 /* PDPowerTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6FFAFD4FEF53F451FA0600915AD7E75F /* NSManagedObject+PDRuntimePropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = F625F7A85BD5DDFF84C122770C1AB6F7 /* NSManagedObject+PDRuntimePropertyDescriptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		70255B3AE6C61DA8F0F43F523DB9B67C /* PDTimelineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 76ED7264CFB17E8494FA39522BFF6025 /* PDTimelineTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		73D752E6FD3FFD12D439D89358B42E5D /* NSManagedObject+PDRuntimePropertyDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 95406EAA7BB69C0614743FA663A22A0F /* NSManagedObject+PDRuntimePropertyDescriptor.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		75343BF5DE01DA5373B96AC0E1F5C687 /* PDProfilerTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 655EC355308C0206F610A3FA4B590FE8 /* PDProfilerTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		75B6650DF1472B9302CB410E18A0C71E /* PDTimelineDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = EDED8A8517FC88A5EEF3D2027004F323 /* PDTimelineDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		75F806B2FC21AE8CB95C5778C2F65FC1 /* Pods-VideoCamera-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC077A3DCDF87AC159A2DA7B92EE6E3 /* Pods-VideoCamera-dummy.m */; };
+		778E9DD95BB20B1D556339E877BEC9B8 /* PDDatabaseTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAFC6CB7ABBC790AEC66562C9B945CA /* PDDatabaseTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		785390790F17CECEDE2E0C0F01739A91 /* PDFileSystemTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = E319366ABD2744EC58452BFEFF265F6A /* PDFileSystemTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7A000AD5605412F4144F4088A1C8DAA2 /* PDAnimationDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AC30D3EDB555AF3D2CF18E38362C28 /* PDAnimationDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7A8E25EB0C15F415C44252D36D8AC4DE /* PDRenderingDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4BF22BF4922107F65158AD811CD90 /* PDRenderingDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7AE8F6339C5EF6B480C8891E47336180 /* NSDate+PDDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 14362F2DFF285730ABCA07FE840154BC /* NSDate+PDDebugger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7B11FAB8E8C3FCC0A093BC80E61BD5A2 /* PDDOMDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 019567B06BA1D38106FE27FE1DDF3C64 /* PDDOMDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7B507C56FCB00D104819F7FA1F04D188 /* PDRuntimeDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B0E925BCD0F4CE7AC24E37CD1796C7 /* PDRuntimeDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7CEB9EA3EDF6D092CF4392AFF8E40611 /* PDDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 57554DC40CA569F7A7B80F1BBABA8748 /* PDDefinitions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7D081246072934A7AB87DE2C14329838 /* PDTracingDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF423D764D4751A9F71BDA0A432167B /* PDTracingDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7F494FD0E9E2F1457EA358C1618BFF73 /* PDServiceWorkerDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D74C8312EBF385173D144C4F15BE550 /* PDServiceWorkerDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		81C3978812227D6B16413824D6051398 /* PDFileSystemDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EF912EA651C6B8D09B38233004944DE /* PDFileSystemDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		83015F5F105A896A9B77E632485FCDC2 /* PDMemoryDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 44C793B4DD761AAA51B7497667458207 /* PDMemoryDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		839AE09F951F7238DABBF8642B36BF1F /* PDProfilerTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E98648ACFF8C9F6E45C8C87E9E7A10C /* PDProfilerTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		855D04689D6ABF2C97E2116376F4705A /* PDInputDomainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCE392CD7F257EBFE94A1CD8EE65347 /* PDInputDomainController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		8712E8029A6E8D9D226A4DD287D14F7E /* PDDOMDebuggerDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 641B46891C722A20BA31373C7D29F8CF /* PDDOMDebuggerDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		87ADF786E0C69FEA7814EF451D954C0E /* PDDOMTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 39440086C19C2F83A19F2C3F7022C90D /* PDDOMTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		87CE125A3A80286A6B250CE6372BB92D /* PDNetworkTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4026D6356A61BD418C31D8A893452C8C /* PDNetworkTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8A5E7A6F51517626F1CB46420FB753B4 /* PDCacheStorageDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = B7AF7CC45040C0860EBA88FA080DAF8D /* PDCacheStorageDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8D24560F591D7F1811BF2117FE668653 /* PDSecurityTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E64AC467ABAE292148DEBD01AB9FADB /* PDSecurityTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8ED3E16867C231E3E710CB8AE76DF5FA /* PDDebugger.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0F6B1C2B25B779144E548AFD5367DF /* PDDebugger.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		915B52AB0FE20731E2D1F88ACDA81E58 /* PDPrettyStringPrinter.h in Headers */ = {isa = PBXBuildFile; fileRef = CE8E48821E7FF45A664EBDBB6E49D5E6 /* PDPrettyStringPrinter.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		91C7E9DA0BC4AD0A53B586288DD885D3 /* ChromeVirtualMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5F04FCC29445F899219E65123E3E0 /* ChromeVirtualMachine.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		93AA460D6B4A4E849FA9C57C742B5562 /* PDConsoleDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 164D5A186D8DF1E96A6122F56C40F320 /* PDConsoleDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		93CF50C327F9AF32227EE15728D6C28A /* PDInputTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3570A6609283AB0D997F0BDB4E05BE /* PDInputTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		973F7EF9307E4CD7C69D60FFA8EA248A /* PDDOMStorageDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA03F3426C3EF1D107CFC3766101F0 /* PDDOMStorageDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		98F2AB5CAEEC7243CB828D93A9E7E617 /* PDEmulationTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C8012574B5ACF34BEDBFB2E3FA90CA7 /* PDEmulationTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		99F8FFD348AED953E74D09E96DE4E7C7 /* PDScreenOrientationDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = EC200AAF74E3671A0EE4D2AB9F15C12D /* PDScreenOrientationDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9BAC245A82FE2A3B867EF2F4DF2CE073 /* NSDictionary+PD_JSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 11737FBE11427161292C3CB29153E0CF /* NSDictionary+PD_JSONObject.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9C65D21CDBB7A4D612F8430F306812B9 /* PDDynamicDebuggerDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 13367F9FFEFA15B9122861FE9AF18DE5 /* PDDynamicDebuggerDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9D875E34FF2580E73D3D1218C7453EEF /* PDEmulationTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EDD895BA0A013431F5E8C938BCEB9B /* PDEmulationTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		9FAB5FEFF86D815C8EED5B99AE5F7CD8 /* PDTimelineDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A42E752B4AAA9F19944B3E8A67CE69E /* PDTimelineDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A056AAC7748A0B466BF2B43CCB4819FA /* PDDeviceOrientationDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 638EF880BFA3CBEB5E1180D65D92CD9D /* PDDeviceOrientationDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A16BF0DA0E54B75819F74ACE92C6DD06 /* PDIndexedDBDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = B811F55777B434773692C1C18DB1AD91 /* PDIndexedDBDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A21C6308D28F55EC57A952238A5A8E3A /* PDHeapProfilerDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = B7153EF7BE86E8E9F95CDF616FD5A147 /* PDHeapProfilerDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A334C7ED36416280DB39598A55F158DB /* PonyDebugger.h in Headers */ = {isa = PBXBuildFile; fileRef = FCCC8EF76FE670BEB9501975B45280DB /* PonyDebugger.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A3692AB5B450CF0E400EDD843983C0DF /* NSValue+PD_JSONObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E669238D3BEFAFEB45267068D636F2DB /* NSValue+PD_JSONObject.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A3E78B18024CE6FA11ACA4208A71C2D2 /* PDDatabaseTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 92D927D3DC91728226F76A911842B076 /* PDDatabaseTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A49EF9401571BB0C24F1650587252E28 /* PDProfilerDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = F9007C96281026BBAD0DBD964BCF7F34 /* PDProfilerDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A5501012F50335D13435FD9A44752B80 /* PDHeapProfilerDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A66C2BD01C20EEAECD79902E353A60 /* PDHeapProfilerDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A69D702362CE7D1236653AE09B0EEE3B /* PDRuntimeTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 890C56EC8F7E16971FB39F91C9B51C92 /* PDRuntimeTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A812DEF286D20B37ECED7C45CAAF8377 /* PDDatabaseDomainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE761CB03DC7E18E774511DDF6C594D /* PDDatabaseDomainController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A98E564E21589A12B5B49927FADA1DE4 /* PDIndexedDBDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 5313ACBAB13B56DC182D72FF756E719C /* PDIndexedDBDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		AA24C56F7888EE263E0285EB0764C713 /* PDAccessibilityTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 360625E168F333C237749FAC60620FB1 /* PDAccessibilityTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		AA4A62CF90945FBC889D31523095CBD3 /* PDDOMStorageDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 60B90A57B1DA4A8F222268ACE3CC8267 /* PDDOMStorageDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		AD002DE267E40D90ED2BCA1EE4AAFAF4 /* PDDatabaseDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD0AF791736B04AAAA6B62B2E7591F0 /* PDDatabaseDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		AEA82D570B8FA5B95149D7EB2929FD20 /* PDServiceWorkerTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = C674DD0BD6FB740D885BD8E154F5C7EF /* PDServiceWorkerTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		AEB1DB1DBA03E6FB955F386AC75F701B /* PDSecurityDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B8D2A012F2ED2806FF2E4D25B1AE56 /* PDSecurityDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		AF0F0DAD0EF23D08AF93FF3413A399F2 /* PDPowerDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = DB6385CCE432B6AF53B9CDD056054A7E /* PDPowerDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B3489138CFA6A0ADFFFA2EEBFB0F90CE /* PDSecurityTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DAEF50A6FE738BE1BBB9BC47117E2C /* PDSecurityTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B67030B219786480B94A5341F892F368 /* NSOrderedSet+PDRuntimePropertyDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 37279C552E0E273B86AA305E260C95E4 /* NSOrderedSet+PDRuntimePropertyDescriptor.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B6C0D4C47089C2A998B615F8B6DACB40 /* PDDebuggerDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EE1E18D84C48A4A6CCCE61ACE1DFDA /* PDDebuggerDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B9587926CE39ECB6670AB5EC1861501D /* PDProfilerDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 15EAEB57DCDC55470EAFD350EACB5459 /* PDProfilerDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BCF029A56688162E2BA2ED1C8D82B584 /* PDCSSDomainController.h in Headers */ = {isa = PBXBuildFile; fileRef = 20C532F0EEE432714CE5924AFB65E502 /* PDCSSDomainController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BD86FE8F85EE9A80EF12A45B7920A35B /* PDNetworkDomainController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B7B103F8F39A0A2399D435A65990CE /* PDNetworkDomainController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		C03903EC30E09FF5ACCC527B2D960135 /* PDCSSTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 558B9AD1664973955241360BBF101DDE /* PDCSSTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		C1AABDE630034FD085E81699E54E0BCB /* PDPageDomainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E95229494E1A42DA0A4A98348C851A6 /* PDPageDomainController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		C2D42473F744255911DD16B80EBA61D9 /* PDAccessibilityDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AEA5AC640036F1E1B91681963BADD9 /* PDAccessibilityDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		C2FAFC1E41E4591FF186E935BA1C7D24 /* PDAnimationDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 484D32EBC198D4730838C78E4083DB01 /* PDAnimationDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C5166469316FA407B0D4A5819F2EDE62 /* PDInspectorDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 55521E51F8DC4B7516AFCFD0E31BBD10 /* PDInspectorDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C64B8BFE82CFBB4AE6DDE4184B4D0D98 /* PDInputDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B90A5B4C9311C4EC7E033F9C1297971 /* PDInputDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		C92B2F2C0452119F3E50783638F900BE /* PDDomainController.h in Headers */ = {isa = PBXBuildFile; fileRef = B98269E9CEDE1F5E059D513D838274C5 /* PDDomainController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C990BB26082A39173D7765AFB80F8257 /* NSSet+PDRuntimePropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = D8DFE2B67E6D48C60C55D4C8FED61ADA /* NSSet+PDRuntimePropertyDescriptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		C9BBEF7B4304D688F5B8BDF2FB4C293F /* PDDOMDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = E07C00CE3ABAD1BDAB571ECA57B0697D /* PDDOMDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		CA2BFC0529F61C59813AEBE892068D21 /* PDNetworkDomainController.h in Headers */ = {isa = PBXBuildFile; fileRef = 93E4A261153644A7CF466D86A8E05BDA /* PDNetworkDomainController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CC5A2E9B2A77EEC8D594BA5117AE53E3 /* PDContainerIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 38120528C3F6EF1B3BEDA60399FE3218 /* PDContainerIndex.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		D5964619EF797BF996136D675E93E5D4 /* PDNetworkDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 005BBC21B348347308D7C3349EEBC00E /* PDNetworkDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DA0B973ABD28BC21D6D9E6DE68519D73 /* PDDebuggerTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = EC89FD4BC8364AC2AB4645A6B45A2A95 /* PDDebuggerTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DB3E7207531CC9FE80602C5A8ACC972F /* PDObject.h in Headers */ = {isa = PBXBuildFile; fileRef = CD68042CBCBCA713FB7B80B14203EEA4 /* PDObject.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DD6B0E9DF8783BA5DE0D415FDE403FEE /* PDServiceWorkerTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0C0CD6C6D4B024A1E6E953EAEA57F0 /* PDServiceWorkerTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		DD79BE311A4FBD47BB6A6B3D4222954F /* PDDOMStorageDomainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60BBEE34FC3C853E12B0B3CC3555CA16 /* PDDOMStorageDomainController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		DDCAB8B3AC26A03F5791DBEF04E933AA /* PDInputDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 23609D3F9068D6FE70C1D91A85568A5C /* PDInputDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DEB85F162D2C4F19D06FF8A772FBA56B /* NSData+PDDebugger.h in Headers */ = {isa = PBXBuildFile; fileRef = BCF325D240D34010B3C719BB4551BDBC /* NSData+PDDebugger.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E0E814CC50DE2CE0B16E009E2D0DC9F0 /* PDDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = F220A53489C8BCAB340DE4A63F8A7A00 /* PDDebugger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		E1853DC7DE41B0A5A5E6B81EC478D6F5 /* PDWorkerDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 319764ADF63068B90AA2252910296064 /* PDWorkerDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E23A8839BDCC168B19367BC6D0E1E11D /* ChromeVirtualMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = E76F334A4993B31751D2E255C6EAF9E7 /* ChromeVirtualMachine.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E479EE2F3D37AC56C32AFE931CA9C8D9 /* NSDictionary+PDRuntimePropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7542036E773F730565EF1A1B05543F /* NSDictionary+PDRuntimePropertyDescriptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		E90F8FB6675489D06E53D2FDD3171DBD /* PDRuntimeTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = F10450063BB77EC17A17A6CE3A75D3B2 /* PDRuntimeTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		EB7D8D83C2D69BAA7B3C1543067B95C0 /* PDDebuggerDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4205B2E0A0EAE6B999CF2598B01C8B /* PDDebuggerDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		EDAF4CF719D90C1E7A1FAF5F63346411 /* PDRuntimeDomainController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCB18F1AE35366E9E518C5E9905AADD /* PDRuntimeDomainController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		F42B814F44C16BB7EA623BE3961C5CE0 /* PDAccessibilityDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 75C579A8FBEC1797277A3F6A11F11A2E /* PDAccessibilityDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F4C7515EBF7E1079CBBA5B0EB82FA7F2 /* PDPageDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6857839249489A319F7164F8BCB37D /* PDPageDomain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		F7DF2EE4B26534750A91524BA5CD3809 /* NSDate+PD_JSONObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 459425158B6C41AB3384F6CC4AEC30DE /* NSDate+PD_JSONObject.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		F8345990B3B363C95FD37B3BBCE57D3F /* PDFileSystemDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 94FFA156985E2BCA31452CF38EB7CCC2 /* PDFileSystemDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F83B5664AA20C3C09AB8CCD0A9911D40 /* PDDOMTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = E1709743C871406F69A798F5685ABC0A /* PDDOMTypes.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		F8872FD2DE31D991EECA017DD710A9F1 /* NSDictionary+PD_JSONObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E366686F4EE6C937F9F47B725A33EC4 /* NSDictionary+PD_JSONObject.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		F897F40D39D1BFF01FACDE6054114B09 /* NSArray+PD_JSONObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F344D30BCEA7733C292DE8388331290 /* NSArray+PD_JSONObject.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		F8A361B3D02F9C366115D64206307EC5 /* PDDomainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6870BB287DD83B7F4101835C796D36B2 /* PDDomainController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		FBDFD1C2A8BB0EA1238DAD2645EA5E44 /* PDLayerTreeDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FD5ABDA8B2C2C49D9B28D990307AE5B /* PDLayerTreeDomain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FFBBF66391C8687684019DFD64867892 /* PDDefinitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C10EE1D2B55AC82ABF8D7293AEB9BF3 /* PDDefinitions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		122FD6250D87E9D735270D90C826ABDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E2E23DE1EFF7EB3C4208BCC263166CDE;
+			remoteInfo = PonyDebugger;
+		};
+		CD5890BE30C5DA19BE091F8A6E0FCDD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 557C79895B347197616E9F6B105C1D4A;
+			remoteInfo = SocketRocket;
+		};
+		D7DF0B730F5059DA57FCCB9515D58526 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 557C79895B347197616E9F6B105C1D4A;
+			remoteInfo = SocketRocket;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		005BBC21B348347308D7C3349EEBC00E /* PDNetworkDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDNetworkDomain.h; path = ObjC/DerivedSources/PDNetworkDomain.h; sourceTree = "<group>"; };
+		019567B06BA1D38106FE27FE1DDF3C64 /* PDDOMDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDOMDomain.h; path = ObjC/DerivedSources/PDDOMDomain.h; sourceTree = "<group>"; };
+		03C0E47A0F96DDFFB87BF9907C4E62C7 /* PDContainerIndex.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDContainerIndex.h; path = ObjC/PonyDebugger/PDContainerIndex.h; sourceTree = "<group>"; };
+		066B0346DE3F000F91797A97A74E10DB /* PDCSSTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDCSSTypes.h; path = ObjC/DerivedSources/PDCSSTypes.h; sourceTree = "<group>"; };
+		0710448DAE638E1043EF4D2BA8746EE4 /* NSArray+PD_JSONObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+PD_JSONObject.h"; path = "ObjC/PonyDebugger/NSArray+PD_JSONObject.h"; sourceTree = "<group>"; };
+		0A4B7F9A37BDB402FEF1C2D61EF308BA /* PDConsoleDomainController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDConsoleDomainController.m; path = ObjC/PonyDebugger/PDConsoleDomainController.m; sourceTree = "<group>"; };
+		0AA9CFDEE2C9975773F33BFC40FA60B0 /* PDDebuggerTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDebuggerTypes.m; path = ObjC/DerivedSources/PDDebuggerTypes.m; sourceTree = "<group>"; };
+		0C10EE1D2B55AC82ABF8D7293AEB9BF3 /* PDDefinitions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDefinitions.h; path = ObjC/PonyDebugger/PDDefinitions.h; sourceTree = "<group>"; };
+		0E0C0CD6C6D4B024A1E6E953EAEA57F0 /* PDServiceWorkerTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDServiceWorkerTypes.m; path = ObjC/DerivedSources/PDServiceWorkerTypes.m; sourceTree = "<group>"; };
+		0F8806A6428A0A7FFBEE67B3E3F1D64F /* PonyDebugger-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PonyDebugger-prefix.pch"; sourceTree = "<group>"; };
+		0FDEA71492D2BEC6E600ABE3F5FE3080 /* NSOrderedSet+PDRuntimePropertyDescriptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSOrderedSet+PDRuntimePropertyDescriptor.m"; path = "ObjC/PonyDebugger/NSOrderedSet+PDRuntimePropertyDescriptor.m"; sourceTree = "<group>"; };
+		1065955E5F4F50B8A6278E8313E9BB2A /* PDIndexedDBTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDIndexedDBTypes.h; path = ObjC/DerivedSources/PDIndexedDBTypes.h; sourceTree = "<group>"; };
+		11737FBE11427161292C3CB29153E0CF /* NSDictionary+PD_JSONObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+PD_JSONObject.h"; path = "ObjC/PonyDebugger/NSDictionary+PD_JSONObject.h"; sourceTree = "<group>"; };
+		13367F9FFEFA15B9122861FE9AF18DE5 /* PDDynamicDebuggerDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDynamicDebuggerDomain.h; path = ObjC/PonyDebugger/PDDynamicDebuggerDomain.h; sourceTree = "<group>"; };
+		14362F2DFF285730ABCA07FE840154BC /* NSDate+PDDebugger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDate+PDDebugger.m"; path = "ObjC/PonyDebugger/NSDate+PDDebugger.m"; sourceTree = "<group>"; };
+		146B0146F70F54E1A0C2B7374A963688 /* PDLayerTreeTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDLayerTreeTypes.m; path = ObjC/DerivedSources/PDLayerTreeTypes.m; sourceTree = "<group>"; };
+		15EAEB57DCDC55470EAFD350EACB5459 /* PDProfilerDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDProfilerDomain.h; path = ObjC/DerivedSources/PDProfilerDomain.h; sourceTree = "<group>"; };
+		164D5A186D8DF1E96A6122F56C40F320 /* PDConsoleDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDConsoleDomain.h; path = ObjC/DerivedSources/PDConsoleDomain.h; sourceTree = "<group>"; };
+		1A72E424219FEA0185FD7AFD6402244E /* PDRuntimeDomainController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDRuntimeDomainController.h; path = ObjC/PonyDebugger/PDRuntimeDomainController.h; sourceTree = "<group>"; };
+		1C1C9F889CE3688B5B635B076BD99176 /* PDServiceWorkerDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDServiceWorkerDomain.m; path = ObjC/DerivedSources/PDServiceWorkerDomain.m; sourceTree = "<group>"; };
+		20C532F0EEE432714CE5924AFB65E502 /* PDCSSDomainController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDCSSDomainController.h; path = ObjC/PonyDebugger/PDCSSDomainController.h; sourceTree = "<group>"; };
+		21AC30D3EDB555AF3D2CF18E38362C28 /* PDAnimationDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDAnimationDomain.m; path = ObjC/DerivedSources/PDAnimationDomain.m; sourceTree = "<group>"; };
+		23609D3F9068D6FE70C1D91A85568A5C /* PDInputDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDInputDomain.h; path = ObjC/DerivedSources/PDInputDomain.h; sourceTree = "<group>"; };
+		23F960EBFAEB5C7732B73E67081A74EC /* NSObject+PDRuntimePropertyDescriptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+PDRuntimePropertyDescriptor.m"; path = "ObjC/PonyDebugger/NSObject+PDRuntimePropertyDescriptor.m"; sourceTree = "<group>"; };
+		25AEA5AC640036F1E1B91681963BADD9 /* PDAccessibilityDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDAccessibilityDomain.m; path = ObjC/DerivedSources/PDAccessibilityDomain.m; sourceTree = "<group>"; };
+		25B60643026F95E59B0F501D79BCCDA3 /* PDRuntimeDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDRuntimeDomain.h; path = ObjC/DerivedSources/PDRuntimeDomain.h; sourceTree = "<group>"; };
+		2B83C10AC6D66F79AE40134C443F4C9C /* PDAnimationTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDAnimationTypes.h; path = ObjC/DerivedSources/PDAnimationTypes.h; sourceTree = "<group>"; };
+		2C0F6B1C2B25B779144E548AFD5367DF /* PDDebugger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDebugger.h; path = ObjC/PonyDebugger/PDDebugger.h; sourceTree = "<group>"; };
+		2C8012574B5ACF34BEDBFB2E3FA90CA7 /* PDEmulationTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDEmulationTypes.h; path = ObjC/DerivedSources/PDEmulationTypes.h; sourceTree = "<group>"; };
+		2E64AC467ABAE292148DEBD01AB9FADB /* PDSecurityTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDSecurityTypes.h; path = ObjC/DerivedSources/PDSecurityTypes.h; sourceTree = "<group>"; };
+		2E68D85F2EE1382C3A7D63A66A7C233F /* PDIndexedDBDomainController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDIndexedDBDomainController.h; path = ObjC/PonyDebugger/PDIndexedDBDomainController.h; sourceTree = "<group>"; };
+		3057BE21753DA4D5ECFC552599B644DA /* PDCacheStorageTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDCacheStorageTypes.m; path = ObjC/DerivedSources/PDCacheStorageTypes.m; sourceTree = "<group>"; };
+		3060CAAB3F889435885E0AD0BA15C609 /* PDLayerTreeDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDLayerTreeDomain.m; path = ObjC/DerivedSources/PDLayerTreeDomain.m; sourceTree = "<group>"; };
+		319764ADF63068B90AA2252910296064 /* PDWorkerDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDWorkerDomain.h; path = ObjC/DerivedSources/PDWorkerDomain.h; sourceTree = "<group>"; };
+		3207716C95550B5500285DB56754086C /* PDScreenOrientationDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDScreenOrientationDomain.m; path = ObjC/DerivedSources/PDScreenOrientationDomain.m; sourceTree = "<group>"; };
+		34DAEF50A6FE738BE1BBB9BC47117E2C /* PDSecurityTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDSecurityTypes.m; path = ObjC/DerivedSources/PDSecurityTypes.m; sourceTree = "<group>"; };
+		359D77A61340E7F3B762ACD383DC570A /* PDInputTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDInputTypes.h; path = ObjC/DerivedSources/PDInputTypes.h; sourceTree = "<group>"; };
+		360625E168F333C237749FAC60620FB1 /* PDAccessibilityTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDAccessibilityTypes.m; path = ObjC/DerivedSources/PDAccessibilityTypes.m; sourceTree = "<group>"; };
+		362056A2C735C2B2C7C7C7C6300D77A4 /* NSDictionary+PDRuntimePropertyDescriptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+PDRuntimePropertyDescriptor.h"; path = "ObjC/PonyDebugger/NSDictionary+PDRuntimePropertyDescriptor.h"; sourceTree = "<group>"; };
+		36C27C2752B4E92A856AE4F80DE1C3F4 /* PDApplicationCacheTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDApplicationCacheTypes.h; path = ObjC/DerivedSources/PDApplicationCacheTypes.h; sourceTree = "<group>"; };
+		37279C552E0E273B86AA305E260C95E4 /* NSOrderedSet+PDRuntimePropertyDescriptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSOrderedSet+PDRuntimePropertyDescriptor.h"; path = "ObjC/PonyDebugger/NSOrderedSet+PDRuntimePropertyDescriptor.h"; sourceTree = "<group>"; };
+		38120528C3F6EF1B3BEDA60399FE3218 /* PDContainerIndex.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDContainerIndex.m; path = ObjC/PonyDebugger/PDContainerIndex.m; sourceTree = "<group>"; };
+		39440086C19C2F83A19F2C3F7022C90D /* PDDOMTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDOMTypes.h; path = ObjC/DerivedSources/PDDOMTypes.h; sourceTree = "<group>"; };
+		3A42E752B4AAA9F19944B3E8A67CE69E /* PDTimelineDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDTimelineDomain.m; path = ObjC/DerivedSources/PDTimelineDomain.m; sourceTree = "<group>"; };
+		3AC1A2DCAC82D07E0C87F8ABE20B90EC /* Pods-VideoCamera-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-VideoCamera-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3C21A0AC5470F615504FF113879A68B7 /* PDDOMStorageTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDOMStorageTypes.m; path = ObjC/DerivedSources/PDDOMStorageTypes.m; sourceTree = "<group>"; };
+		3D878DC7E9831FFD675A069A5A79E8D7 /* PDDOMStorageTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDOMStorageTypes.h; path = ObjC/DerivedSources/PDDOMStorageTypes.h; sourceTree = "<group>"; };
+		3F344D30BCEA7733C292DE8388331290 /* NSArray+PD_JSONObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+PD_JSONObject.m"; path = "ObjC/PonyDebugger/NSArray+PD_JSONObject.m"; sourceTree = "<group>"; };
+		4026D6356A61BD418C31D8A893452C8C /* PDNetworkTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDNetworkTypes.h; path = ObjC/DerivedSources/PDNetworkTypes.h; sourceTree = "<group>"; };
+		4230BEE595C004832E8CE818524CB0D9 /* PDApplicationCacheDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDApplicationCacheDomain.m; path = ObjC/DerivedSources/PDApplicationCacheDomain.m; sourceTree = "<group>"; };
+		42C5F04FCC29445F899219E65123E3E0 /* ChromeVirtualMachine.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ChromeVirtualMachine.m; path = ObjC/DerivedSources/ChromeVirtualMachine.m; sourceTree = "<group>"; };
+		433376E66EF6E3911E89E0258EC63E7C /* PDRenderingDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDRenderingDomain.h; path = ObjC/DerivedSources/PDRenderingDomain.h; sourceTree = "<group>"; };
+		44C793B4DD761AAA51B7497667458207 /* PDMemoryDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDMemoryDomain.h; path = ObjC/DerivedSources/PDMemoryDomain.h; sourceTree = "<group>"; };
+		459425158B6C41AB3384F6CC4AEC30DE /* NSDate+PD_JSONObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDate+PD_JSONObject.m"; path = "ObjC/PonyDebugger/NSDate+PD_JSONObject.m"; sourceTree = "<group>"; };
+		461D0563160FD93D8B06B7BE58B451A7 /* PDPageTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDPageTypes.m; path = ObjC/DerivedSources/PDPageTypes.m; sourceTree = "<group>"; };
+		47A66C2BD01C20EEAECD79902E353A60 /* PDHeapProfilerDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDHeapProfilerDomain.m; path = ObjC/DerivedSources/PDHeapProfilerDomain.m; sourceTree = "<group>"; };
+		484D32EBC198D4730838C78E4083DB01 /* PDAnimationDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDAnimationDomain.h; path = ObjC/DerivedSources/PDAnimationDomain.h; sourceTree = "<group>"; };
+		4AD00F4C67967B04E9B0DD0CE69CDFC1 /* NSArray+PDRuntimePropertyDescriptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+PDRuntimePropertyDescriptor.m"; path = "ObjC/PonyDebugger/NSArray+PDRuntimePropertyDescriptor.m"; sourceTree = "<group>"; };
+		4DD2F770F7BB94EF4ED4242F632BFF94 /* PDInspectorDomainController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDInspectorDomainController.m; path = ObjC/PonyDebugger/PDInspectorDomainController.m; sourceTree = "<group>"; };
+		4E5DE2D40B5CFB00F9F64C3D0A12311D /* PDPageDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDPageDomain.h; path = ObjC/DerivedSources/PDPageDomain.h; sourceTree = "<group>"; };
+		4E82228D2B467322F3530D2F7824DA34 /* PDFileSystemTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDFileSystemTypes.m; path = ObjC/DerivedSources/PDFileSystemTypes.m; sourceTree = "<group>"; };
+		4E98648ACFF8C9F6E45C8C87E9E7A10C /* PDProfilerTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDProfilerTypes.h; path = ObjC/DerivedSources/PDProfilerTypes.h; sourceTree = "<group>"; };
+		4EF912EA651C6B8D09B38233004944DE /* PDFileSystemDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDFileSystemDomain.m; path = ObjC/DerivedSources/PDFileSystemDomain.m; sourceTree = "<group>"; };
+		4F14AE8BDABDCA9DC8A83C4D355C0D69 /* SocketRocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SocketRocket.h; path = SocketRocket/SocketRocket.h; sourceTree = "<group>"; };
+		52CC70FCADDEC86744610C0EBB84025F /* PDAccessibilityTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDAccessibilityTypes.h; path = ObjC/DerivedSources/PDAccessibilityTypes.h; sourceTree = "<group>"; };
+		5313ACBAB13B56DC182D72FF756E719C /* PDIndexedDBDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDIndexedDBDomain.h; path = ObjC/DerivedSources/PDIndexedDBDomain.h; sourceTree = "<group>"; };
+		55521E51F8DC4B7516AFCFD0E31BBD10 /* PDInspectorDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDInspectorDomain.h; path = ObjC/DerivedSources/PDInspectorDomain.h; sourceTree = "<group>"; };
+		558B9AD1664973955241360BBF101DDE /* PDCSSTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDCSSTypes.m; path = ObjC/DerivedSources/PDCSSTypes.m; sourceTree = "<group>"; };
+		56E877EF9DF9FED544A4810AF103C53C /* PDDynamicDebuggerDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDynamicDebuggerDomain.m; path = ObjC/PonyDebugger/PDDynamicDebuggerDomain.m; sourceTree = "<group>"; };
+		57554DC40CA569F7A7B80F1BBABA8748 /* PDDefinitions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDefinitions.m; path = ObjC/PonyDebugger/PDDefinitions.m; sourceTree = "<group>"; };
+		592338A331FDD8E17D9916E50DA4676E /* PDSecurityDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDSecurityDomain.m; path = ObjC/DerivedSources/PDSecurityDomain.m; sourceTree = "<group>"; };
+		5D3570A6609283AB0D997F0BDB4E05BE /* PDInputTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDInputTypes.m; path = ObjC/DerivedSources/PDInputTypes.m; sourceTree = "<group>"; };
+		60B90A57B1DA4A8F222268ACE3CC8267 /* PDDOMStorageDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDOMStorageDomain.h; path = ObjC/DerivedSources/PDDOMStorageDomain.h; sourceTree = "<group>"; };
+		60BBEE34FC3C853E12B0B3CC3555CA16 /* PDDOMStorageDomainController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDOMStorageDomainController.m; path = ObjC/PonyDebugger/PDDOMStorageDomainController.m; sourceTree = "<group>"; };
+		638EF880BFA3CBEB5E1180D65D92CD9D /* PDDeviceOrientationDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDeviceOrientationDomain.h; path = ObjC/DerivedSources/PDDeviceOrientationDomain.h; sourceTree = "<group>"; };
+		641B46891C722A20BA31373C7D29F8CF /* PDDOMDebuggerDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDOMDebuggerDomain.m; path = ObjC/DerivedSources/PDDOMDebuggerDomain.m; sourceTree = "<group>"; };
+		655EC355308C0206F610A3FA4B590FE8 /* PDProfilerTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDProfilerTypes.m; path = ObjC/DerivedSources/PDProfilerTypes.m; sourceTree = "<group>"; };
+		66A3E4C6907F7467B4181B394DB607AD /* PDCacheStorageDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDCacheStorageDomain.m; path = ObjC/DerivedSources/PDCacheStorageDomain.m; sourceTree = "<group>"; };
+		67766B35D314EE760CC7FA8CDB9F0BC9 /* PDTracingDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDTracingDomain.h; path = ObjC/DerivedSources/PDTracingDomain.h; sourceTree = "<group>"; };
+		67FB8BE3C44027ACEAEA8EDBF969C7AE /* SocketRocket-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-prefix.pch"; sourceTree = "<group>"; };
+		6864D1318DB56EE6E25FA5A2E0C0B402 /* PDIndexedDBDomainController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDIndexedDBDomainController.m; path = ObjC/PonyDebugger/PDIndexedDBDomainController.m; sourceTree = "<group>"; };
+		6870BB287DD83B7F4101835C796D36B2 /* PDDomainController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDomainController.m; path = ObjC/PonyDebugger/PDDomainController.m; sourceTree = "<group>"; };
+		6BCE392CD7F257EBFE94A1CD8EE65347 /* PDInputDomainController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDInputDomainController.m; path = ObjC/PonyDebugger/PDInputDomainController.m; sourceTree = "<group>"; };
+		6C4205B2E0A0EAE6B999CF2598B01C8B /* PDDebuggerDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDebuggerDomain.m; path = ObjC/DerivedSources/PDDebuggerDomain.m; sourceTree = "<group>"; };
+		6D74C8312EBF385173D144C4F15BE550 /* PDServiceWorkerDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDServiceWorkerDomain.h; path = ObjC/DerivedSources/PDServiceWorkerDomain.h; sourceTree = "<group>"; };
+		6E915B2BB805BF370E0927B7D01BF4AC /* NSObject+PDRuntimePropertyDescriptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+PDRuntimePropertyDescriptor.h"; path = "ObjC/PonyDebugger/NSObject+PDRuntimePropertyDescriptor.h"; sourceTree = "<group>"; };
+		6F28C37466A4782099CCB07AC3326976 /* PDObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDObject.m; path = ObjC/PonyDebugger/PDObject.m; sourceTree = "<group>"; };
+		6F53FD3FD113457F9B2B35E6796AD046 /* PDCSSDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDCSSDomain.m; path = ObjC/DerivedSources/PDCSSDomain.m; sourceTree = "<group>"; };
+		6FEF6713DCB1D060CEE0C3E20A93338B /* PDTimelineTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDTimelineTypes.m; path = ObjC/DerivedSources/PDTimelineTypes.m; sourceTree = "<group>"; };
+		7040CE017A2E64CED61F5B5A513AA534 /* PDAnimationTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDAnimationTypes.m; path = ObjC/DerivedSources/PDAnimationTypes.m; sourceTree = "<group>"; };
+		707562D036D42EBFA3FF6E5CBE82F5C2 /* PDCacheStorageTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDCacheStorageTypes.h; path = ObjC/DerivedSources/PDCacheStorageTypes.h; sourceTree = "<group>"; };
+		7132F9F0DF6E7BB874D3E2C47D6E131E /* Pods-VideoCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VideoCamera.release.xcconfig"; sourceTree = "<group>"; };
+		7320721C8ED07E93DC06059050D19BAF /* NSError+PD_JSONObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSError+PD_JSONObject.m"; path = "ObjC/PonyDebugger/NSError+PD_JSONObject.m"; sourceTree = "<group>"; };
+		75632581BB25442F1F14C5F30CF8A630 /* SRWebSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SRWebSocket.m; path = SocketRocket/SRWebSocket.m; sourceTree = "<group>"; };
+		75C579A8FBEC1797277A3F6A11F11A2E /* PDAccessibilityDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDAccessibilityDomain.h; path = ObjC/DerivedSources/PDAccessibilityDomain.h; sourceTree = "<group>"; };
+		760C07B9F1EE720CA456533B05F65E86 /* NSValue+PD_JSONObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSValue+PD_JSONObject.h"; path = "ObjC/PonyDebugger/NSValue+PD_JSONObject.h"; sourceTree = "<group>"; };
+		76ED7264CFB17E8494FA39522BFF6025 /* PDTimelineTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDTimelineTypes.h; path = ObjC/DerivedSources/PDTimelineTypes.h; sourceTree = "<group>"; };
+		78B8D2A012F2ED2806FF2E4D25B1AE56 /* PDSecurityDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDSecurityDomain.h; path = ObjC/DerivedSources/PDSecurityDomain.h; sourceTree = "<group>"; };
+		7B90A5B4C9311C4EC7E033F9C1297971 /* PDInputDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDInputDomain.m; path = ObjC/DerivedSources/PDInputDomain.m; sourceTree = "<group>"; };
+		7BD0AF791736B04AAAA6B62B2E7591F0 /* PDDatabaseDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDatabaseDomain.m; path = ObjC/DerivedSources/PDDatabaseDomain.m; sourceTree = "<group>"; };
+		7FC71934A518D332C3BF949FAF09FA08 /* PonyDebugger.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PonyDebugger.xcconfig; sourceTree = "<group>"; };
+		7FE761CB03DC7E18E774511DDF6C594D /* PDDatabaseDomainController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDatabaseDomainController.m; path = ObjC/PonyDebugger/PDDatabaseDomainController.m; sourceTree = "<group>"; };
+		83A3AEB4DAB6ADC0DE9923A454E91B47 /* PonyDebugger-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PonyDebugger-dummy.m"; sourceTree = "<group>"; };
+		83BFD03826FEBE20954C476878E5616A /* PDConsoleTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDConsoleTypes.h; path = ObjC/DerivedSources/PDConsoleTypes.h; sourceTree = "<group>"; };
+		84F3E2A58C2E8400540CB53D42739434 /* PDApplicationCacheTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDApplicationCacheTypes.m; path = ObjC/DerivedSources/PDApplicationCacheTypes.m; sourceTree = "<group>"; };
+		87356E9AD8023E9947996154107B7E43 /* Pods-VideoCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VideoCamera.debug.xcconfig"; sourceTree = "<group>"; };
+		890C56EC8F7E16971FB39F91C9B51C92 /* PDRuntimeTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDRuntimeTypes.h; path = ObjC/DerivedSources/PDRuntimeTypes.h; sourceTree = "<group>"; };
+		8932120667094527F4B93BF2709A7AC5 /* NSError+PD_JSONObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSError+PD_JSONObject.h"; path = "ObjC/PonyDebugger/NSError+PD_JSONObject.h"; sourceTree = "<group>"; };
+		8A53E6BAB9AEF1B76BFAC87038E4D56D /* PDDOMDomainController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDOMDomainController.h; path = ObjC/PonyDebugger/PDDOMDomainController.h; sourceTree = "<group>"; };
+		8AF0F73A24F23E09C3C5F5E434716DFB /* PDDeviceOrientationDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDeviceOrientationDomain.m; path = ObjC/DerivedSources/PDDeviceOrientationDomain.m; sourceTree = "<group>"; };
+		8CFA03F3426C3EF1D107CFC3766101F0 /* PDDOMStorageDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDOMStorageDomain.m; path = ObjC/DerivedSources/PDDOMStorageDomain.m; sourceTree = "<group>"; };
+		8E250F1FB532C7AAD4CB873562DBC67E /* PDConsoleTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDConsoleTypes.m; path = ObjC/DerivedSources/PDConsoleTypes.m; sourceTree = "<group>"; };
+		8E366686F4EE6C937F9F47B725A33EC4 /* NSDictionary+PD_JSONObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+PD_JSONObject.m"; path = "ObjC/PonyDebugger/NSDictionary+PD_JSONObject.m"; sourceTree = "<group>"; };
+		8E55106E7CAE4F91836ACFE501ABCF48 /* PDInspectorDomainController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDInspectorDomainController.h; path = ObjC/PonyDebugger/PDInspectorDomainController.h; sourceTree = "<group>"; };
+		8E95229494E1A42DA0A4A98348C851A6 /* PDPageDomainController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDPageDomainController.m; path = ObjC/PonyDebugger/PDPageDomainController.m; sourceTree = "<group>"; };
+		9008828BD414813B6307916C64BB0221 /* PDEmulationDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDEmulationDomain.m; path = ObjC/DerivedSources/PDEmulationDomain.m; sourceTree = "<group>"; };
+		90A4BF22BF4922107F65158AD811CD90 /* PDRenderingDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDRenderingDomain.m; path = ObjC/DerivedSources/PDRenderingDomain.m; sourceTree = "<group>"; };
+		92D927D3DC91728226F76A911842B076 /* PDDatabaseTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDatabaseTypes.h; path = ObjC/DerivedSources/PDDatabaseTypes.h; sourceTree = "<group>"; };
+		93E4A261153644A7CF466D86A8E05BDA /* PDNetworkDomainController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDNetworkDomainController.h; path = ObjC/PonyDebugger/PDNetworkDomainController.h; sourceTree = "<group>"; };
+		94366FC2A231AB90C06147AF590A9E72 /* NSDate+PD_JSONObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDate+PD_JSONObject.h"; path = "ObjC/PonyDebugger/NSDate+PD_JSONObject.h"; sourceTree = "<group>"; };
+		94FFA156985E2BCA31452CF38EB7CCC2 /* PDFileSystemDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDFileSystemDomain.h; path = ObjC/DerivedSources/PDFileSystemDomain.h; sourceTree = "<group>"; };
+		95406EAA7BB69C0614743FA663A22A0F /* NSManagedObject+PDRuntimePropertyDescriptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+PDRuntimePropertyDescriptor.h"; path = "ObjC/PonyDebugger/NSManagedObject+PDRuntimePropertyDescriptor.h"; sourceTree = "<group>"; };
+		9BC077A3DCDF87AC159A2DA7B92EE6E3 /* Pods-VideoCamera-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-VideoCamera-dummy.m"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9DF423D764D4751A9F71BDA0A432167B /* PDTracingDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDTracingDomain.m; path = ObjC/DerivedSources/PDTracingDomain.m; sourceTree = "<group>"; };
+		9EE80556F13161245F741518AE4B7566 /* libPods-VideoCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-VideoCamera.a"; path = "libPods-VideoCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FD5ABDA8B2C2C49D9B28D990307AE5B /* PDLayerTreeDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDLayerTreeDomain.h; path = ObjC/DerivedSources/PDLayerTreeDomain.h; sourceTree = "<group>"; };
+		A0A874A33C18331323768D5CB55AE616 /* PDDOMDomainController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDOMDomainController.m; path = ObjC/PonyDebugger/PDDOMDomainController.m; sourceTree = "<group>"; };
+		A172E19C59A345A2B2A390B839733345 /* PDDatabaseDomainController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDatabaseDomainController.h; path = ObjC/PonyDebugger/PDDatabaseDomainController.h; sourceTree = "<group>"; };
+		A20DEB41790909BE4E0A724AAD983A73 /* PDDOMStorageDomainController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDOMStorageDomainController.h; path = ObjC/PonyDebugger/PDDOMStorageDomainController.h; sourceTree = "<group>"; };
+		A2E0F3162677AA6714CB50DF2D252578 /* PDWorkerDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDWorkerDomain.m; path = ObjC/DerivedSources/PDWorkerDomain.m; sourceTree = "<group>"; };
+		A432C7AA497F1593302D763644ADDE9C /* PDCSSDomainController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDCSSDomainController.m; path = ObjC/PonyDebugger/PDCSSDomainController.m; sourceTree = "<group>"; };
+		A4EDD895BA0A013431F5E8C938BCEB9B /* PDEmulationTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDEmulationTypes.m; path = ObjC/DerivedSources/PDEmulationTypes.m; sourceTree = "<group>"; };
+		A6E18AF97DD3DAB81BCD5A8C5623CBB7 /* PDLayerTreeTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDLayerTreeTypes.h; path = ObjC/DerivedSources/PDLayerTreeTypes.h; sourceTree = "<group>"; };
+		A8467D86E29CB1F150BD628F82CEA8C1 /* NSArray+PDRuntimePropertyDescriptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+PDRuntimePropertyDescriptor.h"; path = "ObjC/PonyDebugger/NSArray+PDRuntimePropertyDescriptor.h"; sourceTree = "<group>"; };
+		AAACA740FA6AAC02D1592A65DFDB2F8F /* PDConsoleDomainController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDConsoleDomainController.h; path = ObjC/PonyDebugger/PDConsoleDomainController.h; sourceTree = "<group>"; };
+		AD19995DF6939C327461075180447F28 /* PDApplicationCacheDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDApplicationCacheDomain.h; path = ObjC/DerivedSources/PDApplicationCacheDomain.h; sourceTree = "<group>"; };
+		B0B178669F3BC0F90E1AD73B27D0F0A1 /* NSData+PDDebugger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+PDDebugger.m"; path = "ObjC/PonyDebugger/NSData+PDDebugger.m"; sourceTree = "<group>"; };
+		B2B7B103F8F39A0A2399D435A65990CE /* PDNetworkDomainController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDNetworkDomainController.m; path = ObjC/PonyDebugger/PDNetworkDomainController.m; sourceTree = "<group>"; };
+		B69E56047EA68614EE158DC7ACDE56EC /* PDDatabaseDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDatabaseDomain.h; path = ObjC/DerivedSources/PDDatabaseDomain.h; sourceTree = "<group>"; };
+		B7153EF7BE86E8E9F95CDF616FD5A147 /* PDHeapProfilerDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDHeapProfilerDomain.h; path = ObjC/DerivedSources/PDHeapProfilerDomain.h; sourceTree = "<group>"; };
+		B7AF7CC45040C0860EBA88FA080DAF8D /* PDCacheStorageDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDCacheStorageDomain.h; path = ObjC/DerivedSources/PDCacheStorageDomain.h; sourceTree = "<group>"; };
+		B811F55777B434773692C1C18DB1AD91 /* PDIndexedDBDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDIndexedDBDomain.m; path = ObjC/DerivedSources/PDIndexedDBDomain.m; sourceTree = "<group>"; };
+		B98269E9CEDE1F5E059D513D838274C5 /* PDDomainController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDomainController.h; path = ObjC/PonyDebugger/PDDomainController.h; sourceTree = "<group>"; };
+		B9DA1848E9BDD9C0E8588117A29A4466 /* NSSet+PDRuntimePropertyDescriptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSSet+PDRuntimePropertyDescriptor.h"; path = "ObjC/PonyDebugger/NSSet+PDRuntimePropertyDescriptor.h"; sourceTree = "<group>"; };
+		BB7EDA7E6F127275CF33E2DB4F515553 /* libPonyDebugger.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libPonyDebugger.a; path = libPonyDebugger.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCAFC6CB7ABBC790AEC66562C9B945CA /* PDDatabaseTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDatabaseTypes.m; path = ObjC/DerivedSources/PDDatabaseTypes.m; sourceTree = "<group>"; };
+		BCF325D240D34010B3C719BB4551BDBC /* NSData+PDDebugger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+PDDebugger.h"; path = "ObjC/PonyDebugger/NSData+PDDebugger.h"; sourceTree = "<group>"; };
+		C00A825D56B19A2D12566BF37BC3A8B2 /* PDPowerTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDPowerTypes.m; path = ObjC/DerivedSources/PDPowerTypes.m; sourceTree = "<group>"; };
+		C08929723BDBED8CD4D71EE46F3E132F /* PDEmulationDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDEmulationDomain.h; path = ObjC/DerivedSources/PDEmulationDomain.h; sourceTree = "<group>"; };
+		C12E932CC4B4079651754A4961683A8A /* Pods-VideoCamera-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-VideoCamera-acknowledgements.plist"; sourceTree = "<group>"; };
+		C59D42A6CE1C52914CDB8B534FD30B9F /* PDMemoryDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDMemoryDomain.m; path = ObjC/DerivedSources/PDMemoryDomain.m; sourceTree = "<group>"; };
+		C5EA8409BEBF8E3F7E070B9A823A327F /* SRWebSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SRWebSocket.h; path = SocketRocket/SRWebSocket.h; sourceTree = "<group>"; };
+		C624DD54FF9FD5BF36E601CF714E5E33 /* PDConsoleDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDConsoleDomain.m; path = ObjC/DerivedSources/PDConsoleDomain.m; sourceTree = "<group>"; };
+		C674DD0BD6FB740D885BD8E154F5C7EF /* PDServiceWorkerTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDServiceWorkerTypes.h; path = ObjC/DerivedSources/PDServiceWorkerTypes.h; sourceTree = "<group>"; };
+		CA46EC264765A26AC2F5983C97F9C390 /* PDPowerTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDPowerTypes.h; path = ObjC/DerivedSources/PDPowerTypes.h; sourceTree = "<group>"; };
+		CC6857839249489A319F7164F8BCB37D /* PDPageDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDPageDomain.m; path = ObjC/DerivedSources/PDPageDomain.m; sourceTree = "<group>"; };
+		CD68042CBCBCA713FB7B80B14203EEA4 /* PDObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDObject.h; path = ObjC/PonyDebugger/PDObject.h; sourceTree = "<group>"; };
+		CE8E48821E7FF45A664EBDBB6E49D5E6 /* PDPrettyStringPrinter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDPrettyStringPrinter.h; path = ObjC/PonyDebugger/PDPrettyStringPrinter.h; sourceTree = "<group>"; };
+		D2CF3A89C655E7CED36A786CCA861D2D /* NSDate+PDDebugger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDate+PDDebugger.h"; path = "ObjC/PonyDebugger/NSDate+PDDebugger.h"; sourceTree = "<group>"; };
+		D42093A8678F2FCF4E88C7E9A70E8A1A /* PDDOMDebuggerTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDOMDebuggerTypes.m; path = ObjC/DerivedSources/PDDOMDebuggerTypes.m; sourceTree = "<group>"; };
+		D6B7805A5B5E9651C75A45544B853844 /* PDNetworkDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDNetworkDomain.m; path = ObjC/DerivedSources/PDNetworkDomain.m; sourceTree = "<group>"; };
+		D6F936498AA6E790FD0A82693F64022A /* SocketRocket.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SocketRocket.xcconfig; sourceTree = "<group>"; };
+		D731516ED8425BD5DC6A42E7BDF251DD /* PDIndexedDBTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDIndexedDBTypes.m; path = ObjC/DerivedSources/PDIndexedDBTypes.m; sourceTree = "<group>"; };
+		D8DFE2B67E6D48C60C55D4C8FED61ADA /* NSSet+PDRuntimePropertyDescriptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSSet+PDRuntimePropertyDescriptor.m"; path = "ObjC/PonyDebugger/NSSet+PDRuntimePropertyDescriptor.m"; sourceTree = "<group>"; };
+		D9B0E925BCD0F4CE7AC24E37CD1796C7 /* PDRuntimeDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDRuntimeDomain.m; path = ObjC/DerivedSources/PDRuntimeDomain.m; sourceTree = "<group>"; };
+		DB6385CCE432B6AF53B9CDD056054A7E /* PDPowerDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDPowerDomain.h; path = ObjC/DerivedSources/PDPowerDomain.h; sourceTree = "<group>"; };
+		E07C00CE3ABAD1BDAB571ECA57B0697D /* PDDOMDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDOMDomain.m; path = ObjC/DerivedSources/PDDOMDomain.m; sourceTree = "<group>"; };
+		E1709743C871406F69A798F5685ABC0A /* PDDOMTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDOMTypes.m; path = ObjC/DerivedSources/PDDOMTypes.m; sourceTree = "<group>"; };
+		E319366ABD2744EC58452BFEFF265F6A /* PDFileSystemTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDFileSystemTypes.h; path = ObjC/DerivedSources/PDFileSystemTypes.h; sourceTree = "<group>"; };
+		E4C7851A16E8E96336DEB950E7313968 /* libSocketRocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSocketRocket.a; path = libSocketRocket.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E55AC3388DCD384A4F3C587850EB50F9 /* PDPageDomainController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDPageDomainController.h; path = ObjC/PonyDebugger/PDPageDomainController.h; sourceTree = "<group>"; };
+		E669238D3BEFAFEB45267068D636F2DB /* NSValue+PD_JSONObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSValue+PD_JSONObject.m"; path = "ObjC/PonyDebugger/NSValue+PD_JSONObject.m"; sourceTree = "<group>"; };
+		E76F334A4993B31751D2E255C6EAF9E7 /* ChromeVirtualMachine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ChromeVirtualMachine.h; path = ObjC/DerivedSources/ChromeVirtualMachine.h; sourceTree = "<group>"; };
+		E8F3646A9B84E189231757664D1973FD /* PDCSSDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDCSSDomain.h; path = ObjC/DerivedSources/PDCSSDomain.h; sourceTree = "<group>"; };
+		EC200AAF74E3671A0EE4D2AB9F15C12D /* PDScreenOrientationDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDScreenOrientationDomain.h; path = ObjC/DerivedSources/PDScreenOrientationDomain.h; sourceTree = "<group>"; };
+		EC89FD4BC8364AC2AB4645A6B45A2A95 /* PDDebuggerTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDebuggerTypes.h; path = ObjC/DerivedSources/PDDebuggerTypes.h; sourceTree = "<group>"; };
+		EDED8A8517FC88A5EEF3D2027004F323 /* PDTimelineDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDTimelineDomain.h; path = ObjC/DerivedSources/PDTimelineDomain.h; sourceTree = "<group>"; };
+		EF8A9C977898C82E34A81B13298F2433 /* PDInspectorDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDInspectorDomain.m; path = ObjC/DerivedSources/PDInspectorDomain.m; sourceTree = "<group>"; };
+		F018276989875D786E1186053FCB5DD6 /* PDPageTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDPageTypes.h; path = ObjC/DerivedSources/PDPageTypes.h; sourceTree = "<group>"; };
+		F034B86FDD7214E9D98EF5046105E802 /* PDDOMDebuggerDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDOMDebuggerDomain.h; path = ObjC/DerivedSources/PDDOMDebuggerDomain.h; sourceTree = "<group>"; };
+		F10450063BB77EC17A17A6CE3A75D3B2 /* PDRuntimeTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDRuntimeTypes.m; path = ObjC/DerivedSources/PDRuntimeTypes.m; sourceTree = "<group>"; };
+		F200C4361D3A1DB649A9612E3800BAAF /* PDPrettyStringPrinter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDPrettyStringPrinter.m; path = ObjC/PonyDebugger/PDPrettyStringPrinter.m; sourceTree = "<group>"; };
+		F220A53489C8BCAB340DE4A63F8A7A00 /* PDDebugger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDDebugger.m; path = ObjC/PonyDebugger/PDDebugger.m; sourceTree = "<group>"; };
+		F2EE1E18D84C48A4A6CCCE61ACE1DFDA /* PDDebuggerDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDebuggerDomain.h; path = ObjC/DerivedSources/PDDebuggerDomain.h; sourceTree = "<group>"; };
+		F4717EF7A6A9DF04FE068C812973DF40 /* PDInputDomainController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDInputDomainController.h; path = ObjC/PonyDebugger/PDInputDomainController.h; sourceTree = "<group>"; };
+		F57A10FC3623FAE701BFD385129A99CC /* SocketRocket-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SocketRocket-dummy.m"; sourceTree = "<group>"; };
+		F625F7A85BD5DDFF84C122770C1AB6F7 /* NSManagedObject+PDRuntimePropertyDescriptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+PDRuntimePropertyDescriptor.m"; path = "ObjC/PonyDebugger/NSManagedObject+PDRuntimePropertyDescriptor.m"; sourceTree = "<group>"; };
+		F6BC5073535EF8CCA5822AD7300B0C10 /* PDNetworkTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDNetworkTypes.m; path = ObjC/DerivedSources/PDNetworkTypes.m; sourceTree = "<group>"; };
+		F9007C96281026BBAD0DBD964BCF7F34 /* PDProfilerDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDProfilerDomain.m; path = ObjC/DerivedSources/PDProfilerDomain.m; sourceTree = "<group>"; };
+		F9A41DF22D70D3E4EB80BC2DD80BEFC5 /* PDPowerDomain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDPowerDomain.m; path = ObjC/DerivedSources/PDPowerDomain.m; sourceTree = "<group>"; };
+		FA242A900E7C0F74435430BAA0CDCEA9 /* PDDOMDebuggerTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PDDOMDebuggerTypes.h; path = ObjC/DerivedSources/PDDOMDebuggerTypes.h; sourceTree = "<group>"; };
+		FBCB18F1AE35366E9E518C5E9905AADD /* PDRuntimeDomainController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PDRuntimeDomainController.m; path = ObjC/PonyDebugger/PDRuntimeDomainController.m; sourceTree = "<group>"; };
+		FCCC8EF76FE670BEB9501975B45280DB /* PonyDebugger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PonyDebugger.h; path = ObjC/PonyDebugger/PonyDebugger.h; sourceTree = "<group>"; };
+		FE7542036E773F730565EF1A1B05543F /* NSDictionary+PDRuntimePropertyDescriptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+PDRuntimePropertyDescriptor.m"; path = "ObjC/PonyDebugger/NSDictionary+PDRuntimePropertyDescriptor.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		52B4EEC536267ADAD9B429A7B1E33B6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB2C6A0DE10562916BBDAC95F4F0BE9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B258419EAA1855E50998E53A877D76B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0E84F234A11E544D2823169042DA6C46 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3EA4F6228740979610122FDDE58EBE3 /* PonyDebugger */,
+				D798B962B1D72E90337A16829E20866B /* SocketRocket */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		2BC19CA9B0C01E8E044EA845E75865DE /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7FC71934A518D332C3BF949FAF09FA08 /* PonyDebugger.xcconfig */,
+				83A3AEB4DAB6ADC0DE9923A454E91B47 /* PonyDebugger-dummy.m */,
+				0F8806A6428A0A7FFBEE67B3E3F1D64F /* PonyDebugger-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/PonyDebugger";
+			sourceTree = "<group>";
+		};
+		69B68143F73DCCABE5ED85E765F5561C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D6F936498AA6E790FD0A82693F64022A /* SocketRocket.xcconfig */,
+				F57A10FC3623FAE701BFD385129A99CC /* SocketRocket-dummy.m */,
+				67FB8BE3C44027ACEAEA8EDBF969C7AE /* SocketRocket-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SocketRocket";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				0E84F234A11E544D2823169042DA6C46 /* Pods */,
+				E744883B22ACFDEB417E20653CB668B7 /* Products */,
+				FB711166C457E232B666AE11385ED362 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D798B962B1D72E90337A16829E20866B /* SocketRocket */ = {
+			isa = PBXGroup;
+			children = (
+				4F14AE8BDABDCA9DC8A83C4D355C0D69 /* SocketRocket.h */,
+				C5EA8409BEBF8E3F7E070B9A823A327F /* SRWebSocket.h */,
+				75632581BB25442F1F14C5F30CF8A630 /* SRWebSocket.m */,
+				69B68143F73DCCABE5ED85E765F5561C /* Support Files */,
+			);
+			name = SocketRocket;
+			path = SocketRocket;
+			sourceTree = "<group>";
+		};
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E744883B22ACFDEB417E20653CB668B7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9EE80556F13161245F741518AE4B7566 /* libPods-VideoCamera.a */,
+				BB7EDA7E6F127275CF33E2DB4F515553 /* libPonyDebugger.a */,
+				E4C7851A16E8E96336DEB950E7313968 /* libSocketRocket.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F3EA4F6228740979610122FDDE58EBE3 /* PonyDebugger */ = {
+			isa = PBXGroup;
+			children = (
+				E76F334A4993B31751D2E255C6EAF9E7 /* ChromeVirtualMachine.h */,
+				42C5F04FCC29445F899219E65123E3E0 /* ChromeVirtualMachine.m */,
+				0710448DAE638E1043EF4D2BA8746EE4 /* NSArray+PD_JSONObject.h */,
+				3F344D30BCEA7733C292DE8388331290 /* NSArray+PD_JSONObject.m */,
+				A8467D86E29CB1F150BD628F82CEA8C1 /* NSArray+PDRuntimePropertyDescriptor.h */,
+				4AD00F4C67967B04E9B0DD0CE69CDFC1 /* NSArray+PDRuntimePropertyDescriptor.m */,
+				BCF325D240D34010B3C719BB4551BDBC /* NSData+PDDebugger.h */,
+				B0B178669F3BC0F90E1AD73B27D0F0A1 /* NSData+PDDebugger.m */,
+				94366FC2A231AB90C06147AF590A9E72 /* NSDate+PD_JSONObject.h */,
+				459425158B6C41AB3384F6CC4AEC30DE /* NSDate+PD_JSONObject.m */,
+				D2CF3A89C655E7CED36A786CCA861D2D /* NSDate+PDDebugger.h */,
+				14362F2DFF285730ABCA07FE840154BC /* NSDate+PDDebugger.m */,
+				11737FBE11427161292C3CB29153E0CF /* NSDictionary+PD_JSONObject.h */,
+				8E366686F4EE6C937F9F47B725A33EC4 /* NSDictionary+PD_JSONObject.m */,
+				362056A2C735C2B2C7C7C7C6300D77A4 /* NSDictionary+PDRuntimePropertyDescriptor.h */,
+				FE7542036E773F730565EF1A1B05543F /* NSDictionary+PDRuntimePropertyDescriptor.m */,
+				8932120667094527F4B93BF2709A7AC5 /* NSError+PD_JSONObject.h */,
+				7320721C8ED07E93DC06059050D19BAF /* NSError+PD_JSONObject.m */,
+				95406EAA7BB69C0614743FA663A22A0F /* NSManagedObject+PDRuntimePropertyDescriptor.h */,
+				F625F7A85BD5DDFF84C122770C1AB6F7 /* NSManagedObject+PDRuntimePropertyDescriptor.m */,
+				6E915B2BB805BF370E0927B7D01BF4AC /* NSObject+PDRuntimePropertyDescriptor.h */,
+				23F960EBFAEB5C7732B73E67081A74EC /* NSObject+PDRuntimePropertyDescriptor.m */,
+				37279C552E0E273B86AA305E260C95E4 /* NSOrderedSet+PDRuntimePropertyDescriptor.h */,
+				0FDEA71492D2BEC6E600ABE3F5FE3080 /* NSOrderedSet+PDRuntimePropertyDescriptor.m */,
+				B9DA1848E9BDD9C0E8588117A29A4466 /* NSSet+PDRuntimePropertyDescriptor.h */,
+				D8DFE2B67E6D48C60C55D4C8FED61ADA /* NSSet+PDRuntimePropertyDescriptor.m */,
+				760C07B9F1EE720CA456533B05F65E86 /* NSValue+PD_JSONObject.h */,
+				E669238D3BEFAFEB45267068D636F2DB /* NSValue+PD_JSONObject.m */,
+				75C579A8FBEC1797277A3F6A11F11A2E /* PDAccessibilityDomain.h */,
+				25AEA5AC640036F1E1B91681963BADD9 /* PDAccessibilityDomain.m */,
+				52CC70FCADDEC86744610C0EBB84025F /* PDAccessibilityTypes.h */,
+				360625E168F333C237749FAC60620FB1 /* PDAccessibilityTypes.m */,
+				484D32EBC198D4730838C78E4083DB01 /* PDAnimationDomain.h */,
+				21AC30D3EDB555AF3D2CF18E38362C28 /* PDAnimationDomain.m */,
+				2B83C10AC6D66F79AE40134C443F4C9C /* PDAnimationTypes.h */,
+				7040CE017A2E64CED61F5B5A513AA534 /* PDAnimationTypes.m */,
+				AD19995DF6939C327461075180447F28 /* PDApplicationCacheDomain.h */,
+				4230BEE595C004832E8CE818524CB0D9 /* PDApplicationCacheDomain.m */,
+				36C27C2752B4E92A856AE4F80DE1C3F4 /* PDApplicationCacheTypes.h */,
+				84F3E2A58C2E8400540CB53D42739434 /* PDApplicationCacheTypes.m */,
+				B7AF7CC45040C0860EBA88FA080DAF8D /* PDCacheStorageDomain.h */,
+				66A3E4C6907F7467B4181B394DB607AD /* PDCacheStorageDomain.m */,
+				707562D036D42EBFA3FF6E5CBE82F5C2 /* PDCacheStorageTypes.h */,
+				3057BE21753DA4D5ECFC552599B644DA /* PDCacheStorageTypes.m */,
+				164D5A186D8DF1E96A6122F56C40F320 /* PDConsoleDomain.h */,
+				C624DD54FF9FD5BF36E601CF714E5E33 /* PDConsoleDomain.m */,
+				AAACA740FA6AAC02D1592A65DFDB2F8F /* PDConsoleDomainController.h */,
+				0A4B7F9A37BDB402FEF1C2D61EF308BA /* PDConsoleDomainController.m */,
+				83BFD03826FEBE20954C476878E5616A /* PDConsoleTypes.h */,
+				8E250F1FB532C7AAD4CB873562DBC67E /* PDConsoleTypes.m */,
+				03C0E47A0F96DDFFB87BF9907C4E62C7 /* PDContainerIndex.h */,
+				38120528C3F6EF1B3BEDA60399FE3218 /* PDContainerIndex.m */,
+				E8F3646A9B84E189231757664D1973FD /* PDCSSDomain.h */,
+				6F53FD3FD113457F9B2B35E6796AD046 /* PDCSSDomain.m */,
+				20C532F0EEE432714CE5924AFB65E502 /* PDCSSDomainController.h */,
+				A432C7AA497F1593302D763644ADDE9C /* PDCSSDomainController.m */,
+				066B0346DE3F000F91797A97A74E10DB /* PDCSSTypes.h */,
+				558B9AD1664973955241360BBF101DDE /* PDCSSTypes.m */,
+				B69E56047EA68614EE158DC7ACDE56EC /* PDDatabaseDomain.h */,
+				7BD0AF791736B04AAAA6B62B2E7591F0 /* PDDatabaseDomain.m */,
+				A172E19C59A345A2B2A390B839733345 /* PDDatabaseDomainController.h */,
+				7FE761CB03DC7E18E774511DDF6C594D /* PDDatabaseDomainController.m */,
+				92D927D3DC91728226F76A911842B076 /* PDDatabaseTypes.h */,
+				BCAFC6CB7ABBC790AEC66562C9B945CA /* PDDatabaseTypes.m */,
+				2C0F6B1C2B25B779144E548AFD5367DF /* PDDebugger.h */,
+				F220A53489C8BCAB340DE4A63F8A7A00 /* PDDebugger.m */,
+				F2EE1E18D84C48A4A6CCCE61ACE1DFDA /* PDDebuggerDomain.h */,
+				6C4205B2E0A0EAE6B999CF2598B01C8B /* PDDebuggerDomain.m */,
+				EC89FD4BC8364AC2AB4645A6B45A2A95 /* PDDebuggerTypes.h */,
+				0AA9CFDEE2C9975773F33BFC40FA60B0 /* PDDebuggerTypes.m */,
+				0C10EE1D2B55AC82ABF8D7293AEB9BF3 /* PDDefinitions.h */,
+				57554DC40CA569F7A7B80F1BBABA8748 /* PDDefinitions.m */,
+				638EF880BFA3CBEB5E1180D65D92CD9D /* PDDeviceOrientationDomain.h */,
+				8AF0F73A24F23E09C3C5F5E434716DFB /* PDDeviceOrientationDomain.m */,
+				B98269E9CEDE1F5E059D513D838274C5 /* PDDomainController.h */,
+				6870BB287DD83B7F4101835C796D36B2 /* PDDomainController.m */,
+				F034B86FDD7214E9D98EF5046105E802 /* PDDOMDebuggerDomain.h */,
+				641B46891C722A20BA31373C7D29F8CF /* PDDOMDebuggerDomain.m */,
+				FA242A900E7C0F74435430BAA0CDCEA9 /* PDDOMDebuggerTypes.h */,
+				D42093A8678F2FCF4E88C7E9A70E8A1A /* PDDOMDebuggerTypes.m */,
+				019567B06BA1D38106FE27FE1DDF3C64 /* PDDOMDomain.h */,
+				E07C00CE3ABAD1BDAB571ECA57B0697D /* PDDOMDomain.m */,
+				8A53E6BAB9AEF1B76BFAC87038E4D56D /* PDDOMDomainController.h */,
+				A0A874A33C18331323768D5CB55AE616 /* PDDOMDomainController.m */,
+				60B90A57B1DA4A8F222268ACE3CC8267 /* PDDOMStorageDomain.h */,
+				8CFA03F3426C3EF1D107CFC3766101F0 /* PDDOMStorageDomain.m */,
+				A20DEB41790909BE4E0A724AAD983A73 /* PDDOMStorageDomainController.h */,
+				60BBEE34FC3C853E12B0B3CC3555CA16 /* PDDOMStorageDomainController.m */,
+				3D878DC7E9831FFD675A069A5A79E8D7 /* PDDOMStorageTypes.h */,
+				3C21A0AC5470F615504FF113879A68B7 /* PDDOMStorageTypes.m */,
+				39440086C19C2F83A19F2C3F7022C90D /* PDDOMTypes.h */,
+				E1709743C871406F69A798F5685ABC0A /* PDDOMTypes.m */,
+				13367F9FFEFA15B9122861FE9AF18DE5 /* PDDynamicDebuggerDomain.h */,
+				56E877EF9DF9FED544A4810AF103C53C /* PDDynamicDebuggerDomain.m */,
+				C08929723BDBED8CD4D71EE46F3E132F /* PDEmulationDomain.h */,
+				9008828BD414813B6307916C64BB0221 /* PDEmulationDomain.m */,
+				2C8012574B5ACF34BEDBFB2E3FA90CA7 /* PDEmulationTypes.h */,
+				A4EDD895BA0A013431F5E8C938BCEB9B /* PDEmulationTypes.m */,
+				94FFA156985E2BCA31452CF38EB7CCC2 /* PDFileSystemDomain.h */,
+				4EF912EA651C6B8D09B38233004944DE /* PDFileSystemDomain.m */,
+				E319366ABD2744EC58452BFEFF265F6A /* PDFileSystemTypes.h */,
+				4E82228D2B467322F3530D2F7824DA34 /* PDFileSystemTypes.m */,
+				B7153EF7BE86E8E9F95CDF616FD5A147 /* PDHeapProfilerDomain.h */,
+				47A66C2BD01C20EEAECD79902E353A60 /* PDHeapProfilerDomain.m */,
+				5313ACBAB13B56DC182D72FF756E719C /* PDIndexedDBDomain.h */,
+				B811F55777B434773692C1C18DB1AD91 /* PDIndexedDBDomain.m */,
+				2E68D85F2EE1382C3A7D63A66A7C233F /* PDIndexedDBDomainController.h */,
+				6864D1318DB56EE6E25FA5A2E0C0B402 /* PDIndexedDBDomainController.m */,
+				1065955E5F4F50B8A6278E8313E9BB2A /* PDIndexedDBTypes.h */,
+				D731516ED8425BD5DC6A42E7BDF251DD /* PDIndexedDBTypes.m */,
+				23609D3F9068D6FE70C1D91A85568A5C /* PDInputDomain.h */,
+				7B90A5B4C9311C4EC7E033F9C1297971 /* PDInputDomain.m */,
+				F4717EF7A6A9DF04FE068C812973DF40 /* PDInputDomainController.h */,
+				6BCE392CD7F257EBFE94A1CD8EE65347 /* PDInputDomainController.m */,
+				359D77A61340E7F3B762ACD383DC570A /* PDInputTypes.h */,
+				5D3570A6609283AB0D997F0BDB4E05BE /* PDInputTypes.m */,
+				55521E51F8DC4B7516AFCFD0E31BBD10 /* PDInspectorDomain.h */,
+				EF8A9C977898C82E34A81B13298F2433 /* PDInspectorDomain.m */,
+				8E55106E7CAE4F91836ACFE501ABCF48 /* PDInspectorDomainController.h */,
+				4DD2F770F7BB94EF4ED4242F632BFF94 /* PDInspectorDomainController.m */,
+				9FD5ABDA8B2C2C49D9B28D990307AE5B /* PDLayerTreeDomain.h */,
+				3060CAAB3F889435885E0AD0BA15C609 /* PDLayerTreeDomain.m */,
+				A6E18AF97DD3DAB81BCD5A8C5623CBB7 /* PDLayerTreeTypes.h */,
+				146B0146F70F54E1A0C2B7374A963688 /* PDLayerTreeTypes.m */,
+				44C793B4DD761AAA51B7497667458207 /* PDMemoryDomain.h */,
+				C59D42A6CE1C52914CDB8B534FD30B9F /* PDMemoryDomain.m */,
+				005BBC21B348347308D7C3349EEBC00E /* PDNetworkDomain.h */,
+				D6B7805A5B5E9651C75A45544B853844 /* PDNetworkDomain.m */,
+				93E4A261153644A7CF466D86A8E05BDA /* PDNetworkDomainController.h */,
+				B2B7B103F8F39A0A2399D435A65990CE /* PDNetworkDomainController.m */,
+				4026D6356A61BD418C31D8A893452C8C /* PDNetworkTypes.h */,
+				F6BC5073535EF8CCA5822AD7300B0C10 /* PDNetworkTypes.m */,
+				CD68042CBCBCA713FB7B80B14203EEA4 /* PDObject.h */,
+				6F28C37466A4782099CCB07AC3326976 /* PDObject.m */,
+				4E5DE2D40B5CFB00F9F64C3D0A12311D /* PDPageDomain.h */,
+				CC6857839249489A319F7164F8BCB37D /* PDPageDomain.m */,
+				E55AC3388DCD384A4F3C587850EB50F9 /* PDPageDomainController.h */,
+				8E95229494E1A42DA0A4A98348C851A6 /* PDPageDomainController.m */,
+				F018276989875D786E1186053FCB5DD6 /* PDPageTypes.h */,
+				461D0563160FD93D8B06B7BE58B451A7 /* PDPageTypes.m */,
+				DB6385CCE432B6AF53B9CDD056054A7E /* PDPowerDomain.h */,
+				F9A41DF22D70D3E4EB80BC2DD80BEFC5 /* PDPowerDomain.m */,
+				CA46EC264765A26AC2F5983C97F9C390 /* PDPowerTypes.h */,
+				C00A825D56B19A2D12566BF37BC3A8B2 /* PDPowerTypes.m */,
+				CE8E48821E7FF45A664EBDBB6E49D5E6 /* PDPrettyStringPrinter.h */,
+				F200C4361D3A1DB649A9612E3800BAAF /* PDPrettyStringPrinter.m */,
+				15EAEB57DCDC55470EAFD350EACB5459 /* PDProfilerDomain.h */,
+				F9007C96281026BBAD0DBD964BCF7F34 /* PDProfilerDomain.m */,
+				4E98648ACFF8C9F6E45C8C87E9E7A10C /* PDProfilerTypes.h */,
+				655EC355308C0206F610A3FA4B590FE8 /* PDProfilerTypes.m */,
+				433376E66EF6E3911E89E0258EC63E7C /* PDRenderingDomain.h */,
+				90A4BF22BF4922107F65158AD811CD90 /* PDRenderingDomain.m */,
+				25B60643026F95E59B0F501D79BCCDA3 /* PDRuntimeDomain.h */,
+				D9B0E925BCD0F4CE7AC24E37CD1796C7 /* PDRuntimeDomain.m */,
+				1A72E424219FEA0185FD7AFD6402244E /* PDRuntimeDomainController.h */,
+				FBCB18F1AE35366E9E518C5E9905AADD /* PDRuntimeDomainController.m */,
+				890C56EC8F7E16971FB39F91C9B51C92 /* PDRuntimeTypes.h */,
+				F10450063BB77EC17A17A6CE3A75D3B2 /* PDRuntimeTypes.m */,
+				EC200AAF74E3671A0EE4D2AB9F15C12D /* PDScreenOrientationDomain.h */,
+				3207716C95550B5500285DB56754086C /* PDScreenOrientationDomain.m */,
+				78B8D2A012F2ED2806FF2E4D25B1AE56 /* PDSecurityDomain.h */,
+				592338A331FDD8E17D9916E50DA4676E /* PDSecurityDomain.m */,
+				2E64AC467ABAE292148DEBD01AB9FADB /* PDSecurityTypes.h */,
+				34DAEF50A6FE738BE1BBB9BC47117E2C /* PDSecurityTypes.m */,
+				6D74C8312EBF385173D144C4F15BE550 /* PDServiceWorkerDomain.h */,
+				1C1C9F889CE3688B5B635B076BD99176 /* PDServiceWorkerDomain.m */,
+				C674DD0BD6FB740D885BD8E154F5C7EF /* PDServiceWorkerTypes.h */,
+				0E0C0CD6C6D4B024A1E6E953EAEA57F0 /* PDServiceWorkerTypes.m */,
+				EDED8A8517FC88A5EEF3D2027004F323 /* PDTimelineDomain.h */,
+				3A42E752B4AAA9F19944B3E8A67CE69E /* PDTimelineDomain.m */,
+				76ED7264CFB17E8494FA39522BFF6025 /* PDTimelineTypes.h */,
+				6FEF6713DCB1D060CEE0C3E20A93338B /* PDTimelineTypes.m */,
+				67766B35D314EE760CC7FA8CDB9F0BC9 /* PDTracingDomain.h */,
+				9DF423D764D4751A9F71BDA0A432167B /* PDTracingDomain.m */,
+				319764ADF63068B90AA2252910296064 /* PDWorkerDomain.h */,
+				A2E0F3162677AA6714CB50DF2D252578 /* PDWorkerDomain.m */,
+				FCCC8EF76FE670BEB9501975B45280DB /* PonyDebugger.h */,
+				2BC19CA9B0C01E8E044EA845E75865DE /* Support Files */,
+			);
+			name = PonyDebugger;
+			path = PonyDebugger;
+			sourceTree = "<group>";
+		};
+		FB6A8DD1B878DAC1B9A3709E48532D79 /* Pods-VideoCamera */ = {
+			isa = PBXGroup;
+			children = (
+				3AC1A2DCAC82D07E0C87F8ABE20B90EC /* Pods-VideoCamera-acknowledgements.markdown */,
+				C12E932CC4B4079651754A4961683A8A /* Pods-VideoCamera-acknowledgements.plist */,
+				9BC077A3DCDF87AC159A2DA7B92EE6E3 /* Pods-VideoCamera-dummy.m */,
+				87356E9AD8023E9947996154107B7E43 /* Pods-VideoCamera.debug.xcconfig */,
+				7132F9F0DF6E7BB874D3E2C47D6E131E /* Pods-VideoCamera.release.xcconfig */,
+			);
+			name = "Pods-VideoCamera";
+			path = "Target Support Files/Pods-VideoCamera";
+			sourceTree = "<group>";
+		};
+		FB711166C457E232B666AE11385ED362 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				FB6A8DD1B878DAC1B9A3709E48532D79 /* Pods-VideoCamera */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		5C742FC9E28D140D1DEEE8155809879C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E450FC273DCBFFEC09B30F2FB2026B0 /* SocketRocket.h in Headers */,
+				6CF53776E50A2713B9D6BEC38683227F /* SRWebSocket.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8531F6AB77A2656DB59386750DD4AAFC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E23A8839BDCC168B19367BC6D0E1E11D /* ChromeVirtualMachine.h in Headers */,
+				0ACA6EFB3375B15458EF45945A391347 /* NSArray+PD_JSONObject.h in Headers */,
+				53A6BF12E6F7B9A681DDDB830B1781A5 /* NSArray+PDRuntimePropertyDescriptor.h in Headers */,
+				DEB85F162D2C4F19D06FF8A772FBA56B /* NSData+PDDebugger.h in Headers */,
+				55E816CA228A64664849DA50CA8FE786 /* NSDate+PD_JSONObject.h in Headers */,
+				497CE5C6EB0FCAF76975FAF23E78DE4C /* NSDate+PDDebugger.h in Headers */,
+				9BAC245A82FE2A3B867EF2F4DF2CE073 /* NSDictionary+PD_JSONObject.h in Headers */,
+				1F37CBE260DA7EC91036EB438C7AFD50 /* NSDictionary+PDRuntimePropertyDescriptor.h in Headers */,
+				6A45B9B7D162349C6768EDB8DCAF394E /* NSError+PD_JSONObject.h in Headers */,
+				73D752E6FD3FFD12D439D89358B42E5D /* NSManagedObject+PDRuntimePropertyDescriptor.h in Headers */,
+				5F8C042E4B5466D3BD94A91E6DA55AE1 /* NSObject+PDRuntimePropertyDescriptor.h in Headers */,
+				B67030B219786480B94A5341F892F368 /* NSOrderedSet+PDRuntimePropertyDescriptor.h in Headers */,
+				4BCC4D3812A4526B3D1AFEA8BF751DA2 /* NSSet+PDRuntimePropertyDescriptor.h in Headers */,
+				5E54ACD7C4267154C74B4730C502C2BC /* NSValue+PD_JSONObject.h in Headers */,
+				F42B814F44C16BB7EA623BE3961C5CE0 /* PDAccessibilityDomain.h in Headers */,
+				41FC720354AF426A32BE9AE6D5E869DA /* PDAccessibilityTypes.h in Headers */,
+				C2FAFC1E41E4591FF186E935BA1C7D24 /* PDAnimationDomain.h in Headers */,
+				0793D96A63F888672EEC192108544CF3 /* PDAnimationTypes.h in Headers */,
+				277E8CA454EE94302A229EF83A1A97F2 /* PDApplicationCacheDomain.h in Headers */,
+				45FCAE5222DF038E29345EAC673DBE5D /* PDApplicationCacheTypes.h in Headers */,
+				8A5E7A6F51517626F1CB46420FB753B4 /* PDCacheStorageDomain.h in Headers */,
+				5E2199A1A9BA133749E8DA91849D3C68 /* PDCacheStorageTypes.h in Headers */,
+				93AA460D6B4A4E849FA9C57C742B5562 /* PDConsoleDomain.h in Headers */,
+				64232BEA749782B4FD5D5E39C0730940 /* PDConsoleDomainController.h in Headers */,
+				2326E745C42889CB2CCA49806C50C58D /* PDConsoleTypes.h in Headers */,
+				46B164126B1A17BF27B1D94F66D5AAD2 /* PDContainerIndex.h in Headers */,
+				56C2B2ABB2F72DFABB9ADD0A3E4382F8 /* PDCSSDomain.h in Headers */,
+				BCF029A56688162E2BA2ED1C8D82B584 /* PDCSSDomainController.h in Headers */,
+				4AD13CF571AAC03534672857DF332DE2 /* PDCSSTypes.h in Headers */,
+				620137CBE34DEF2E936030D1187B065F /* PDDatabaseDomain.h in Headers */,
+				1C3D9AE06BB0E7714E9EC0F2D5BB6052 /* PDDatabaseDomainController.h in Headers */,
+				A3E78B18024CE6FA11ACA4208A71C2D2 /* PDDatabaseTypes.h in Headers */,
+				8ED3E16867C231E3E710CB8AE76DF5FA /* PDDebugger.h in Headers */,
+				B6C0D4C47089C2A998B615F8B6DACB40 /* PDDebuggerDomain.h in Headers */,
+				DA0B973ABD28BC21D6D9E6DE68519D73 /* PDDebuggerTypes.h in Headers */,
+				FFBBF66391C8687684019DFD64867892 /* PDDefinitions.h in Headers */,
+				A056AAC7748A0B466BF2B43CCB4819FA /* PDDeviceOrientationDomain.h in Headers */,
+				C92B2F2C0452119F3E50783638F900BE /* PDDomainController.h in Headers */,
+				6F071FE2195544804582DC0FBF1902F4 /* PDDOMDebuggerDomain.h in Headers */,
+				22E260AB90C7D41293BA21DA7B0369F8 /* PDDOMDebuggerTypes.h in Headers */,
+				7B11FAB8E8C3FCC0A093BC80E61BD5A2 /* PDDOMDomain.h in Headers */,
+				2AAB675AC4880A45E1658109D85364C5 /* PDDOMDomainController.h in Headers */,
+				AA4A62CF90945FBC889D31523095CBD3 /* PDDOMStorageDomain.h in Headers */,
+				2210435A7775D0B501B9DA7E756D8CE3 /* PDDOMStorageDomainController.h in Headers */,
+				2B73FEB2DB219E3DF0B25ACDF1D5AD3E /* PDDOMStorageTypes.h in Headers */,
+				87ADF786E0C69FEA7814EF451D954C0E /* PDDOMTypes.h in Headers */,
+				9C65D21CDBB7A4D612F8430F306812B9 /* PDDynamicDebuggerDomain.h in Headers */,
+				1CE55EB01BCB1021E66CE39299B33E4C /* PDEmulationDomain.h in Headers */,
+				98F2AB5CAEEC7243CB828D93A9E7E617 /* PDEmulationTypes.h in Headers */,
+				F8345990B3B363C95FD37B3BBCE57D3F /* PDFileSystemDomain.h in Headers */,
+				785390790F17CECEDE2E0C0F01739A91 /* PDFileSystemTypes.h in Headers */,
+				A21C6308D28F55EC57A952238A5A8E3A /* PDHeapProfilerDomain.h in Headers */,
+				A98E564E21589A12B5B49927FADA1DE4 /* PDIndexedDBDomain.h in Headers */,
+				161B4DE59717DD884392378507676620 /* PDIndexedDBDomainController.h in Headers */,
+				202CD06C38F31D1884BF47550EDB9D20 /* PDIndexedDBTypes.h in Headers */,
+				DDCAB8B3AC26A03F5791DBEF04E933AA /* PDInputDomain.h in Headers */,
+				2309772CDAF8BAB7BA370665671B3CEE /* PDInputDomainController.h in Headers */,
+				68F5B2C179A57C435FAD84647F667F4A /* PDInputTypes.h in Headers */,
+				C5166469316FA407B0D4A5819F2EDE62 /* PDInspectorDomain.h in Headers */,
+				1140232D69E8428B10E71D4AD2A434FE /* PDInspectorDomainController.h in Headers */,
+				FBDFD1C2A8BB0EA1238DAD2645EA5E44 /* PDLayerTreeDomain.h in Headers */,
+				2359728240DC363AFAA4A8F101DD6990 /* PDLayerTreeTypes.h in Headers */,
+				83015F5F105A896A9B77E632485FCDC2 /* PDMemoryDomain.h in Headers */,
+				D5964619EF797BF996136D675E93E5D4 /* PDNetworkDomain.h in Headers */,
+				CA2BFC0529F61C59813AEBE892068D21 /* PDNetworkDomainController.h in Headers */,
+				87CE125A3A80286A6B250CE6372BB92D /* PDNetworkTypes.h in Headers */,
+				DB3E7207531CC9FE80602C5A8ACC972F /* PDObject.h in Headers */,
+				42AA682D888505D40FA200EDC4D8B6AC /* PDPageDomain.h in Headers */,
+				08D2D056EB1F86D85B11C706754398D7 /* PDPageDomainController.h in Headers */,
+				35B65888E8590BCB5D5EB25FF3B5D135 /* PDPageTypes.h in Headers */,
+				AF0F0DAD0EF23D08AF93FF3413A399F2 /* PDPowerDomain.h in Headers */,
+				6FEAE3635D08C2EE4E865AF0CC5C2CD0 /* PDPowerTypes.h in Headers */,
+				915B52AB0FE20731E2D1F88ACDA81E58 /* PDPrettyStringPrinter.h in Headers */,
+				B9587926CE39ECB6670AB5EC1861501D /* PDProfilerDomain.h in Headers */,
+				839AE09F951F7238DABBF8642B36BF1F /* PDProfilerTypes.h in Headers */,
+				3AC204595EEB1700CC82B822E880490A /* PDRenderingDomain.h in Headers */,
+				3925BF08EB5584075D8CB125053C5AC1 /* PDRuntimeDomain.h in Headers */,
+				5D33A58AE268FB702086335F6FEF9216 /* PDRuntimeDomainController.h in Headers */,
+				A69D702362CE7D1236653AE09B0EEE3B /* PDRuntimeTypes.h in Headers */,
+				99F8FFD348AED953E74D09E96DE4E7C7 /* PDScreenOrientationDomain.h in Headers */,
+				AEB1DB1DBA03E6FB955F386AC75F701B /* PDSecurityDomain.h in Headers */,
+				8D24560F591D7F1811BF2117FE668653 /* PDSecurityTypes.h in Headers */,
+				7F494FD0E9E2F1457EA358C1618BFF73 /* PDServiceWorkerDomain.h in Headers */,
+				AEA82D570B8FA5B95149D7EB2929FD20 /* PDServiceWorkerTypes.h in Headers */,
+				75B6650DF1472B9302CB410E18A0C71E /* PDTimelineDomain.h in Headers */,
+				70255B3AE6C61DA8F0F43F523DB9B67C /* PDTimelineTypes.h in Headers */,
+				426ACDB3B63864433D0B1DA0E2704CFE /* PDTracingDomain.h in Headers */,
+				E1853DC7DE41B0A5A5E6B81EC478D6F5 /* PDWorkerDomain.h in Headers */,
+				A334C7ED36416280DB39598A55F158DB /* PonyDebugger.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6F3F3A6EB531F83D24ED729227CE872 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		557C79895B347197616E9F6B105C1D4A /* SocketRocket */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4CED9DABB440AA5DC9177E52F3D6D97 /* Build configuration list for PBXNativeTarget "SocketRocket" */;
+			buildPhases = (
+				5C742FC9E28D140D1DEEE8155809879C /* Headers */,
+				9E7112C5BBB362276CEF6CA1593447A8 /* Sources */,
+				AB2C6A0DE10562916BBDAC95F4F0BE9B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SocketRocket;
+			productName = SocketRocket;
+			productReference = E4C7851A16E8E96336DEB950E7313968 /* libSocketRocket.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		76E06B7A611CF8366CCB6645B54ED688 /* Pods-VideoCamera */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CA7F6D281BD394C8D77AB6DA4A36E9B /* Build configuration list for PBXNativeTarget "Pods-VideoCamera" */;
+			buildPhases = (
+				B6F3F3A6EB531F83D24ED729227CE872 /* Headers */,
+				D1E5A61B98909CC22AA6E9D5AD88C328 /* Sources */,
+				52B4EEC536267ADAD9B429A7B1E33B6B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6C693E41761902991EEA4F7521380180 /* PBXTargetDependency */,
+				2381F73B8ED9926C4F518C2F48BEEC8E /* PBXTargetDependency */,
+			);
+			name = "Pods-VideoCamera";
+			productName = "Pods-VideoCamera";
+			productReference = 9EE80556F13161245F741518AE4B7566 /* libPods-VideoCamera.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		E2E23DE1EFF7EB3C4208BCC263166CDE /* PonyDebugger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 884E5EF1641E1ED836C564362727A0FC /* Build configuration list for PBXNativeTarget "PonyDebugger" */;
+			buildPhases = (
+				8531F6AB77A2656DB59386750DD4AAFC /* Headers */,
+				25CAF0C1039B99AB20B1EB494ECE15E9 /* Sources */,
+				B258419EAA1855E50998E53A877D76B0 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				615735666C637083079FA2B80E7C28D5 /* PBXTargetDependency */,
+			);
+			name = PonyDebugger;
+			productName = PonyDebugger;
+			productReference = BB7EDA7E6F127275CF33E2DB4F515553 /* libPonyDebugger.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = E744883B22ACFDEB417E20653CB668B7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				76E06B7A611CF8366CCB6645B54ED688 /* Pods-VideoCamera */,
+				E2E23DE1EFF7EB3C4208BCC263166CDE /* PonyDebugger */,
+				557C79895B347197616E9F6B105C1D4A /* SocketRocket */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		25CAF0C1039B99AB20B1EB494ECE15E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91C7E9DA0BC4AD0A53B586288DD885D3 /* ChromeVirtualMachine.m in Sources */,
+				F897F40D39D1BFF01FACDE6054114B09 /* NSArray+PD_JSONObject.m in Sources */,
+				2A9415DDA6069841544DC8EBCE527668 /* NSArray+PDRuntimePropertyDescriptor.m in Sources */,
+				6E09B2067A038FDBE78E581DA198989F /* NSData+PDDebugger.m in Sources */,
+				F7DF2EE4B26534750A91524BA5CD3809 /* NSDate+PD_JSONObject.m in Sources */,
+				7AE8F6339C5EF6B480C8891E47336180 /* NSDate+PDDebugger.m in Sources */,
+				F8872FD2DE31D991EECA017DD710A9F1 /* NSDictionary+PD_JSONObject.m in Sources */,
+				E479EE2F3D37AC56C32AFE931CA9C8D9 /* NSDictionary+PDRuntimePropertyDescriptor.m in Sources */,
+				51B1C129B4940C0FD02CC06E8013F7F9 /* NSError+PD_JSONObject.m in Sources */,
+				6FFAFD4FEF53F451FA0600915AD7E75F /* NSManagedObject+PDRuntimePropertyDescriptor.m in Sources */,
+				472C552E014486E29B747104824C8BD8 /* NSObject+PDRuntimePropertyDescriptor.m in Sources */,
+				3D4A06794125B13AA761AFB1A2F916E0 /* NSOrderedSet+PDRuntimePropertyDescriptor.m in Sources */,
+				C990BB26082A39173D7765AFB80F8257 /* NSSet+PDRuntimePropertyDescriptor.m in Sources */,
+				A3692AB5B450CF0E400EDD843983C0DF /* NSValue+PD_JSONObject.m in Sources */,
+				C2D42473F744255911DD16B80EBA61D9 /* PDAccessibilityDomain.m in Sources */,
+				AA24C56F7888EE263E0285EB0764C713 /* PDAccessibilityTypes.m in Sources */,
+				7A000AD5605412F4144F4088A1C8DAA2 /* PDAnimationDomain.m in Sources */,
+				190BD3E6B849A9C67E7E30850E78D962 /* PDAnimationTypes.m in Sources */,
+				1EEED7BF6EBE52E5797A01236B4937DF /* PDApplicationCacheDomain.m in Sources */,
+				0281DB5408FA6CC9C0ABFE91E88D5A3C /* PDApplicationCacheTypes.m in Sources */,
+				4EE7074EF9248396BF977D1CFC9E2036 /* PDCacheStorageDomain.m in Sources */,
+				2D4B17D5535B90B08A86F5AE13B08E41 /* PDCacheStorageTypes.m in Sources */,
+				60A80FE6691872C1F66D5691E383BA47 /* PDConsoleDomain.m in Sources */,
+				43642B218F7373BD651FEFFF388C5D48 /* PDConsoleDomainController.m in Sources */,
+				2EE3B804CEE427901D5C0187BAC08915 /* PDConsoleTypes.m in Sources */,
+				CC5A2E9B2A77EEC8D594BA5117AE53E3 /* PDContainerIndex.m in Sources */,
+				47BFBC233FF2A8BD47C8694D79771AE4 /* PDCSSDomain.m in Sources */,
+				5E5B7522DDC2F200D2C8DDBD18C8C057 /* PDCSSDomainController.m in Sources */,
+				C03903EC30E09FF5ACCC527B2D960135 /* PDCSSTypes.m in Sources */,
+				AD002DE267E40D90ED2BCA1EE4AAFAF4 /* PDDatabaseDomain.m in Sources */,
+				A812DEF286D20B37ECED7C45CAAF8377 /* PDDatabaseDomainController.m in Sources */,
+				778E9DD95BB20B1D556339E877BEC9B8 /* PDDatabaseTypes.m in Sources */,
+				E0E814CC50DE2CE0B16E009E2D0DC9F0 /* PDDebugger.m in Sources */,
+				EB7D8D83C2D69BAA7B3C1543067B95C0 /* PDDebuggerDomain.m in Sources */,
+				497B0BBF0D3331584677AFFB607D5DE2 /* PDDebuggerTypes.m in Sources */,
+				7CEB9EA3EDF6D092CF4392AFF8E40611 /* PDDefinitions.m in Sources */,
+				0F19EA35F19CF8F5E017ACE5C51CFADF /* PDDeviceOrientationDomain.m in Sources */,
+				F8A361B3D02F9C366115D64206307EC5 /* PDDomainController.m in Sources */,
+				8712E8029A6E8D9D226A4DD287D14F7E /* PDDOMDebuggerDomain.m in Sources */,
+				682BE23448A717D978AE4A5363100079 /* PDDOMDebuggerTypes.m in Sources */,
+				C9BBEF7B4304D688F5B8BDF2FB4C293F /* PDDOMDomain.m in Sources */,
+				2157C84394FF48BF98982157C7C2679E /* PDDOMDomainController.m in Sources */,
+				973F7EF9307E4CD7C69D60FFA8EA248A /* PDDOMStorageDomain.m in Sources */,
+				DD79BE311A4FBD47BB6A6B3D4222954F /* PDDOMStorageDomainController.m in Sources */,
+				29CEC191E9D465277334F40A49BE2ED5 /* PDDOMStorageTypes.m in Sources */,
+				F83B5664AA20C3C09AB8CCD0A9911D40 /* PDDOMTypes.m in Sources */,
+				4445EB102FE23C13800208F706C4BFE3 /* PDDynamicDebuggerDomain.m in Sources */,
+				01BCD2F0A5FA5CDE287FE575BDF6D983 /* PDEmulationDomain.m in Sources */,
+				9D875E34FF2580E73D3D1218C7453EEF /* PDEmulationTypes.m in Sources */,
+				81C3978812227D6B16413824D6051398 /* PDFileSystemDomain.m in Sources */,
+				285C307ED11FA94C363666815062A352 /* PDFileSystemTypes.m in Sources */,
+				A5501012F50335D13435FD9A44752B80 /* PDHeapProfilerDomain.m in Sources */,
+				A16BF0DA0E54B75819F74ACE92C6DD06 /* PDIndexedDBDomain.m in Sources */,
+				53D1343150031DA84FA5F6F668B8B4E6 /* PDIndexedDBDomainController.m in Sources */,
+				231884D0FD9653C4CAE6D1F13E41ADD8 /* PDIndexedDBTypes.m in Sources */,
+				C64B8BFE82CFBB4AE6DDE4184B4D0D98 /* PDInputDomain.m in Sources */,
+				855D04689D6ABF2C97E2116376F4705A /* PDInputDomainController.m in Sources */,
+				93CF50C327F9AF32227EE15728D6C28A /* PDInputTypes.m in Sources */,
+				569A199461F78C6F39D495FD9DCD5A51 /* PDInspectorDomain.m in Sources */,
+				6B39FC960A553363F4A28F8CEAF7EE31 /* PDInspectorDomainController.m in Sources */,
+				0019BD71E6B68DCBC4A32A09EE7E6592 /* PDLayerTreeDomain.m in Sources */,
+				2831578BCDF1452BDA1DEE457DC4D380 /* PDLayerTreeTypes.m in Sources */,
+				191A0F06575995FAEEAECBB00E281C0E /* PDMemoryDomain.m in Sources */,
+				13E7C601607FC04C1227BF7672D8D458 /* PDNetworkDomain.m in Sources */,
+				BD86FE8F85EE9A80EF12A45B7920A35B /* PDNetworkDomainController.m in Sources */,
+				2BC60607222FA5342C470D37A1F938FB /* PDNetworkTypes.m in Sources */,
+				4D4057E41DDB4DFD1533EAAE8E1522C1 /* PDObject.m in Sources */,
+				F4C7515EBF7E1079CBBA5B0EB82FA7F2 /* PDPageDomain.m in Sources */,
+				C1AABDE630034FD085E81699E54E0BCB /* PDPageDomainController.m in Sources */,
+				1B9512709BD972F6122A5D8CD4AA34C0 /* PDPageTypes.m in Sources */,
+				0170EA3289521C2296F4E925C4C54909 /* PDPowerDomain.m in Sources */,
+				2477A4408B807FCC1B352C22B3641A83 /* PDPowerTypes.m in Sources */,
+				632FC4D409EA1319BB857B6D0ACC3201 /* PDPrettyStringPrinter.m in Sources */,
+				A49EF9401571BB0C24F1650587252E28 /* PDProfilerDomain.m in Sources */,
+				75343BF5DE01DA5373B96AC0E1F5C687 /* PDProfilerTypes.m in Sources */,
+				7A8E25EB0C15F415C44252D36D8AC4DE /* PDRenderingDomain.m in Sources */,
+				7B507C56FCB00D104819F7FA1F04D188 /* PDRuntimeDomain.m in Sources */,
+				EDAF4CF719D90C1E7A1FAF5F63346411 /* PDRuntimeDomainController.m in Sources */,
+				E90F8FB6675489D06E53D2FDD3171DBD /* PDRuntimeTypes.m in Sources */,
+				2D8698FBE27CEDC82EC5C319CDE014A5 /* PDScreenOrientationDomain.m in Sources */,
+				322D94E28B2D76AE6FA748DF4150E169 /* PDSecurityDomain.m in Sources */,
+				B3489138CFA6A0ADFFFA2EEBFB0F90CE /* PDSecurityTypes.m in Sources */,
+				165A77EEC47F474F99AFF3B1B283B552 /* PDServiceWorkerDomain.m in Sources */,
+				DD6B0E9DF8783BA5DE0D415FDE403FEE /* PDServiceWorkerTypes.m in Sources */,
+				9FAB5FEFF86D815C8EED5B99AE5F7CD8 /* PDTimelineDomain.m in Sources */,
+				4957F0F18BD3B39EC66CB7429775EB80 /* PDTimelineTypes.m in Sources */,
+				7D081246072934A7AB87DE2C14329838 /* PDTracingDomain.m in Sources */,
+				3577EE92FE73FCF5217D707EB303D54D /* PDWorkerDomain.m in Sources */,
+				086333BD9BE95443F917584ED8ED253F /* PonyDebugger-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E7112C5BBB362276CEF6CA1593447A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09A7E7674A2E74F4193EBA443F098EAE /* SocketRocket-dummy.m in Sources */,
+				1008FA496A2F25B257FFBAE89DB5BFEB /* SRWebSocket.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1E5A61B98909CC22AA6E9D5AD88C328 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75F806B2FC21AE8CB95C5778C2F65FC1 /* Pods-VideoCamera-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2381F73B8ED9926C4F518C2F48BEEC8E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SocketRocket;
+			target = 557C79895B347197616E9F6B105C1D4A /* SocketRocket */;
+			targetProxy = CD5890BE30C5DA19BE091F8A6E0FCDD0 /* PBXContainerItemProxy */;
+		};
+		615735666C637083079FA2B80E7C28D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SocketRocket;
+			target = 557C79895B347197616E9F6B105C1D4A /* SocketRocket */;
+			targetProxy = D7DF0B730F5059DA57FCCB9515D58526 /* PBXContainerItemProxy */;
+		};
+		6C693E41761902991EEA4F7521380180 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PonyDebugger;
+			target = E2E23DE1EFF7EB3C4208BCC263166CDE /* PonyDebugger */;
+			targetProxy = 122FD6250D87E9D735270D90C826ABDF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		07213BE03D43E2E2DD53420B398C65E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FC71934A518D332C3BF949FAF09FA08 /* PonyDebugger.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/PonyDebugger/PonyDebugger-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = PonyDebugger;
+				PRODUCT_NAME = PonyDebugger;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3D87CB33EFCD63F25BB58222535514E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6F936498AA6E790FD0A82693F64022A /* SocketRocket.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/SocketRocket/SocketRocket-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = SocketRocket;
+				PRODUCT_NAME = SocketRocket;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		47CDCFF66A9E1B1675AE85E409D0B6C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FC71934A518D332C3BF949FAF09FA08 /* PonyDebugger.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/PonyDebugger/PonyDebugger-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = PonyDebugger;
+				PRODUCT_NAME = PonyDebugger;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4CE281642D6EE9FAB113046B4B6328A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		6DFA1578582149B7E24AD55CBA30F07A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		74ACBD7AB7ACD69FCFAB93C90BAEFDF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 87356E9AD8023E9947996154107B7E43 /* Pods-VideoCamera.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C4C0517BCF509EF57B61DDE86653B5D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7132F9F0DF6E7BB874D3E2C47D6E131E /* Pods-VideoCamera.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DA43491A639F34563CCAD072E504AABF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6F936498AA6E790FD0A82693F64022A /* SocketRocket.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/SocketRocket/SocketRocket-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = SocketRocket;
+				PRODUCT_NAME = SocketRocket;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DFA1578582149B7E24AD55CBA30F07A /* Debug */,
+				4CE281642D6EE9FAB113046B4B6328A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		884E5EF1641E1ED836C564362727A0FC /* Build configuration list for PBXNativeTarget "PonyDebugger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47CDCFF66A9E1B1675AE85E409D0B6C6 /* Debug */,
+				07213BE03D43E2E2DD53420B398C65E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CA7F6D281BD394C8D77AB6DA4A36E9B /* Build configuration list for PBXNativeTarget "Pods-VideoCamera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74ACBD7AB7ACD69FCFAB93C90BAEFDF5 /* Debug */,
+				C4C0517BCF509EF57B61DDE86653B5D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4CED9DABB440AA5DC9177E52F3D6D97 /* Build configuration list for PBXNativeTarget "SocketRocket" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA43491A639F34563CCAD072E504AABF /* Debug */,
+				3D87CB33EFCD63F25BB58222535514E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
