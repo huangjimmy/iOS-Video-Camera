@@ -40,6 +40,11 @@ import Photos
     
     private let videoDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera, .builtInDualCamera, .builtInTrueDepthCamera], mediaType: .video, position: .unspecified)
     
+    private var previewView:PreviewView? = nil
+    private let focusOfInterestIndicator = FocusOfInterestIndicatorView()
+    private var focusOfInterestConstraintCenterX:NSLayoutConstraint? = nil
+    private var focusOfInterestConstraintCenterY:NSLayoutConstraint? = nil
+    
     public enum LivePhotoMode {
         case on
         case off
@@ -64,6 +69,31 @@ import Photos
         }
     }
     
+    var _showFocusOfInterestIndicator = false
+    var showFocusOfInterestIndicator: Bool {
+        get {
+            return _showFocusOfInterestIndicator
+        }
+        
+        set {
+            if let previewView = self.previewView {
+                _showFocusOfInterestIndicator = newValue
+                if(_showFocusOfInterestIndicator){
+                    DispatchQueue.main.async {
+                        let focusPoint = self.focusPointOfInterest
+                        let point = previewView.videoPreviewLayer.layerPointConverted(fromCaptureDevicePoint: focusPoint)
+                        let previewCenter = previewView.center
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.focusOfInterestConstraintCenterX?.constant = point.x - previewCenter.x
+                            self.focusOfInterestConstraintCenterY?.constant = point.y - previewCenter.y
+                            previewView.layoutIfNeeded()
+                        })
+                    }
+                }
+            }
+        }
+    }
+    
     public func isExposureModeSupported(_ mode:AVCaptureDevice.ExposureMode) -> Bool {
         if let device = self.videoDeviceInput?.device {
             return device.isExposureModeSupported(mode)
@@ -71,14 +101,48 @@ import Photos
         return false
     }
     
-    //Current selected exposure mode
+    /*!
+     @property exposureMode
+     @abstract
+     Indicates current exposure mode
+     
+     @discussion
+     
+     .autoExpose
+        Camera adjst exposure settings once and then exposure settings do not change over time.
+     
+     .locked
+        Exposure settings remain the same over time.
+     
+     .continuousAutoExposure
+        Camera automatically ajust exposure by changing exposure time(Shutter) and ISO. This is the same as Auto mode in Digital Camera
+     
+     .custom
+        User provides exposure time(Shutter) and ISO. Aperture is constant.
+     
+     */
     var _exposureMode:  AVCaptureDevice.ExposureMode = .autoExpose
     public var exposureMode : AVCaptureDevice.ExposureMode {
         get {
+            if let device = self.videoDeviceInput?.device {
+                _exposureMode = device.exposureMode
+            }
             return _exposureMode
         }
         set{
             _exposureMode = newValue
+            if let device = self.videoDeviceInput?.device {
+                if device.isExposureModeSupported(newValue){
+                    do{
+                        try device.lockForConfiguration()
+                        device.exposureMode = _exposureMode
+                        device.unlockForConfiguration()
+                    }
+                    catch {
+                        print("Could not lock device for configuration: \(error)")
+                    }
+                }
+            }
         }
     }
     
@@ -212,6 +276,10 @@ import Photos
                         device.focusPointOfInterest = _focusPointOfInterest
                         device.focusMode = focusMode
                         device.unlockForConfiguration()
+                        
+                        if self.showFocusOfInterestIndicator {
+                            self.showFocusOfInterestIndicator = true
+                        }
                     }
                     catch {
                         print("Could not lock device for configuration: \(error)")
@@ -416,8 +484,18 @@ import Photos
             return
         }
         
+        self.previewView = previewView
+
         DispatchQueue.main.async {
             previewView.session = self.session
+            
+            previewView.addSubview(self.focusOfInterestIndicator)
+            self.focusOfInterestConstraintCenterX = NSLayoutConstraint(item: self.focusOfInterestIndicator, attribute: .centerX, relatedBy: .equal, toItem: previewView, attribute: .centerX, multiplier: 1.0, constant: 0)
+            self.focusOfInterestConstraintCenterY = NSLayoutConstraint(item: self.focusOfInterestIndicator, attribute: .centerY, relatedBy: .equal, toItem: previewView, attribute: .centerY, multiplier: 1.0, constant: 0)
+            previewView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v(45)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.focusOfInterestIndicator]))
+            previewView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v(45)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.focusOfInterestIndicator]))
+            previewView.addConstraint(self.focusOfInterestConstraintCenterX!)
+            previewView.addConstraint(self.focusOfInterestConstraintCenterY!)
         }
         
         print("beginConfiguration()")
@@ -640,7 +718,20 @@ import Photos
         dateFormatter.dateFormat = "yyyy-MM-dd_HH-mm-ss_ZZZZZ"
         let outputFileName = dateFormatter.string(from: Date())
         let outputFilePath = (path as NSString).appendingPathComponent((outputFileName as NSString).appendingPathExtension("mov")!)
-        self.movieFileOutput?.startRecording(to: URL(fileURLWithPath: outputFilePath), recordingDelegate: self)
+        
+        if let movieFileOutput = self.movieFileOutput {
+            let connection = movieFileOutput.connection(with: .video)
+            let statusBarOrientation = UIApplication.shared.statusBarOrientation
+            var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
+            if statusBarOrientation != .unknown {
+                if let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: statusBarOrientation) {
+                    initialVideoOrientation = videoOrientation
+                }
+            }
+            connection?.videoOrientation = initialVideoOrientation
+            
+            movieFileOutput.startRecording(to: URL(fileURLWithPath: outputFilePath), recordingDelegate: self)
+        }
     }
     
     public func stopRecording(){

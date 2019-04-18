@@ -2,15 +2,18 @@ PODS:
   - FileBrowser (1.0.0)
   - PonyDebugger (0.4.5):
     - SocketRocket
+  - Reveal-SDK (12)
   - SocketRocket (0.5.1)
 
 DEPENDENCIES:
   - FileBrowser (~> 1.0)
   - PonyDebugger (from `https://github.com/huangjimmy/PonyDebugger.git`)
+  - Reveal-SDK (= 12)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - FileBrowser
+    - Reveal-SDK
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -25,8 +28,9 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   FileBrowser: 2ca91ff61c9ea09665eb3b8f9e64a7a77e66a0bf
   PonyDebugger: 1c60f7c876bdb6a8b6bf0f0269087f8a234fafa7
+  Reveal-SDK: 58517b2a4d5d69dcb98e62aa4a5e62c84b5e0061
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
 
-PODFILE CHECKSUM: 881aeaa9c748d0d19e31838079035e0f2eeb1908
+PODFILE CHECKSUM: 04b459613e6aca537335776b8ee22537255ca7c8
 
 COCOAPODS: 1.6.1

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4759AE25B95981E5AB92B0B0 /* libPods-VideoCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEFFC01690CBC068A8B40D1 /* libPods-VideoCamera.a */; };
 		BF1A97072266655C006BEAF7 /* CameraBottomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1A97062266655C006BEAF7 /* CameraBottomControl.swift */; };
+		BF45CAB5226904B900819F23 /* FocusOfInterestIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CAB4226904B900819F23 /* FocusOfInterestIndicatorView.swift */; };
 		BF8987D222674525002BAA70 /* ViewController-Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8987D122674525002BAA70 /* ViewController-Events.swift */; };
 		BF92C216225DE83800B246DA /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF92C215225DE83800B246DA /* CameraManager.swift */; };
 		BFB4BB1E224D0DDD0056EFD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB4BB1D224D0DDD0056EFD5 /* AppDelegate.swift */; };
@@ -17,6 +18,7 @@
 		BFB4BB25224D0DE00056EFD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFB4BB24224D0DE00056EFD5 /* Assets.xcassets */; };
 		BFB4BB28224D0DE00056EFD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFB4BB26224D0DE00056EFD5 /* LaunchScreen.storyboard */; };
 		BFB4BB30224DE5810056EFD5 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB4BB2F224DE5810056EFD5 /* PreviewView.swift */; };
+		BFBDA97022677F0E00A9B35F /* RecordTimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBDA96F22677F0E00A9B35F /* RecordTimerLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,7 @@
 		3AEFFC01690CBC068A8B40D1 /* libPods-VideoCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VideoCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A28DB1A3157184153D170DD0 /* Pods-VideoCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoCamera.release.xcconfig"; path = "Target Support Files/Pods-VideoCamera/Pods-VideoCamera.release.xcconfig"; sourceTree = "<group>"; };
 		BF1A97062266655C006BEAF7 /* CameraBottomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraBottomControl.swift; sourceTree = "<group>"; };
+		BF45CAB4226904B900819F23 /* FocusOfInterestIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusOfInterestIndicatorView.swift; sourceTree = "<group>"; };
 		BF8987D122674525002BAA70 /* ViewController-Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ViewController-Events.swift"; path = "VideoCamera/ViewController-Events.swift"; sourceTree = SOURCE_ROOT; };
 		BF92C215225DE83800B246DA /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		BFB4BB1A224D0DDD0056EFD5 /* VideoCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -34,6 +37,7 @@
 		BFB4BB27224D0DE00056EFD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFB4BB29224D0DE00056EFD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFB4BB2F224DE5810056EFD5 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		BFBDA96F22677F0E00A9B35F /* RecordTimerLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTimerLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				BF1A97062266655C006BEAF7 /* CameraBottomControl.swift */,
+				BFBDA96F22677F0E00A9B35F /* RecordTimerLabel.swift */,
+				BF45CAB4226904B900819F23 /* FocusOfInterestIndicatorView.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -128,6 +134,7 @@
 				BFB4BB17224D0DDD0056EFD5 /* Frameworks */,
 				BFB4BB18224D0DDD0056EFD5 /* Resources */,
 				B96099EA953E4EF443D5F30C /* [CP] Copy Pods Resources */,
+				6B3B4643CA5B624C2A7AB0C6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -207,6 +214,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6B3B4643CA5B624C2A7AB0C6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VideoCamera/Pods-VideoCamera-frameworks.sh",
+				"${PODS_ROOT}/Reveal-SDK/RevealServer-12/iOS/RevealServer.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VideoCamera/Pods-VideoCamera-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B96099EA953E4EF443D5F30C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -252,10 +281,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF45CAB5226904B900819F23 /* FocusOfInterestIndicatorView.swift in Sources */,
 				BF92C216225DE83800B246DA /* CameraManager.swift in Sources */,
 				BFB4BB20224D0DDD0056EFD5 /* ViewController.swift in Sources */,
 				BFB4BB1E224D0DDD0056EFD5 /* AppDelegate.swift in Sources */,
 				BFB4BB30224DE5810056EFD5 /* PreviewView.swift in Sources */,
+				BFBDA97022677F0E00A9B35F /* RecordTimerLabel.swift in Sources */,
 				BF1A97072266655C006BEAF7 /* CameraBottomControl.swift in Sources */,
 				BF8987D222674525002BAA70 /* ViewController-Events.swift in Sources */,
 			);
@@ -407,7 +438,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BC3N63B6U8;
 				INFOPLIST_FILE = VideoCamera/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -427,7 +458,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BC3N63B6U8;
 				INFOPLIST_FILE = VideoCamera/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

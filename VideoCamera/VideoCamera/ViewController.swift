@@ -16,13 +16,19 @@ class ViewController: UIViewController {
     var landscapeConstraints:[NSLayoutConstraint] = []
     var landscapeRightConstraints:[NSLayoutConstraint] = []
     
-    private var previewView:PreviewView!
+    internal var previewView:PreviewView!
+    private let previewTapGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer()
     
-    private let camera = CameraManager.sharedInstance
+    internal let camera = CameraManager.sharedInstance
     
     internal let sessionQueue = DispatchQueue(label: "session queue") // Communicate with the session and other session objects on this queue.
     
     private var cameraBottom: CameraBottomControl!
+    private var recordTimeLabel: RecordTimerLabel!
+    private var landscapeTopBannerBackgroundView: UIView!
+    
+    internal var settingsButton: UIButton!
+    internal var flashButton: UIButton!
     
     private var keyValueObservations = [NSKeyValueObservation]()
     
@@ -85,12 +91,78 @@ class ViewController: UIViewController {
         cameraBottom.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.4)
         self.view.addSubview(cameraBottom)
         
+        self.landscapeTopBannerBackgroundView = UIView(frame: .zero)
+        self.landscapeTopBannerBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        self.landscapeTopBannerBackgroundView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        self.view.addSubview(self.landscapeTopBannerBackgroundView)
+        
+        self.recordTimeLabel = RecordTimerLabel(frame: .zero)
+        self.recordTimeLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.recordTimeLabel)
+        self.recordTimeLabel.isRecording = false
+        
+        self.settingsButton = UIButton(type: .custom)
+        self.settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        let settingsTitle = NSAttributedString(string: "4k 30", attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor:UIColor.white])
+        self.settingsButton.setAttributedTitle(settingsTitle, for: .normal)
+        self.view.addSubview(self.settingsButton)
+        
+        self.flashButton = UIButton(type: .custom)
+        self.flashButton.translatesAutoresizingMaskIntoConstraints = false
+        self.flashButton.setImage(UIImage(named: "flash"), for: .normal)
+        self.flashButton.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+        self.view.addSubview(self.flashButton)
+        
+        
         portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[v]-0-|", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom]))
         portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:[v(100)]-|", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom]))
         
         landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[v]-0-|", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom]))
         landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(100)]-|", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom]))
         landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[v(100)]", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom]))
+        
+        ////////////////////////////
+        
+        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(80)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.recordTimeLabel]));
+        portraitConstraints.append(NSLayoutConstraint(item: self.recordTimeLabel, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0))
+        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v(18)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.recordTimeLabel]));
+        
+        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(80)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.recordTimeLabel]));
+        landscapeConstraints.append(NSLayoutConstraint(item: self.recordTimeLabel, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0))
+        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-31-[v(18)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.recordTimeLabel]));
+        
+        landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(80)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.recordTimeLabel]));
+        ////////////////////////////
+        
+        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(0)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.landscapeTopBannerBackgroundView]));
+        portraitConstraints.append(NSLayoutConstraint(item: self.landscapeTopBannerBackgroundView, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0))
+        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[v(0)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.landscapeTopBannerBackgroundView]));
+        
+        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(309)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.landscapeTopBannerBackgroundView]));
+        landscapeConstraints.append(NSLayoutConstraint(item: self.landscapeTopBannerBackgroundView, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0))
+        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-16-[v(47)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.landscapeTopBannerBackgroundView]));
+        
+        landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(309)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.landscapeTopBannerBackgroundView]));
+        /////////////////////////////
+        
+        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(44)]-|", options: .alignAllCenterX, metrics: nil, views: ["v":self.settingsButton]));
+        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v(18)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.settingsButton]));
+        
+        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(44)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.settingsButton]));
+        landscapeConstraints.append(NSLayoutConstraint(item: self.settingsButton, attribute: .right, relatedBy: .equal, toItem: self.landscapeTopBannerBackgroundView, attribute: .right, multiplier: 1.0, constant: -8))
+        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-31-[v(18)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.settingsButton]));
+        
+        landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(44)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.settingsButton]));
+        /////////////////////////////
+        
+        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[v(30)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.flashButton]));
+        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.flashButton]));
+        
+        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(30)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.flashButton]));
+        landscapeConstraints.append(NSLayoutConstraint(item: self.flashButton, attribute: .left, relatedBy: .equal, toItem: self.landscapeTopBannerBackgroundView, attribute: .left, multiplier: 1.0, constant: 8))
+        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-25-[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.flashButton]));
+        
+        landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(30)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.flashButton]));
         
         landscapeRightConstraints.forEach { (constraint) in
             if isLandscapeRight {
@@ -127,6 +199,8 @@ class ViewController: UIViewController {
         
         self.addObservers()
         
+        self.previewView.addGestureRecognizer(self.previewTapGestureRecognizer)
+        self.previewTapGestureRecognizer.addTarget(self, action: #selector(focusTap(_:)))
     }
     
     
@@ -146,6 +220,7 @@ class ViewController: UIViewController {
                 // Only setup observers and start the session running if setup succeeded.
                 //self.addObservers()
                 self.camera.startRunning()
+                self.camera.showFocusOfInterestIndicator = true
                 
             case .notAuthorized:
                 DispatchQueue.main.async {
@@ -271,14 +346,43 @@ class ViewController: UIViewController {
     private func addObservers(){
         let keyValueObservation = self.camera.observe(\.isRecording) { (_, change) in
             if self.camera.isRecording {
+                self.recordTimeLabel.isRecording = true
                 self.cameraBottom.recordButton.setBackgroundImage(UIImage.init(named: "cameraRecordStop"), for: .normal)
             }
             else{
+                self.recordTimeLabel.isRecording = false
                 self.cameraBottom.recordButton.setBackgroundImage(UIImage.init(named: "cameraRecord"), for: .normal)
             }
         }
         
         keyValueObservations.append(keyValueObservation)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(subjectAreaDidChange),
+                                               name: .AVCaptureDeviceSubjectAreaDidChange,
+                                               object: self.camera.videoDeviceInput.device)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(sessionRuntimeError),
+                                               name: .AVCaptureSessionRuntimeError,
+                                               object: self.camera)
+        
+        /*
+         A session can only run when the app is full screen. It will be interrupted
+         in a multi-app layout, introduced in iOS 9, see also the documentation of
+         AVCaptureSessionInterruptionReason. Add observers to handle these session
+         interruptions and show a preview is paused message. See the documentation
+         of AVCaptureSessionWasInterruptedNotification for other interruption reasons.
+         */
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(sessionWasInterrupted),
+                                               name: .AVCaptureSessionWasInterrupted,
+                                               object: self.previewView.session)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(sessionInterruptionEnded),
+                                               name: .AVCaptureSessionInterruptionEnded,
+                                               object: self.previewView.session)
+        
     }
     
     
