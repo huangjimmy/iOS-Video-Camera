@@ -38,7 +38,7 @@ import Photos
     
     private let photoOutput = AVCapturePhotoOutput()
     
-    private let videoDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera, .builtInDualCamera, .builtInTrueDepthCamera], mediaType: .video, position: .unspecified)
+    private let videoDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera, .builtInDualCamera, .builtInTrueDepthCamera, .builtInTelephotoCamera], mediaType: .video, position: .unspecified)
     
     private var previewView:PreviewView? = nil
     private let focusOfInterestIndicator = FocusOfInterestIndicatorView()
@@ -69,6 +69,62 @@ import Photos
         }
     }
     
+    //
+    var _videoFormat: (Int, Int, Int) = (3840,2160,30)
+    var videoFormat: (Int, Int, Int) {
+        get {
+            if let device = self.videoDeviceInput?.device {
+                let format = device.activeFormat
+                let dimension = CMVideoFormatDescriptionGetDimensions(format.formatDescription)
+                let fps = Int(device.activeVideoMinFrameDuration.timescale)/Int(device.activeVideoMinFrameDuration.value)
+                _videoFormat = (Int(dimension.width), Int(dimension.height), fps)
+            }
+            return _videoFormat
+        }
+        set {
+            _videoFormat = newValue
+            let desireWidth = _videoFormat.0
+            let desireHeight = _videoFormat.1
+            let desireFps = _videoFormat.2
+            
+            if let device = self.videoDeviceInput?.device {
+                let deviceFormats = device.formats
+                if let desireFormat = deviceFormats.first(where: { (format) -> Bool in
+                    let dimension = CMVideoFormatDescriptionGetDimensions(format.formatDescription)
+                    
+                    let ranges = format.videoSupportedFrameRateRanges
+                    
+                    let frameRates = ranges[0]
+                    
+                    if dimension.width == desireWidth && dimension.height == desireHeight && Int(frameRates.maxFrameRate) >= desireFps {
+                        //choose this format
+                        return true
+                    }
+                    return false
+                }){
+                    do{
+                        let ranges = desireFormat.videoSupportedFrameRateRanges
+                        let frameRates = ranges[0]
+                        
+                        try device.lockForConfiguration()
+                        
+                        device.activeFormat = desireFormat
+                        device.activeVideoMinFrameDuration = CMTime(value: 1, timescale: CMTimeScale(desireFps), flags: .valid, epoch: 0)
+                        device.activeVideoMaxFrameDuration = frameRates.maxFrameDuration
+                        
+                        device.unlockForConfiguration()
+                    }
+                    catch {
+                        print("Could not lock device for configuration: \(error)")
+                    }
+                }
+                else{
+                    //desire format not available
+                }
+            }
+        }
+    }
+    
     var _showFocusOfInterestIndicator = false
     var showFocusOfInterestIndicator: Bool {
         get {
@@ -94,11 +150,113 @@ import Photos
         }
     }
     
+    var zoomFactor: Float {
+        get {
+            if let device = self.videoDeviceInput?.device {
+                return Float(device.videoZoomFactor)
+            }
+            return 0
+        }
+        set{
+            if let device = self.videoDeviceInput?.device {
+                let zoom:Float = {
+                    if newValue > Float(device.maxAvailableVideoZoomFactor) {
+                        return Float(device.maxAvailableVideoZoomFactor)
+                    }
+                    
+                    if newValue < Float(device.minAvailableVideoZoomFactor) {
+                        return Float(device.minAvailableVideoZoomFactor)
+                    }
+                    
+                    return newValue
+                }()
+                
+                device.ramp(toVideoZoomFactor: CGFloat(zoom), withRate: 1)
+            }
+        }
+    }
+    
+    var zoomFactorRange:(Float, Float) {
+        get {
+            if let device = self.videoDeviceInput?.device {
+                return (Float(device.minAvailableVideoZoomFactor), Float(device.maxAvailableVideoZoomFactor))
+            }
+            return (0, 0)
+        }
+    }
+    
     public func isExposureModeSupported(_ mode:AVCaptureDevice.ExposureMode) -> Bool {
         if let device = self.videoDeviceInput?.device {
             return device.isExposureModeSupported(mode)
         }
         return false
+    }
+    
+    var currentCameraSupportedFormats: [AVCaptureDevice.DeviceType:[(CMVideoDimensions, Int, Int)]] {
+        get {
+            var formats:[AVCaptureDevice.DeviceType:[(CMVideoDimensions, Int, Int)]] = [:]
+
+            if let videoDeviceInput = self.videoDeviceInput {
+            
+                let device = videoDeviceInput.device
+                
+                let deviceFormats = device.formats
+                formats[device.deviceType] = deviceFormats.map({ (format) -> (CMVideoDimensions, Int, Int) in
+                    let dimension = CMVideoFormatDescriptionGetDimensions(format.formatDescription)
+                    let ranges = (format.videoSupportedFrameRateRanges as [AVFrameRateRange])
+                    
+                    let frameRates = ranges[0]
+                    return (dimension, Int(frameRates.minFrameRate), Int(frameRates.maxFrameRate))
+                })
+            }
+            
+            return formats
+        }
+    }
+    
+    var backCameraSupportedFormats: [AVCaptureDevice.DeviceType:[(CMVideoDimensions, Int, Int)]] {
+        get {
+            var formats:[AVCaptureDevice.DeviceType:[(CMVideoDimensions, Int, Int)]] = [:]
+            print(self.devices)
+            for device in self.devices {
+                if device.position != .back {
+                    continue
+                }
+                
+                let deviceFormats = device.formats
+                formats[device.deviceType] = deviceFormats.map({ (format) -> (CMVideoDimensions, Int, Int) in
+                    let dimension = CMVideoFormatDescriptionGetDimensions(format.formatDescription)
+                    let ranges = (format.videoSupportedFrameRateRanges as [AVFrameRateRange])
+                    
+                    let frameRates = ranges[0]
+                    return (dimension, Int(frameRates.minFrameRate), Int(frameRates.maxFrameRate))
+                })
+            }
+            
+            return formats
+        }
+    }
+    
+    var frontCameraSupportedFormats: [AVCaptureDevice.DeviceType:[(CMVideoDimensions, Int, Int)]] {
+        get {
+            var formats:[AVCaptureDevice.DeviceType:[(CMVideoDimensions, Int, Int)]] = [:]
+            print(self.devices)
+            for device in self.devices {
+                if device.position != .front {
+                    continue
+                }
+                let deviceFormats = device.formats
+                formats[device.deviceType] = deviceFormats.map({ (format) -> (CMVideoDimensions, Int, Int) in
+                    let dimension = CMVideoFormatDescriptionGetDimensions(format.formatDescription)
+                    let ranges = (format.videoSupportedFrameRateRanges as [AVFrameRateRange])
+                    
+                    let frameRates = ranges[0]
+                    return (dimension, Int(frameRates.minFrameRate), Int(frameRates.maxFrameRate))
+                })
+            }
+            
+            return formats
+        }
     }
     
     /*!
@@ -401,11 +559,11 @@ import Photos
     
     var useBluetoothMicrophone : Bool {
         get {
-            return session.automaticallyConfiguresApplicationAudioSession
+            return !session.automaticallyConfiguresApplicationAudioSession
         }
         set {
             session.usesApplicationAudioSession = true
-            session.automaticallyConfiguresApplicationAudioSession = newValue
+            session.automaticallyConfiguresApplicationAudioSession = !newValue
             if session.automaticallyConfiguresApplicationAudioSession == false {
                 do {
                     try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, mode: .videoRecording, options: [.allowBluetooth, .allowBluetoothA2DP])
@@ -505,7 +663,8 @@ import Photos
          We do not create an AVCaptureMovieFileOutput when setting up the session because
          Live Photo is not supported when AVCaptureMovieFileOutput is added to the session.
          */
-        session.sessionPreset = .hd4K3840x2160
+        
+        let desireVideoFormat = self.videoFormat
         
         // Add video input.
         do {
@@ -533,6 +692,53 @@ import Photos
             if session.canAddInput(videoDeviceInput) {
                 session.addInput(videoDeviceInput)
                 self.videoDeviceInput = videoDeviceInput
+                
+                if let device = self.videoDeviceInput?.device {
+                    let deviceFormats = device.formats
+                    if let desireFormat = deviceFormats.first(where: { (format) -> Bool in
+                        let dimension = CMVideoFormatDescriptionGetDimensions(format.formatDescription)
+                        
+                        let ranges = (format.videoSupportedFrameRateRanges as [AVFrameRateRange])
+                        
+                        let frameRates = ranges[0]
+                        
+                        if dimension.width == desireVideoFormat.0 && dimension.height == desireVideoFormat.1 && Int(frameRates.maxFrameRate) >= desireVideoFormat.2 {
+                            //choose this format
+                            return true
+                        }
+                        return false
+                    }){
+                        let ranges = desireFormat.videoSupportedFrameRateRanges
+                        let frameRates = ranges[0]
+                        if desireVideoFormat.0 == 3840 && desireVideoFormat.1 == 2160 && desireVideoFormat.2 == 30 {
+                            session.sessionPreset = .hd4K3840x2160
+                        }
+                        else if desireVideoFormat.0 == 1920 && desireVideoFormat.1 == 1080 && desireVideoFormat.2 == 30 {
+                            session.sessionPreset = .hd1920x1080
+                        }
+                        else if desireVideoFormat.0 == 1280 && desireVideoFormat.1 == 720 && desireVideoFormat.2 == 30 {
+                            session.sessionPreset = .hd1280x720
+                        }
+                        else {
+                            do {
+                                try device.lockForConfiguration()
+                                
+                                device.activeFormat = desireFormat
+                                device.activeVideoMinFrameDuration = CMTime(value: 1, timescale: CMTimeScale(desireVideoFormat.2), flags: .valid, epoch: 0)
+                                device.activeVideoMaxFrameDuration = frameRates.maxFrameDuration
+                                
+                                device.unlockForConfiguration()
+                            }
+                            catch {
+                                print("Could not lock device for configuration: \(error)")
+                            }
+                        }
+                       
+                    }
+                    else{
+                        //desire format not available
+                    }
+                }
                 
                 DispatchQueue.main.async {
                     /*
@@ -607,12 +813,14 @@ import Photos
         
         if self.session.canAddOutput(movieFileOutput) {
             self.session.addOutput(movieFileOutput)
-            self.session.sessionPreset = .hd4K3840x2160
             if let connection = movieFileOutput.connection(with: .video) {
                 if connection.isVideoStabilizationSupported {
                     connection.preferredVideoStabilizationMode = .auto
                 }
+                movieFileOutput.setOutputSettings([AVVideoCodecKey : AVVideoCodecType.hevc], for: connection)
+                print(movieFileOutput.outputSettings(for: connection))
             }
+            
             self.movieFileOutput = movieFileOutput
             
             let keyValueObservation = movieFileOutput.observe(\.isRecording, options: .new) { (_, change) in
@@ -666,32 +874,41 @@ import Photos
             self.session.removeInput(self.videoDeviceInput)
             
             if let deviceFormat =
-                device.formats.max (by: { (format1, format2) -> Bool in
-                let dimension1 = CMVideoFormatDescriptionGetDimensions(format1.formatDescription)
-                let dimension2 = CMVideoFormatDescriptionGetDimensions(format2.formatDescription)
-                
-                return dimension1.width*dimension1.height <= dimension2.width*dimension2.height
+                device.formats.filter({ (format) -> Bool in
+                    let dimension = CMVideoFormatDescriptionGetDimensions(format.formatDescription)
+                    
+                    if (Double(dimension.width)*3.0)/(Double(dimension.height)*4.0) < 1.3 {
+                        return false
+                    }
+                    
+                    return dimension.width <= 3840 && !(dimension.width == 1920 && dimension.height >= 1200) && dimension.width != 2592 && !(dimension.width == 1440 && dimension.height == 1080) && dimension.width != 3088
+                }).max (by: { (format1, format2) -> Bool in
+                    let dimension1 = CMVideoFormatDescriptionGetDimensions(format1.formatDescription)
+                    let dimension2 = CMVideoFormatDescriptionGetDimensions(format2.formatDescription)
+                    
+                    if dimension1.width*dimension1.height == dimension2.width*dimension2.height {
+                        let range1 = format1.videoSupportedFrameRateRanges[0]
+                        let range2 = format2.videoSupportedFrameRateRanges[0]
+                        return range1.maxFrameRate <= range2.maxFrameRate
+                    }
+                    return dimension1.width*dimension1.height <= dimension2.width*dimension2.height
                 }) {
                 
-                let dimension = CMVideoFormatDescriptionGetDimensions(deviceFormat.formatDescription)
-                if dimension.width >= 3840 && dimension.height >= 2160 {
-                    session.sessionPreset = .hd4K3840x2160
+                let ranges = deviceFormat.videoSupportedFrameRateRanges
+                let frameRates = ranges[0]
+                
+                do {
+                    try device.lockForConfiguration()
+
+                    device.activeFormat = deviceFormat
+                    device.activeVideoMinFrameDuration = frameRates.minFrameDuration
+                    device.activeVideoMaxFrameDuration = frameRates.maxFrameDuration
+                    device.unlockForConfiguration()
                 }
-                else if dimension.width >= 1920 && dimension.height >= 1080 {
-                    session.sessionPreset = .hd1920x1080
+                catch {
+                    print("Could not lock device for configuration: \(error)")
                 }
-                else if dimension.width >= 1280 && dimension.height >= 720 {
-                    session.sessionPreset = .hd1280x720
-                }
-                else if dimension.width >= 960 && dimension.height >= 540 {
-                    session.sessionPreset = .iFrame960x540
-                }
-                else if dimension.width >= 352 && dimension.height >= 288 {
-                    session.sessionPreset = .cif352x288
-                }
-                else{
-                    session.sessionPreset = .cif352x288
-                }
+                
             }
             
             if self.session.canAddInput(videoDeviceInput) {

@@ -72,6 +72,8 @@ extension ViewController {
             let action = UIAlertAction.init(title: "\(positionDesc) \(deviceName)", style: .default, handler: { (action) in
                 self.sessionQueue.async {
                     camera.changeCamera(to: device)
+                    
+                    self.updateSettingsButton()
                 }
             })
             actionSheet.addAction(action)
@@ -93,10 +95,29 @@ extension ViewController {
         //focus(with: .autoFocus, exposureMode: .autoExpose, at: devicePoint, monitorSubjectAreaChange: true)
     }
     
+    @objc func showSettingsView(_ sender:Any){
+        self.formatSettingsView.loadSettingsFromCamera()
+        UIView.animate(withDuration: 0.3) {
+            self.settingsContainerView.isHidden = false
+        }
+    }
+    
+    @objc func hideSettingsView(_ sender:Any){
+        UIView.animate(withDuration: 0.3) {
+            self.settingsContainerView.isHidden = true
+            self.formatSettingsView.saveSettingsToCamera()
+            
+            self.updateSettingsButton()
+        }
+    }
     
     @objc func subjectAreaDidChange(notification: NSNotification) {
         let _ = CGPoint(x: 0.5, y: 0.5)
         
+    }
+    
+    @objc func onTimerEvent(timer: Timer) {
+        self.updateCameraParameterDisplay()
     }
     
     /// - Tag: HandleRuntimeError

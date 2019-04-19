@@ -10,6 +10,8 @@
 		4759AE25B95981E5AB92B0B0 /* libPods-VideoCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEFFC01690CBC068A8B40D1 /* libPods-VideoCamera.a */; };
 		BF1A97072266655C006BEAF7 /* CameraBottomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1A97062266655C006BEAF7 /* CameraBottomControl.swift */; };
 		BF45CAB5226904B900819F23 /* FocusOfInterestIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CAB4226904B900819F23 /* FocusOfInterestIndicatorView.swift */; };
+		BF45CAB72269677700819F23 /* FormatSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CAB62269677700819F23 /* FormatSettingsView.swift */; };
+		BF45CAB92269D7D000819F23 /* CameraParamterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CAB82269D7D000819F23 /* CameraParamterButton.swift */; };
 		BF8987D222674525002BAA70 /* ViewController-Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8987D122674525002BAA70 /* ViewController-Events.swift */; };
 		BF92C216225DE83800B246DA /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF92C215225DE83800B246DA /* CameraManager.swift */; };
 		BFB4BB1E224D0DDD0056EFD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB4BB1D224D0DDD0056EFD5 /* AppDelegate.swift */; };
@@ -27,6 +29,8 @@
 		A28DB1A3157184153D170DD0 /* Pods-VideoCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoCamera.release.xcconfig"; path = "Target Support Files/Pods-VideoCamera/Pods-VideoCamera.release.xcconfig"; sourceTree = "<group>"; };
 		BF1A97062266655C006BEAF7 /* CameraBottomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraBottomControl.swift; sourceTree = "<group>"; };
 		BF45CAB4226904B900819F23 /* FocusOfInterestIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusOfInterestIndicatorView.swift; sourceTree = "<group>"; };
+		BF45CAB62269677700819F23 /* FormatSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatSettingsView.swift; sourceTree = "<group>"; };
+		BF45CAB82269D7D000819F23 /* CameraParamterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraParamterButton.swift; sourceTree = "<group>"; };
 		BF8987D122674525002BAA70 /* ViewController-Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ViewController-Events.swift"; path = "VideoCamera/ViewController-Events.swift"; sourceTree = SOURCE_ROOT; };
 		BF92C215225DE83800B246DA /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		BFB4BB1A224D0DDD0056EFD5 /* VideoCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +122,8 @@
 				BF1A97062266655C006BEAF7 /* CameraBottomControl.swift */,
 				BFBDA96F22677F0E00A9B35F /* RecordTimerLabel.swift */,
 				BF45CAB4226904B900819F23 /* FocusOfInterestIndicatorView.swift */,
+				BF45CAB62269677700819F23 /* FormatSettingsView.swift */,
+				BF45CAB82269D7D000819F23 /* CameraParamterButton.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -285,10 +291,12 @@
 				BF92C216225DE83800B246DA /* CameraManager.swift in Sources */,
 				BFB4BB20224D0DDD0056EFD5 /* ViewController.swift in Sources */,
 				BFB4BB1E224D0DDD0056EFD5 /* AppDelegate.swift in Sources */,
+				BF45CAB92269D7D000819F23 /* CameraParamterButton.swift in Sources */,
 				BFB4BB30224DE5810056EFD5 /* PreviewView.swift in Sources */,
 				BFBDA97022677F0E00A9B35F /* RecordTimerLabel.swift in Sources */,
 				BF1A97072266655C006BEAF7 /* CameraBottomControl.swift in Sources */,
 				BF8987D222674525002BAA70 /* ViewController-Events.swift in Sources */,
+				BF45CAB72269677700819F23 /* FormatSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,7 +453,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = sh.huang.VideoCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -465,7 +473,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = sh.huang.VideoCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
