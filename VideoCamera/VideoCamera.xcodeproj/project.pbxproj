@@ -12,6 +12,8 @@
 		BF45CAB5226904B900819F23 /* FocusOfInterestIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CAB4226904B900819F23 /* FocusOfInterestIndicatorView.swift */; };
 		BF45CAB72269677700819F23 /* FormatSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CAB62269677700819F23 /* FormatSettingsView.swift */; };
 		BF45CAB92269D7D000819F23 /* CameraParamterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CAB82269D7D000819F23 /* CameraParamterButton.swift */; };
+		BF45CACE226A083900819F23 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF45CAD0226A083900819F23 /* InfoPlist.strings */; };
+		BF45CAD1226A083C00819F23 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF45CAD3226A083C00819F23 /* Localizable.strings */; };
 		BF8987D222674525002BAA70 /* ViewController-Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8987D122674525002BAA70 /* ViewController-Events.swift */; };
 		BF92C216225DE83800B246DA /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF92C215225DE83800B246DA /* CameraManager.swift */; };
 		BFB4BB1E224D0DDD0056EFD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB4BB1D224D0DDD0056EFD5 /* AppDelegate.swift */; };
@@ -31,6 +33,24 @@
 		BF45CAB4226904B900819F23 /* FocusOfInterestIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusOfInterestIndicatorView.swift; sourceTree = "<group>"; };
 		BF45CAB62269677700819F23 /* FormatSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatSettingsView.swift; sourceTree = "<group>"; };
 		BF45CAB82269D7D000819F23 /* CameraParamterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraParamterButton.swift; sourceTree = "<group>"; };
+		BF45CACF226A083900819F23 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BF45CAD2226A083C00819F23 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BF45CAD4226A0BF800819F23 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		BF45CAD5226A0BF800819F23 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		BF45CAD6226A0BF800819F23 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		BF45CAD7226A0BF800819F23 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BF45CAD8226A0C0200819F23 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		BF45CAD9226A0C0200819F23 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		BF45CADA226A0C0200819F23 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		BF45CADB226A0C0200819F23 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BF45CADC226A0C0A00819F23 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		BF45CADD226A0C0A00819F23 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		BF45CADE226A0C0A00819F23 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BF45CADF226A0C0B00819F23 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BF45CAE0226A0C1D00819F23 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		BF45CAE1226A0C1D00819F23 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		BF45CAE2226A0C1D00819F23 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BF45CAE3226A0C1D00819F23 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BF8987D122674525002BAA70 /* ViewController-Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ViewController-Events.swift"; path = "VideoCamera/ViewController-Events.swift"; sourceTree = SOURCE_ROOT; };
 		BF92C215225DE83800B246DA /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		BFB4BB1A224D0DDD0056EFD5 /* VideoCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +132,8 @@
 				BFB4BB24224D0DE00056EFD5 /* Assets.xcassets */,
 				BFB4BB26224D0DE00056EFD5 /* LaunchScreen.storyboard */,
 				BFB4BB29224D0DE00056EFD5 /* Info.plist */,
+				BF45CAD3226A083C00819F23 /* Localizable.strings */,
+				BF45CAD0226A083900819F23 /* InfoPlist.strings */,
 			);
 			path = VideoCamera;
 			sourceTree = "<group>";
@@ -173,6 +195,10 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"zh-Hant",
+				ja,
+				ko,
 			);
 			mainGroup = BFB4BB11224D0DDD0056EFD5;
 			productRefGroup = BFB4BB1B224D0DDD0056EFD5 /* Products */;
@@ -190,8 +216,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFB4BB28224D0DE00056EFD5 /* LaunchScreen.storyboard in Resources */,
+				BF45CAD1226A083C00819F23 /* Localizable.strings in Resources */,
 				BFB4BB25224D0DE00056EFD5 /* Assets.xcassets in Resources */,
 				BFB4BB23224D0DDD0056EFD5 /* Main.storyboard in Resources */,
+				BF45CACE226A083900819F23 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,10 +331,38 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		BF45CAD0226A083900819F23 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF45CACF226A083900819F23 /* en */,
+				BF45CAD7226A0BF800819F23 /* zh-Hans */,
+				BF45CADB226A0C0200819F23 /* zh-Hant */,
+				BF45CADF226A0C0B00819F23 /* ja */,
+				BF45CAE3226A0C1D00819F23 /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BF45CAD3226A083C00819F23 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF45CAD2226A083C00819F23 /* en */,
+				BF45CAD6226A0BF800819F23 /* zh-Hans */,
+				BF45CADA226A0C0200819F23 /* zh-Hant */,
+				BF45CADE226A0C0A00819F23 /* ja */,
+				BF45CAE2226A0C1D00819F23 /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		BFB4BB21224D0DDD0056EFD5 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				BFB4BB22224D0DDD0056EFD5 /* Base */,
+				BF45CAD4226A0BF800819F23 /* zh-Hans */,
+				BF45CAD8226A0C0200819F23 /* zh-Hant */,
+				BF45CADC226A0C0A00819F23 /* ja */,
+				BF45CAE0226A0C1D00819F23 /* ko */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -315,6 +371,10 @@
 			isa = PBXVariantGroup;
 			children = (
 				BFB4BB27224D0DE00056EFD5 /* Base */,
+				BF45CAD5226A0BF800819F23 /* zh-Hans */,
+				BF45CAD9226A0C0200819F23 /* zh-Hant */,
+				BF45CADD226A0C0A00819F23 /* ja */,
+				BF45CAE1226A0C1D00819F23 /* ko */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -326,6 +386,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -387,6 +448,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

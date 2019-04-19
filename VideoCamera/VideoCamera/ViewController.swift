@@ -421,21 +421,30 @@ class ViewController: UIViewController {
             let device = videoDeviceInput.device
             self.cameraParameterButtons[0].text1 = String(format: "%.2f", arguments: [device.exposureTargetBias])
             
-            self.cameraParameterButtons[1].text1 = String(format: "%.4f", arguments: [Float(device.exposureDuration.value) / Float(device.exposureDuration.timescale)])
+            let exposureTime = Float(device.exposureDuration.value) / Float(device.exposureDuration.timescale)
+            if !exposureTime.isNaN {
+                if exposureTime >= 1 {
+                    self.cameraParameterButtons[1].text1 = String(format: "%.4f", arguments: [exposureTime])
+                }
+                else{
+                    let exposureDenominator = Int(1 / exposureTime)
+                    self.cameraParameterButtons[1].text1 = "1/\(exposureDenominator)"
+                }
+            }
             
             self.cameraParameterButtons[2].text1 = String(format: "%.0f", arguments: [device.iso])
             switch (device.whiteBalanceMode) {
             case .autoWhiteBalance:
-                self.cameraParameterButtons[3].text2 = "AWB"
+                self.cameraParameterButtons[3].text2 = NSLocalizedString("AWB", comment: "")
                 break
             case .continuousAutoWhiteBalance:
-                self.cameraParameterButtons[3].text2 = "AWB"
+                self.cameraParameterButtons[3].text2 = NSLocalizedString("AWB", comment: "")
                 break
             case .locked:
-                self.cameraParameterButtons[3].text2 = "WB"
+                self.cameraParameterButtons[3].text2 = NSLocalizedString("WB", comment: "")
                 break
             default:
-                self.cameraParameterButtons[3].text2 = "WB"
+                self.cameraParameterButtons[3].text2 = NSLocalizedString("WB", comment: "")
                 break
             }
             

@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  VideoCamera
+
+  Created by jimmy on 2019/4/19.
+  Copyright © 2019 huangsj. All rights reserved.
+*/
+
+"AWB" = "AWB";
+"WB" = "WB";
+"Exposure" = "Exposure";
+"Shutter" = "Shutter";
+"ISO" = "ISO";
+"Focus" = "Focus";
+"Zoom" = "Zoom";
+"Format" = "Format";
+"Frame rate" = "Frame rate";
+"Microphone" = "Microphone";
+
+"Current Camera:" = "Current Camera:";
+"Back" = "Back";
+"Front" = "Front";
+"WideAngle" = "Wide Angle";
+"DualCamera" = "Dual Camera";
+"Telephoto" = "Telephoto";
+"TrueDepth" = "TrueDepth";
+
+"OK" = "OK";
+"Cancel" = "Cancel";
+
+"Documents" = "Video Library";
+"Search" = "Search";
+
+"Builtin" = "Builtin";
+"Builtin and Bluetooth" = "Builtin and Bluetooth";

@@ -56,11 +56,12 @@ extension ViewController {
         
         let (currentPosition, currentDevice) = camera.currentCamera
         let currentPositionDesc = currentPosition == .back ?NSLocalizedString("Back", comment: ""):NSLocalizedString("Front", comment: "")
-        let currentDeviceName = deviceName(of: currentDevice)
+        let currentDeviceName = NSLocalizedString(deviceName(of: currentDevice), comment: "")
         
         let currentCamera = "\(currentPositionDesc) \(currentDeviceName)"
         
-        let actionSheet = UIAlertController.init(title: "", message: "Current Camera:\(currentCamera)", preferredStyle: .actionSheet)
+        let currentLabel = NSLocalizedString("Current Camera:", comment: "")
+        let actionSheet = UIAlertController.init(title: "", message: "\(currentLabel)\(currentCamera)", preferredStyle: .actionSheet)
         
         camera.devices.forEach { (device) in
             let position = device.position
@@ -80,7 +81,7 @@ extension ViewController {
             
         }
         
-        let action = UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
+        let action = UIAlertAction.init(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { (action) in
             
         })
         actionSheet.addAction(action)

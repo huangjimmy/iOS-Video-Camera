@@ -1,0 +1,12 @@
+/* 
+  InfoPlist.strings
+  VideoCamera
+
+  Created by jimmy on 2019/4/19.
+  Copyright © 2019 huangsj. All rights reserved.
+*/
+
+CFBundleDisplayName = "录像机";
+
+NSMicrophoneUsageDescription = "录像机需要访问麦克风";
+NSCameraUsageDescription = "录像机需要访问手机摄像头";

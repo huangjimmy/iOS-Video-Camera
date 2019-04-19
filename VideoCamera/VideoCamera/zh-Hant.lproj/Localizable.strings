@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  VideoCamera
+
+  Created by jimmy on 2019/4/19.
+  Copyright © 2019 huangsj. All rights reserved.
+*/
+
+"AWB" = "自動";
+"WB" = "WB";
+"Exposure" = "曝光補償";
+"Shutter" = "快門";
+"ISO" = "感光";
+"Focus" = "對焦";
+"Zoom" = "變焦";
+"Format" = "分辨率";
+"Frame rate" = "幀率";
+"Microphone" = "麥克風";
+
+"Current Camera:" = "當前相機：";
+"Back" = "後置";
+"Front" = "前置";
+"WideAngle" = "廣角";
+"DualCamera" = "雙攝";
+"Telephoto" = "長焦";
+"TrueDepth" = "TrueDepth";
+
+"OK" = "好的";
+"Cancel" = "取消";
+
+"Search" = "查找";
+
+"Documents" = "視頻庫";
+"Builtin" = "內置麥克風";
+"Builtin and Bluetooth" = "內置與藍牙自動選擇";

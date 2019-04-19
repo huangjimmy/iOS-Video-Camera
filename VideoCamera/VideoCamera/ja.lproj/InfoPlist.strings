@@ -1,0 +1,12 @@
+/* 
+  InfoPlist.strings
+  VideoCamera
+
+  Created by jimmy on 2019/4/19.
+  Copyright © 2019 huangsj. All rights reserved.
+*/
+
+CFBundleDisplayName = "Video Camera";
+
+NSMicrophoneUsageDescription = "Video Camera need to access microphone to record audio";
+NSCameraUsageDescription = "Video Camera need to access phone camera to record video";
