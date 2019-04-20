@@ -33,3 +33,9 @@
 "Documents" = "視頻庫";
 "Builtin" = "內置麥克風";
 "Builtin and Bluetooth" = "內置與藍牙自動選擇";
+
+"On" = "開啟";
+"Off" = "關閉";
+"Auto" = "自動";
+"Standard" = "標準";
+"Cinematic" = "電影";

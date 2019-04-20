@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 class CameraBottomControl: UIView {
     let cameraRollButton: UIButton
@@ -126,6 +127,55 @@ class CameraBottomControl: UIView {
         }
         else{
             NSLayoutConstraint.activate(landscapeConstraints)
+        }
+    }
+    
+    public func reload(){
+        let camera = CameraManager.sharedInstance
+        if let device = camera.videoDeviceInput?.device {
+            DispatchQueue.main.async {
+                if device.position == .back {
+                    switch device.deviceType {
+                    case .builtInDualCamera:
+                        self.changeCameraButton.setBackgroundImage(UIImage.init(named: "dualcam"), for: .normal)
+                        break
+                    case .builtInWideAngleCamera:
+                        self.changeCameraButton.setBackgroundImage(UIImage.init(named: "backwidecam"), for: .normal)
+                        break
+                    case AVCaptureDevice.DeviceType.builtInTelephotoCamera:
+                        self.changeCameraButton.setBackgroundImage(UIImage.init(named: "backtelecam"), for: .normal)
+                        break
+                    case AVCaptureDevice.DeviceType.builtInTrueDepthCamera:
+                        self.changeCameraButton.setBackgroundImage(UIImage.init(named: "changeCamera"), for: .normal)
+                        break
+                    default:
+                        self.changeCameraButton.setBackgroundImage(UIImage.init(named: "changeCamera"), for: .normal)
+                        break
+                    }
+                }
+                else if device.position == .front {
+                    switch device.deviceType {
+                    case .builtInDualCamera:
+                        self.changeCameraButton.setBackgroundImage(UIImage.init(named: "frontcam"), for: .normal)
+                        break
+                    case .builtInWideAngleCamera:
+                        self.changeCameraButton.setBackgroundImage(UIImage.init(named: "frontcam"), for: .normal)
+                        break
+                    case AVCaptureDevice.DeviceType.builtInTelephotoCamera:
+                        self.changeCameraButton.setBackgroundImage(UIImage.init(named: "frontcam"), for: .normal)
+                        break
+                    case AVCaptureDevice.DeviceType.builtInTrueDepthCamera:
+                        self.changeCameraButton.setBackgroundImage(UIImage.init(named: "frontcam"), for: .normal)
+                        break
+                    default:
+                        self.changeCameraButton.setBackgroundImage(UIImage.init(named: "frontcam"), for: .normal)
+                        break
+                    }
+                }
+                else {
+                    self.changeCameraButton.setBackgroundImage(UIImage.init(named: "changeCamera"), for: .normal)
+                }
+            }
         }
     }
 }

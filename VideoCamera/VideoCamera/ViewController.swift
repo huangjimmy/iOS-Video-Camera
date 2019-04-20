@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import Photos
+import CoreMotion
 
 class ViewController: UIViewController {
 
@@ -18,25 +19,51 @@ class ViewController: UIViewController {
     
     var timer:Timer?
     
+    
+    var motionManager:CMMotionManager {
+        get {
+            struct Singleton {
+                static let _motionManager:CMMotionManager = CMMotionManager()
+            }
+            return Singleton._motionManager
+        }
+    }
+    
     internal let camera = CameraManager.sharedInstance
     
+    internal var batteryView:ALBatteryView!
     internal var previewView:PreviewView!
-    private let previewTapGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer()
+    private let previewTapGestureRecognizer:UILongPressGestureRecognizer = UILongPressGestureRecognizer()
     
     internal var settingsContainerView:UIControl!
     internal var formatSettingsView:FormatSettingsView!
     
     internal let sessionQueue = DispatchQueue(label: "session queue") // Communicate with the session and other session objects on this queue.
     
-    private var cameraBottom: CameraBottomControl!
+    internal var cameraBottom: CameraBottomControl!
     private var recordTimeLabel: RecordTimerLabel!
     private var landscapeTopBannerBackgroundView: UIView!
     
+    /*! The settings button is for 4k/1080p/720p resoltuon and fps configurations */
     internal var settingsButton: UIButton!
+    /*! The lens button is for lens configuration, such as Optical Image Stablization */
+    internal var lensButton: UIButton!
     internal var flashButton: UIButton!
     internal var cameraParameterButtons:[CameraParameterButton] = []
     
     private var keyValueObservations = [NSKeyValueObservation]()
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        get {
+            return .lightContent
+        }
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        get {
+            return true
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +112,7 @@ class ViewController: UIViewController {
          take a long time. We dispatch session setup to the sessionQueue, so
          that the main queue isn't blocked, which keeps the UI responsive.
          */
+        self.camera.connectSession(with: self.previewView)
         sessionQueue.async {
             self.camera.configureSession(with: self.previewView)
             
@@ -101,6 +129,7 @@ class ViewController: UIViewController {
                 }()
                 let settingsTitle = NSAttributedString(string: "\(formatStr) \(format.2)", attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor:UIColor.white])
                 self.settingsButton.setAttributedTitle(settingsTitle, for: .normal)
+                self.cameraBottom.reload()
             }
         }
         
@@ -130,11 +159,22 @@ class ViewController: UIViewController {
         self.settingsButton.addTarget(self, action: #selector(showSettingsView(_:)), for: .touchUpInside)
         self.view.addSubview(self.settingsButton)
         
+        self.lensButton = UIButton(type: .custom)
+        self.lensButton.translatesAutoresizingMaskIntoConstraints = false
+        self.lensButton.setImage(UIImage(named: "OIS"), for: .normal)
+        self.lensButton.contentHorizontalAlignment = .left
+        self.view.addSubview(self.lensButton)
+        self.lensButton.addTarget(self, action: #selector(lensButtonTap(_:)), for: .touchUpInside)
+        
         self.flashButton = UIButton(type: .custom)
         self.flashButton.translatesAutoresizingMaskIntoConstraints = false
-        self.flashButton.setImage(UIImage(named: "flash"), for: .normal)
-        self.flashButton.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+        self.flashButton.setImage(UIImage(named: "flash_auto"), for: .normal)
         self.view.addSubview(self.flashButton)
+        self.flashButton.addTarget(self, action: #selector(flashButtonTap(_:)), for: .touchUpInside)
+        
+        self.batteryView = ALBatteryView()
+        self.batteryView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.batteryView)
         
         self.settingsContainerView = UIControl()
         self.formatSettingsView = FormatSettingsView()
@@ -153,25 +193,34 @@ class ViewController: UIViewController {
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[v]-0-|", options: .init(rawValue: 0), metrics: nil, views: ["v":self.settingsContainerView!]))
         self.settingsContainerView.isHidden = true
         
+        let screenBounds = UIScreen.main.bounds
+        let screenWidth = screenBounds.width <= screenBounds.height ? screenBounds.width:screenBounds.height
+        let screenHeight = screenBounds.width >= screenBounds.height ? screenBounds.width:screenBounds.height
+        
+        let cameraParameterButtonWidth:Float = {
+            if screenWidth >= 375 {
+                return Float(screenWidth)/6
+            }
+            return 69
+        }()
+        
         self.cameraParameterButtons = [NSLocalizedString("Exposure", comment: ""), NSLocalizedString("Shutter", comment: ""), NSLocalizedString("ISO", comment: ""), NSLocalizedString("WB", comment: ""), NSLocalizedString("Focus", comment: ""), NSLocalizedString("Zoom", comment: "")].map({ (str) -> CameraParameterButton in
             let button = CameraParameterButton()
             button.text2 = str
             button.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview(button)
-            self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v(69)]", options: .init(rawValue: 0), metrics: nil, views: ["v":button]));
+            self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v(\(cameraParameterButtonWidth))]", options: .init(rawValue: 0), metrics: nil, views: ["v":button]));
             self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v(42)]", options: .init(rawValue: 0), metrics: nil, views: ["v":button]));
             return button
         })
         
-        let screenBounds = UIScreen.main.bounds
-        let screenWidth = screenBounds.width <= screenBounds.height ? screenBounds.width:screenBounds.height
-        let screenHeight = screenBounds.width >= screenBounds.height ? screenBounds.width:screenBounds.height
         
-        let landscapeSpacing = (screenHeight - 6*69 - 100 - 44)/7
         
-        if screenWidth >= 414 {
+        let landscapeSpacing = (screenHeight - 6*CGFloat(cameraParameterButtonWidth) - 100 - 44)/7
+        
+        if screenWidth >= 375 {
             
-            let portraitSpacing = (screenWidth - 6*69)/5
+            let portraitSpacing = (screenWidth - 6*CGFloat(cameraParameterButtonWidth))/5
             
             for i in 0...5 {
                 let button = self.cameraParameterButtons[i]
@@ -183,10 +232,10 @@ class ViewController: UIViewController {
                     let constraint = NSLayoutConstraint(item: button, attribute: .left, relatedBy: .equal, toItem: self.cameraBottom, attribute: .left, multiplier: 1.0, constant: 0)
                     portraitConstraints.append(constraint)
                     
-                    let constraintLandscape = NSLayoutConstraint.constraints(withVisualFormat: "H:|-\(landscapeSpacing)-[v]", options: .init(rawValue: 0), metrics: nil, views: ["v":button])
+                    let constraintLandscape = NSLayoutConstraint.constraints(withVisualFormat: "H:|-\(landscapeSpacing*2)-[v]", options: .init(rawValue: 0), metrics: nil, views: ["v":button])
                     landscapeConstraints.append(contentsOf: constraintLandscape)
                     
-                    let constraintLandscapeRight = NSLayoutConstraint.constraints(withVisualFormat: "H:|-\(landscapeSpacing+120)-[v]", options: .init(rawValue: 0), metrics: nil, views: ["v":button])
+                    let constraintLandscapeRight = NSLayoutConstraint.constraints(withVisualFormat: "H:[v1]-\(20)-[v]", options: .init(rawValue: 0), metrics: nil, views: ["v":button, "v1":self.cameraBottom!])
                     landscapeRightConstraints.append(contentsOf: constraintLandscapeRight)
                 }
                 else{
@@ -203,8 +252,8 @@ class ViewController: UIViewController {
             }
         }
         else{
-            let portraitSpacing = (screenWidth - 3*69)/2
-            let landscapeSpacingSmall = (screenHeight - 6*69 - 100 - 10)/7
+            let portraitSpacing = (screenWidth - 3*CGFloat(cameraParameterButtonWidth))/2
+            let landscapeSpacingSmall = (screenHeight - 6*CGFloat(cameraParameterButtonWidth) - 100 - 10)/7
             
             for i in 0...5 {
                 //two row
@@ -219,10 +268,10 @@ class ViewController: UIViewController {
                     let constraint = NSLayoutConstraint(item: button, attribute: .left, relatedBy: .equal, toItem: self.cameraBottom, attribute: .left, multiplier: 1.0, constant: 0)
                     portraitConstraints.append(constraint)
                     
-                    let constraintLandscape = NSLayoutConstraint.constraints(withVisualFormat: "H:|-\(landscapeSpacing)-[v]", options: .init(rawValue: 0), metrics: nil, views: ["v":button])
+                    let constraintLandscape = NSLayoutConstraint.constraints(withVisualFormat: "H:|-\(landscapeSpacing*2)-[v]", options: .init(rawValue: 0), metrics: nil, views: ["v":button])
                     landscapeConstraints.append(contentsOf: constraintLandscape)
                     
-                    let constraintLandscapeRight = NSLayoutConstraint.constraints(withVisualFormat: "H:|-\(landscapeSpacing+120)-[v]", options: .init(rawValue: 0), metrics: nil, views: ["v":button])
+                    let constraintLandscapeRight = NSLayoutConstraint.constraints(withVisualFormat: "H:[v1]-\(20)-[v]", options: .init(rawValue: 0), metrics: nil, views: ["v":button, "v1":self.cameraBottom!])
                     landscapeRightConstraints.append(contentsOf: constraintLandscapeRight)
                 }
                 else{
@@ -240,17 +289,18 @@ class ViewController: UIViewController {
         }
         
         portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[v]-0-|", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom!]))
-        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:[v(100)]-|", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom!]))
+        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:[v(100)]-0-|", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom!]))
         
         landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[v]-0-|", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom!]))
-        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(100)]-|", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom!]))
-        landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[v(100)]", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom!]))
+        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(100)]-0-|", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom!]))
+        landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[v(100)]", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom!]))
         
         ////////////////////////////
-        
+        //position of recordTimeLabel
         portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(80)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.recordTimeLabel!]));
         portraitConstraints.append(NSLayoutConstraint(item: self.recordTimeLabel!, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0))
-        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v(18)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.recordTimeLabel!]));
+        //portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-6-[v(18)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.recordTimeLabel!]));
+        self.view.addConstraint(NSLayoutConstraint(item: self.recordTimeLabel!, attribute: .centerY, relatedBy: .equal, toItem: self.landscapeTopBannerBackgroundView, attribute: .centerY, multiplier: 1.0, constant: 0))
         
         landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(80)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.recordTimeLabel!]));
         landscapeConstraints.append(NSLayoutConstraint(item: self.recordTimeLabel!, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0))
@@ -258,10 +308,11 @@ class ViewController: UIViewController {
         
         landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(80)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.recordTimeLabel!]));
         ////////////////////////////
-        
-        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(0)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.landscapeTopBannerBackgroundView!]));
+        //position of landscapeTopBannerBackgroundView
+        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[v]-0-|", options: .alignAllCenterX, metrics: nil, views: ["v":self.landscapeTopBannerBackgroundView!]));
         portraitConstraints.append(NSLayoutConstraint(item: self.landscapeTopBannerBackgroundView!, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0))
-        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[v(0)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.landscapeTopBannerBackgroundView!]));
+        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.landscapeTopBannerBackgroundView!]));
+        portraitConstraints.append(NSLayoutConstraint(item: self.landscapeTopBannerBackgroundView!, attribute: .centerY, relatedBy: .equal, toItem: self.settingsButton, attribute: .centerY, multiplier: 1.0, constant: 0));
         
         landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(309)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.landscapeTopBannerBackgroundView!]));
         landscapeConstraints.append(NSLayoutConstraint(item: self.landscapeTopBannerBackgroundView!, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0))
@@ -270,24 +321,37 @@ class ViewController: UIViewController {
         landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(309)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.landscapeTopBannerBackgroundView!]));
         /////////////////////////////
         
-        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(88)]-|", options: .alignAllCenterX, metrics: nil, views: ["v":self.settingsButton!]));
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v]-(-30)-[batteryView(30)]", options: .init(rawValue: 0), metrics: nil, views: ["batteryView":self.batteryView!, "v":self.landscapeTopBannerBackgroundView!]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[batteryView(30)]", options: .alignAllCenterY, metrics: nil, views: ["batteryView":self.batteryView!, "v":self.landscapeTopBannerBackgroundView!]))
+        self.view.addConstraint(NSLayoutConstraint(item: self.batteryView!, attribute: .centerY, relatedBy: .equal, toItem: self.landscapeTopBannerBackgroundView, attribute: .centerY, multiplier: 1.0, constant: 0))
+        
+        /////////////////////////////
+        //position of settingsButton
+        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(88)]-0-[batteryView]", options: .alignAllCenterY, metrics: nil, views: ["v":self.settingsButton!, "batteryView":self.batteryView!]));
         portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.settingsButton!]));
         
         landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(88)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.settingsButton!]));
-        landscapeConstraints.append(NSLayoutConstraint(item: self.settingsButton!, attribute: .right, relatedBy: .equal, toItem: self.landscapeTopBannerBackgroundView, attribute: .right, multiplier: 1.0, constant: -8))
-        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-31-[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.settingsButton!]));
+        landscapeConstraints.append(NSLayoutConstraint(item: self.settingsButton!, attribute: .right, relatedBy: .equal, toItem: self.batteryView!, attribute: .left, multiplier: 1.0, constant: 0))
+        //landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:-[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.settingsButton!]));
+        self.view.addConstraint(NSLayoutConstraint(item: self.settingsButton!, attribute: .centerY, relatedBy: .equal, toItem: self.landscapeTopBannerBackgroundView, attribute: .centerY, multiplier: 1.0, constant: 0))
         
         landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(88)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.settingsButton!]));
         /////////////////////////////
-        
+        //position of flashButton
         portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[v(30)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.flashButton!]));
         portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.flashButton!]));
         
         landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(30)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.flashButton!]));
         landscapeConstraints.append(NSLayoutConstraint(item: self.flashButton!, attribute: .left, relatedBy: .equal, toItem: self.landscapeTopBannerBackgroundView, attribute: .left, multiplier: 1.0, constant: 8))
-        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-25-[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.flashButton!]));
+        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-31-[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.flashButton!]));
         
         landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(30)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.flashButton!]));
+        
+        /////////////////////////////////
+        //position of lensButton
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[flashButton]-0-[lensButton(118)]", options: .init(rawValue: 0), metrics: nil, views: ["flashButton":self.flashButton!, "lensButton":self.lensButton!]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[lensButton(30)]", options: .init(rawValue: 0), metrics: nil, views: [ "lensButton":self.lensButton!]));
+        self.view.addConstraint(NSLayoutConstraint(item: self.lensButton!, attribute: .centerY, relatedBy: .equal, toItem: self.flashButton!, attribute: .centerY, multiplier: 1.0, constant: 0))
         
         landscapeRightConstraints.forEach { (constraint) in
             if isLandscapeRight {
@@ -324,16 +388,68 @@ class ViewController: UIViewController {
         
         self.addObservers()
         
+        self.previewTapGestureRecognizer.minimumPressDuration = 0
         self.previewView.addGestureRecognizer(self.previewTapGestureRecognizer)
         self.previewTapGestureRecognizer.addTarget(self, action: #selector(focusTap(_:)))
+
     }
     
     
+    let motionQueue = OperationQueue()
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         self.recalcConstraints()
         self.view.setNeedsUpdateConstraints()
+        
+//        DispatchQueue.global().async {
+//            
+//            if self.motionManager.isDeviceMotionAvailable {
+//                let camera = self.camera
+//                self.motionManager.deviceMotionUpdateInterval = 0.1
+//                self.motionManager.startDeviceMotionUpdates(to: self.motionQueue) { (motion, error) in
+//                    if let deviceMotion = motion{
+//                        let x = deviceMotion.gravity.x
+//                        let y = deviceMotion.gravity.y
+//                        if (fabs(y) >= fabs(x)) {
+//                            if (y >= 0) {
+//                                //UIDeviceOrientationPortraitUpsideDown;
+//                                camera.currentVideOrientation = .portraitUpsideDown
+//                            } else {
+//                                //UIDeviceOrientationPortrait;
+//                                camera.currentVideOrientation = .portrait
+//                            }
+//                        } else {
+//                            if (x >= 0) {
+//                                //UIDeviceOrientationLandscapeRight;    // Home to the left
+//                                camera.currentVideOrientation = .landscapeLeft
+//                            } else {
+//                                //UIDeviceOrientationLandscapeLeft;     // Home to the right
+//                                camera.currentVideOrientation = .landscapeRight
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            else {
+//                /*
+//                 
+//                 Use the status bar orientation as the initial video orientation. Subsequent orientation changes are
+//                 handled by CameraViewController.viewWillTransition(to:with:).
+//                 */
+//                let statusBarOrientation = UIApplication.shared.statusBarOrientation
+//                let initialVideoOrientation: AVCaptureVideoOrientation = .portrait
+//                if statusBarOrientation != .unknown {
+//                    if let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: statusBarOrientation) {
+//                        self.camera.currentVideOrientation = videoOrientation
+//                    }
+//                    else{
+//                        self.camera.currentVideOrientation = initialVideoOrientation
+//                    }
+//                }
+//            }
+//        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -409,6 +525,8 @@ class ViewController: UIViewController {
             self.timer = nil
         }
         
+        self.motionManager.stopDeviceMotionUpdates()
+        
         super.viewWillDisappear(animated)
     }
 
@@ -461,6 +579,51 @@ class ViewController: UIViewController {
             
             self.cameraParameterButtons[4].text1 = String(format: "%.2f", arguments: [device.lensPosition])
             self.cameraParameterButtons[5].text1 = String(format: "%.2f", arguments: [device.videoZoomFactor])
+            
+            self.batteryView.setBatteryLevelWithAnimation(false, forValue: UIDevice.batteryLevelInPercentage(UIDevice.current)(), inPercent: true)
+        }
+        
+        switch self.camera.preferredVideoStabilizationMode {
+        case .auto:
+            self.lensButton.setImage(UIImage(named: "OIS"), for: .normal)
+            let lensTitle = NSLocalizedString("Auto", comment: "")
+            self.lensButton.setAttributedTitle(NSAttributedString(string: lensTitle, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor:UIColor.white]), for: .normal)
+            break
+        case .standard:
+            self.lensButton.setImage(UIImage(named: "OIS"), for: .normal)
+            let lensTitle = NSLocalizedString("Standard", comment: "")
+            self.lensButton.setAttributedTitle(NSAttributedString(string: lensTitle, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor:UIColor.white]), for: .normal)
+            break
+        case .cinematic:
+            self.lensButton.setImage(UIImage(named: "OIS"), for: .normal)
+            let lensTitle = NSLocalizedString("Cinematic", comment: "")
+            self.lensButton.setAttributedTitle(NSAttributedString(string: lensTitle, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor:UIColor.white]), for: .normal)
+            break
+        case .off:
+            self.lensButton.setImage(UIImage(named: "OISoff"), for: .normal)
+            let lensTitle = NSLocalizedString("Off", comment: "")
+            self.lensButton.setAttributedTitle(NSAttributedString(string: lensTitle, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor:UIColor.white]), for: .normal)
+            break
+        default:
+            self.lensButton.setImage(UIImage(named: "OISoff"), for: .normal)
+            let lensTitle = NSLocalizedString("Off", comment: "")
+            self.lensButton.setAttributedTitle(NSAttributedString(string: lensTitle, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor:UIColor.white]), for: .normal)
+            break
+        }
+        
+        switch self.camera.torchMode {
+        case .auto:
+            self.flashButton.setImage(UIImage(named: "flash_auto"), for: .normal)
+            break
+        case .on:
+            self.flashButton.setImage(UIImage(named: "flash_on"), for: .normal)
+            break
+        case .off:
+            self.flashButton.setImage(UIImage(named: "flash_off"), for: .normal)
+            break
+        default:
+            self.flashButton.setImage(UIImage(named: "flash_off"), for: .normal)
+            break
         }
     }
     

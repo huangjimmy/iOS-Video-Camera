@@ -26,7 +26,19 @@ import Photos
         case notAuthorized
         case configurationFailed
     }
+    
+    internal var _currentVideOrientation:AVCaptureVideoOrientation = .portrait
+    var currentVideOrientation:AVCaptureVideoOrientation {
+        get{
+            return _currentVideOrientation
+        }
+        set {
+            _currentVideOrientation = newValue
+        }
+    }
+    
     private let session = AVCaptureSession()
+    
     public var isSessionRunning = false
     
     public var setupResult: SessionSetupResult = .success
@@ -494,7 +506,7 @@ import Photos
         }
     }
     
-    var whiteBalanceMode : AVCaptureDevice.WhiteBalanceMode {
+    var whiteBalanceMode: AVCaptureDevice.WhiteBalanceMode {
         get{
             if let device = self.videoDeviceInput?.device {
                 return device.whiteBalanceMode
@@ -539,7 +551,7 @@ import Photos
         }
     }
     
-    var lensAperture : Float {
+    var lensAperture: Float {
         get {
             if let device = self.videoDeviceInput?.device {
                 return device.lensAperture
@@ -557,7 +569,7 @@ import Photos
         }
     }
     
-    var useBluetoothMicrophone : Bool {
+    var useBluetoothMicrophone: Bool {
         get {
             return !session.automaticallyConfiguresApplicationAudioSession
         }
@@ -584,42 +596,200 @@ import Photos
         }
     }
     
-    var currentExposureDuration : CMTime {
+    var currentExposureDuration: CMTime {
         get {
             return AVCaptureDevice.currentExposureDuration
         }
     }
     
-    var currentISO : Float {
+    var currentISO: Float {
         get {
             return AVCaptureDevice.currentISO
         }
     }
     
-    var currentExposureTargetBias : Float {
+    var currentExposureTargetBias: Float {
         get {
             return AVCaptureDevice.currentExposureTargetBias
         }
     }
     
-    var currentLensPosition : Float {
+    var currentLensPosition: Float {
         get {
             return AVCaptureDevice.currentLensPosition
         }
     }
     
-    var currentWhiteBalanceGains : AVCaptureDevice.WhiteBalanceGains {
+    var currentWhiteBalanceGains: AVCaptureDevice.WhiteBalanceGains {
         get {
             return AVCaptureDevice.currentWhiteBalanceGains
         }
     }
     
-    var currentCamera : (AVCaptureDevice.Position, AVCaptureDevice.DeviceType) {
+    var currentCamera: (AVCaptureDevice.Position, AVCaptureDevice.DeviceType) {
         get {
             if let device = self.videoDeviceInput?.device {
                 return (device.position, device.deviceType)
             }
             return (AVCaptureDevice.Position.back, AVCaptureDevice.DeviceType.builtInWideAngleCamera)
+        }
+    }
+    
+    var flashMode:AVCaptureDevice.FlashMode {
+        get{
+            if let device = self.videoDeviceInput?.device {
+                if device.isFlashAvailable {
+                    return device.flashMode
+                }
+                return .off
+            }
+            
+            return .off
+        }
+        
+        set {
+            if let device = self.videoDeviceInput?.device {
+                if device.isFlashModeSupported(newValue) {
+                    do {
+                        try device.lockForConfiguration()
+                        
+                        device.flashMode = newValue
+                        
+                        device.unlockForConfiguration()
+                    }
+                    catch {
+                        print("Could not lock device for configuration: \(error)")
+                    }
+                }
+            }
+        }
+    }
+    
+    var torchMode:AVCaptureDevice.TorchMode {
+        get{
+            if let device = self.videoDeviceInput?.device {
+                if device.isTorchAvailable {
+                    return device.torchMode
+                }
+                return .off
+            }
+            
+            return .off
+        }
+        
+        set {
+            if let device = self.videoDeviceInput?.device {
+                if device.isTorchModeSupported(newValue) {
+                    do {
+                        try device.lockForConfiguration()
+                        
+                        device.torchMode = newValue
+                        
+                        device.unlockForConfiguration()
+                    }
+                    catch {
+                        print("Could not lock device for configuration: \(error)")
+                    }
+                }
+            }
+        }
+    }
+    
+    var torchLevel:Float {
+        get{
+            if let device = self.videoDeviceInput?.device {
+                if device.isTorchAvailable {
+                    return device.torchLevel
+                }
+                return 0
+            }
+            
+            return 0
+        }
+        
+        set {
+            if let device = self.videoDeviceInput?.device {
+                do {
+                    try device.lockForConfiguration()
+                    
+                    try device.setTorchModeOn(level: newValue)
+                    
+                    device.unlockForConfiguration()
+                }
+                catch {
+                    print("Could not lock device for configuration or set torch mode: \(error)")
+                }
+            }
+        }
+    }
+    
+    var preferredVideoStabilizationMode: AVCaptureVideoStabilizationMode {
+        get {
+            if let connection = self.movieFileOutput?.connection(with: .video) {
+                return connection.preferredVideoStabilizationMode
+            }
+            return .off
+        }
+        set {
+            if let connection = self.movieFileOutput?.connection(with: .video) {
+                if let device = self.videoDeviceInput?.device {
+                    if connection.isVideoStabilizationSupported {
+                        if device.activeFormat.isVideoStabilizationModeSupported(newValue) {
+                            connection.preferredVideoStabilizationMode = newValue
+                        }
+                        else{
+                            //if not supported, choose next available value
+                            switch newValue {
+                            case .auto:
+                                if device.activeFormat.isVideoStabilizationModeSupported(.auto) {
+                                    connection.preferredVideoStabilizationMode = .auto
+                                    break
+                                }
+                                if device.activeFormat.isVideoStabilizationModeSupported(.standard) {
+                                    connection.preferredVideoStabilizationMode = .standard
+                                    break
+                                }
+                                if device.activeFormat.isVideoStabilizationModeSupported(.off) {
+                                    connection.preferredVideoStabilizationMode = .off
+                                    break
+                                }
+                                break
+                            case .off:
+                                if device.activeFormat.isVideoStabilizationModeSupported(.auto) {
+                                    connection.preferredVideoStabilizationMode = .auto
+                                    break
+                                }
+                                if device.activeFormat.isVideoStabilizationModeSupported(.off) {
+                                    connection.preferredVideoStabilizationMode = .off
+                                    break
+                                }
+                                break
+                            case .standard:
+                                if device.activeFormat.isVideoStabilizationModeSupported(.standard) {
+                                    connection.preferredVideoStabilizationMode = .standard
+                                    break
+                                }
+                                if device.activeFormat.isVideoStabilizationModeSupported(.cinematic) {
+                                    connection.preferredVideoStabilizationMode = .cinematic
+                                    break
+                                }
+                                if device.activeFormat.isVideoStabilizationModeSupported(.off) {
+                                    connection.preferredVideoStabilizationMode = .off
+                                    break
+                                }
+                                connection.preferredVideoStabilizationMode = .cinematic
+                                break
+                            case .cinematic:
+                                connection.preferredVideoStabilizationMode = .off
+                                break
+                            default:
+                                connection.preferredVideoStabilizationMode = .off
+                                break
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     
@@ -635,6 +805,25 @@ import Photos
     
     private var keyValueObservations = [NSKeyValueObservation]()
     
+    public func connectSession(with previewView:PreviewView!){
+        
+        if OperationQueue.current != OperationQueue.main {
+            DispatchQueue.main.async {
+                self.connectSession(with: previewView)
+            }
+            return
+        }
+        
+        previewView.session = self.session
+        
+        previewView.addSubview(self.focusOfInterestIndicator)
+        self.focusOfInterestConstraintCenterX = NSLayoutConstraint(item: self.focusOfInterestIndicator, attribute: .centerX, relatedBy: .equal, toItem: previewView, attribute: .centerX, multiplier: 1.0, constant: 0)
+        self.focusOfInterestConstraintCenterY = NSLayoutConstraint(item: self.focusOfInterestIndicator, attribute: .centerY, relatedBy: .equal, toItem: previewView, attribute: .centerY, multiplier: 1.0, constant: 0)
+        previewView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v(45)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.focusOfInterestIndicator]))
+        previewView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v(45)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.focusOfInterestIndicator]))
+        previewView.addConstraint(self.focusOfInterestConstraintCenterX!)
+        previewView.addConstraint(self.focusOfInterestConstraintCenterY!)
+    }
     // Call this on the session queue.
     /// - Tag: ConfigureSession
     public func configureSession(with previewView:PreviewView!) {
@@ -643,18 +832,6 @@ import Photos
         }
         
         self.previewView = previewView
-
-        DispatchQueue.main.async {
-            previewView.session = self.session
-            
-            previewView.addSubview(self.focusOfInterestIndicator)
-            self.focusOfInterestConstraintCenterX = NSLayoutConstraint(item: self.focusOfInterestIndicator, attribute: .centerX, relatedBy: .equal, toItem: previewView, attribute: .centerX, multiplier: 1.0, constant: 0)
-            self.focusOfInterestConstraintCenterY = NSLayoutConstraint(item: self.focusOfInterestIndicator, attribute: .centerY, relatedBy: .equal, toItem: previewView, attribute: .centerY, multiplier: 1.0, constant: 0)
-            previewView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v(45)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.focusOfInterestIndicator]))
-            previewView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v(45)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.focusOfInterestIndicator]))
-            previewView.addConstraint(self.focusOfInterestConstraintCenterX!)
-            previewView.addConstraint(self.focusOfInterestConstraintCenterY!)
-        }
         
         print("beginConfiguration()")
         session.beginConfiguration()
@@ -710,33 +887,24 @@ import Photos
                     }){
                         let ranges = desireFormat.videoSupportedFrameRateRanges
                         let frameRates = ranges[0]
-                        if desireVideoFormat.0 == 3840 && desireVideoFormat.1 == 2160 && desireVideoFormat.2 == 30 {
-                            session.sessionPreset = .hd4K3840x2160
+ 
+                        do {
+                            try device.lockForConfiguration()
+                            
+                            device.activeFormat = desireFormat
+                            device.activeVideoMinFrameDuration = CMTime(value: 1, timescale: CMTimeScale(desireVideoFormat.2), flags: .valid, epoch: 0)
+                            device.activeVideoMaxFrameDuration = frameRates.maxFrameDuration
+                            
+                            device.unlockForConfiguration()
                         }
-                        else if desireVideoFormat.0 == 1920 && desireVideoFormat.1 == 1080 && desireVideoFormat.2 == 30 {
-                            session.sessionPreset = .hd1920x1080
-                        }
-                        else if desireVideoFormat.0 == 1280 && desireVideoFormat.1 == 720 && desireVideoFormat.2 == 30 {
-                            session.sessionPreset = .hd1280x720
-                        }
-                        else {
-                            do {
-                                try device.lockForConfiguration()
-                                
-                                device.activeFormat = desireFormat
-                                device.activeVideoMinFrameDuration = CMTime(value: 1, timescale: CMTimeScale(desireVideoFormat.2), flags: .valid, epoch: 0)
-                                device.activeVideoMaxFrameDuration = frameRates.maxFrameDuration
-                                
-                                device.unlockForConfiguration()
-                            }
-                            catch {
-                                print("Could not lock device for configuration: \(error)")
-                            }
+                        catch {
+                            print("Could not lock device for configuration: \(error)")
                         }
                        
                     }
                     else{
                         //desire format not available
+                        session.sessionPreset = .high
                     }
                 }
                 
@@ -817,7 +985,17 @@ import Photos
                 if connection.isVideoStabilizationSupported {
                     connection.preferredVideoStabilizationMode = .auto
                 }
-                movieFileOutput.setOutputSettings([AVVideoCodecKey : AVVideoCodecType.hevc], for: connection)
+                
+                if movieFileOutput.availableVideoCodecTypes.contains(AVVideoCodecType.hevc){
+                    movieFileOutput.setOutputSettings([AVVideoCodecKey : AVVideoCodecType.hevc], for: connection)
+                }
+                else if movieFileOutput.availableVideoCodecTypes.contains(AVVideoCodecType.h264){
+                    movieFileOutput.setOutputSettings([AVVideoCodecKey : AVVideoCodecType.h264], for: connection)
+                }
+                else {
+                    //use default
+                }
+                    
                 print(movieFileOutput.outputSettings(for: connection))
             }
             
@@ -866,12 +1044,7 @@ import Photos
         }
         
         do {
-            let videoDeviceInput = try AVCaptureDeviceInput(device: device)
-            
             self.session.beginConfiguration()
-            
-            // Remove the existing device input first, since the system doesn't support simultaneous use of the rear and front cameras.
-            self.session.removeInput(self.videoDeviceInput)
             
             if let deviceFormat =
                 device.formats.filter({ (format) -> Bool in
@@ -911,6 +1084,11 @@ import Photos
                 
             }
             
+            let videoDeviceInput = try AVCaptureDeviceInput(device: device)
+            
+            // Remove the existing device input first, since the system doesn't support simultaneous use of the rear and front cameras.
+            self.session.removeInput(self.videoDeviceInput)
+            
             if self.session.canAddInput(videoDeviceInput) {
                 
                 self.session.addInput(videoDeviceInput)
@@ -920,7 +1098,7 @@ import Photos
             }
             if let connection = self.movieFileOutput?.connection(with: .video) {
                 if connection.isVideoStabilizationSupported {
-                    connection.preferredVideoStabilizationMode = .auto
+                    connection.preferredVideoStabilizationMode = self.preferredVideoStabilizationMode
                 }
             }
             self.session.commitConfiguration()
@@ -938,14 +1116,7 @@ import Photos
         
         if let movieFileOutput = self.movieFileOutput {
             let connection = movieFileOutput.connection(with: .video)
-            let statusBarOrientation = UIApplication.shared.statusBarOrientation
-            var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
-            if statusBarOrientation != .unknown {
-                if let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: statusBarOrientation) {
-                    initialVideoOrientation = videoOrientation
-                }
-            }
-            connection?.videoOrientation = initialVideoOrientation
+            connection?.videoOrientation = self.currentVideOrientation
             
             movieFileOutput.startRecording(to: URL(fileURLWithPath: outputFilePath), recordingDelegate: self)
         }

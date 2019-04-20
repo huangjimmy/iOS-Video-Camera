@@ -34,3 +34,9 @@
 "Documents" = "视频库";
 "Builtin" = "内置麦克风";
 "Builtin and Bluetooth" = "内置与蓝牙自动选择";
+
+"On" = "开启";
+"Off" = "关闭";
+"Auto" = "自动";
+"Standard" = "标准";
+"Cinematic" = "电影";

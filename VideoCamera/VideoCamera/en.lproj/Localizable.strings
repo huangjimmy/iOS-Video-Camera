@@ -33,3 +33,9 @@
 
 "Builtin" = "Builtin";
 "Builtin and Bluetooth" = "Builtin and Bluetooth";
+
+"On" = "On";
+"Off" = "Off";
+"Auto" = "Auto";
+"Standard" = "Standard";
+"Cinematic" = "Cinematic";

@@ -305,6 +305,14 @@ class FormatSettingsView: UIView {
             }) != nil
         } != nil
         
+        if !is4ksupported {
+            self.resolutionSettingSegment.setEnabled(false, forSegmentAt: 2)
+        }
+        
+        if !is1080psupported {
+            self.resolutionSettingSegment.setEnabled(false, forSegmentAt: 1)
+        }
+        
         let format = camera.videoFormat
         if format.0 >= 3840 && format.1 >= 2160 {
             self.resolutionSettingSegment.selectedSegmentIndex = 2

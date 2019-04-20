@@ -23,14 +23,15 @@ extension ViewController {
     
     @objc func recordTapped(_ sender : Any){
         let camera = CameraManager.sharedInstance
+        
         if(camera.isRecording){
             camera.stopRecording()
+            return
         }
-        else{
-            let documentPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-            let documentPath = documentPaths[0]
-            camera.recordVideo(at: documentPath)
-        }
+        
+        let documentPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentPath = documentPaths[0]
+        camera.recordVideo(at: documentPath)
     }
     
     func deviceName(of deviceType:AVCaptureDevice.DeviceType) -> String {
@@ -75,6 +76,7 @@ extension ViewController {
                     camera.changeCamera(to: device)
                     
                     self.updateSettingsButton()
+                    self.cameraBottom.reload()
                 }
             })
             actionSheet.addAction(action)
@@ -109,6 +111,43 @@ extension ViewController {
             self.formatSettingsView.saveSettingsToCamera()
             
             self.updateSettingsButton()
+        }
+    }
+    
+    @objc func flashButtonTap(_ sender:Any) {
+        switch self.camera.torchMode {
+        case .auto:
+            self.camera.torchMode = .on
+            break
+        case .off:
+            self.camera.torchMode = .auto
+            break
+        case .on:
+            self.camera.torchMode = .off
+            break
+        default:
+            self.camera.torchMode = .auto
+            break
+        }
+    }
+    
+    @objc func lensButtonTap(_ sender:Any) {
+        switch self.camera.preferredVideoStabilizationMode {
+        case .auto:
+            self.camera.preferredVideoStabilizationMode = .standard
+            break
+        case .off:
+            self.camera.preferredVideoStabilizationMode = .auto
+            break
+        case .standard:
+            self.camera.preferredVideoStabilizationMode = .cinematic
+            break
+        case .cinematic:
+            self.camera.preferredVideoStabilizationMode = .off
+            break
+        default:
+            self.camera.preferredVideoStabilizationMode = .auto
+            break
         }
     }
     

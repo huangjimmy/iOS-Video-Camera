@@ -1324,56 +1324,6 @@
 			};
 			name = Release;
 		};
-		08510EAC40AD684CACB02ACBC3F78B2A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7EDE31F64CE7661B29BAACB6DAB1D9FE /* PonyDebugger.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/PonyDebugger/PonyDebugger-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = PonyDebugger;
-				PRODUCT_NAME = PonyDebugger;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		1E94CB016765C6AFC3A55E84E1067832 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 110288672D716ED34E74F344FDB51FE1 /* SocketRocket.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/SocketRocket/SocketRocket-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = SocketRocket;
-				PRODUCT_NAME = SocketRocket;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		2FE84D551255EA2BA790F1F390BE4BAA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 746D177D0DFA3D0BC9C26B7ED7872BC4 /* Pods-VideoCamera.debug.xcconfig */;
@@ -1397,7 +1347,7 @@
 			};
 			name = Debug;
 		};
-		374A1E565AE2F7CDD74C0FA2E1FCF794 /* Debug */ = {
+		322AE5A93228F08468F8BA6D790872E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7EDE31F64CE7661B29BAACB6DAB1D9FE /* PonyDebugger.xcconfig */;
 			buildSettings = {
@@ -1416,31 +1366,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		47B3E1C1EE686F7DE323A5C0B5860194 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 110288672D716ED34E74F344FDB51FE1 /* SocketRocket.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/SocketRocket/SocketRocket-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = SocketRocket;
-				PRODUCT_NAME = SocketRocket;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1593,7 +1519,7 @@
 			};
 			name = Release;
 		};
-		D42502B95BF410C0D8AF41921D0C1DBC /* Release */ = {
+		80E45B3A1F1422ED26D3EF7CCF67D00D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 17E417BB0422F211022D3963B089F957 /* FileBrowser.xcconfig */;
 			buildSettings = {
@@ -1613,7 +1539,80 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8EC792075DF0EA9CEE4B3D57E37023C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 110288672D716ED34E74F344FDB51FE1 /* SocketRocket.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/SocketRocket/SocketRocket-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = SocketRocket;
+				PRODUCT_NAME = SocketRocket;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9E2C1648C33C837FC165A9B5447EDD28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EDE31F64CE7661B29BAACB6DAB1D9FE /* PonyDebugger.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/PonyDebugger/PonyDebugger-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = PonyDebugger;
+				PRODUCT_NAME = PonyDebugger;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B20DD55235C113491F68BBE49CA4D0AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 110288672D716ED34E74F344FDB51FE1 /* SocketRocket.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/SocketRocket/SocketRocket-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = SocketRocket;
+				PRODUCT_NAME = SocketRocket;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1635,7 +1634,7 @@
 			};
 			name = Debug;
 		};
-		F4061955E8DDAF0F1DB00BCF60040194 /* Debug */ = {
+		F91F3AC91E81C1D1FB7C958568630C98 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 17E417BB0422F211022D3963B089F957 /* FileBrowser.xcconfig */;
 			buildSettings = {
@@ -1655,10 +1654,11 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
-			name = Debug;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -1666,8 +1666,8 @@
 		1A5038CF8470FC16FF07CCAD3393C99F /* Build configuration list for PBXNativeTarget "PonyDebugger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				374A1E565AE2F7CDD74C0FA2E1FCF794 /* Debug */,
-				08510EAC40AD684CACB02ACBC3F78B2A /* Release */,
+				322AE5A93228F08468F8BA6D790872E3 /* Debug */,
+				9E2C1648C33C837FC165A9B5447EDD28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1702,8 +1702,8 @@
 		BD61DE55395B354E120F1B8BF8FF5FB3 /* Build configuration list for PBXNativeTarget "FileBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F4061955E8DDAF0F1DB00BCF60040194 /* Debug */,
-				D42502B95BF410C0D8AF41921D0C1DBC /* Release */,
+				80E45B3A1F1422ED26D3EF7CCF67D00D /* Debug */,
+				F91F3AC91E81C1D1FB7C958568630C98 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1711,8 +1711,8 @@
 		EB4A133A96CC52D58DCBEF56E5FBFEA8 /* Build configuration list for PBXNativeTarget "SocketRocket" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				47B3E1C1EE686F7DE323A5C0B5860194 /* Debug */,
-				1E94CB016765C6AFC3A55E84E1067832 /* Release */,
+				8EC792075DF0EA9CEE4B3D57E37023C6 /* Debug */,
+				B20DD55235C113491F68BBE49CA4D0AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
