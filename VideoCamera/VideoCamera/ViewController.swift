@@ -708,6 +708,24 @@ class ViewController: UIViewController {
             }
             
             videoPreviewLayerConnection.videoOrientation = newVideoOrientation
+            
+            if self.motionManager.isDeviceMotionAvailable == false || self.motionManager.isDeviceMotionActive == false {
+                /*
+                 If device motion is not available
+                 Use the status bar orientation as the initial video orientation. Subsequent orientation changes are
+                 handled by CameraViewController.viewWillTransition(to:with:).
+                 */
+                let statusBarOrientation = UIApplication.shared.statusBarOrientation
+                let initialVideoOrientation: AVCaptureVideoOrientation = .portrait
+                if statusBarOrientation != .unknown {
+                    if let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: statusBarOrientation) {
+                        self.camera.currentVideOrientation = videoOrientation
+                    }
+                    else{
+                        self.camera.currentVideOrientation = initialVideoOrientation
+                    }
+                }
+            }
         }
     }
 
