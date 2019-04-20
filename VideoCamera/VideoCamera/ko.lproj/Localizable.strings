@@ -17,19 +17,19 @@
 "Frame rate" = "Frame rate";
 "Microphone" = "Microphone";
 
-"Current Camera:" = "Current Camera:";
-"Back" = "Back";
-"Front" = "Front";
-"WideAngle" = "Wide Angle";
-"DualCamera" = "Dual Camera";
-"Telephoto" = "Telephoto";
+"Current Camera:" = "지금 렌즈:";
+"Back" = "후면";
+"Front" = "정면";
+"WideAngle" = "광각";
+"DualCamera" = "이중 렌즈";
+"Telephoto" = "망원";
 "TrueDepth" = "TrueDepth";
 
-"OK" = "OK";
-"Cancel" = "Cancel";
+"OK" = "승인";
+"Cancel" = "중지하다";
 
 "Documents" = "Video Library";
-"Search" = "Search";
+"Search" = "찾다";
 
 "Builtin" = "Builtin";
 "Builtin and Bluetooth" = "Builtin and Bluetooth";

@@ -6,7 +6,7 @@
   Copyright © 2019 huangsj. All rights reserved.
 */
 
-CFBundleDisplayName = "Video Camera";
+CFBundleDisplayName = "ビデオカメラ";
 
-NSMicrophoneUsageDescription = "Video Camera need to access microphone to record audio";
-NSCameraUsageDescription = "Video Camera need to access phone camera to record video";
+NSMicrophoneUsageDescription = "ビデオカメラは音声を記録するためにマイクにアクセスする必要があります";
+NSCameraUsageDescription = "ビデオカメラはビデオを記録するためにカメラにアクセスする必要があります";

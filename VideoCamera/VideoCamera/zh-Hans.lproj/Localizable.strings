@@ -17,7 +17,7 @@
 "Frame rate" = "帧率";
 "Microphone" = "麦克风";
 
-"Current Camera:" = "当前相机：";
+"Current Camera:" = "当前镜头：";
 "Back" = "后置";
 "Front" = "前置";
 "WideAngle" = "广角";
@@ -27,7 +27,6 @@
 
 "OK" = "好的";
 "Cancel" = "取消";
-
 
 "Search" = "查找";
 

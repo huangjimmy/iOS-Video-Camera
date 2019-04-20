@@ -6,7 +6,7 @@
   Copyright © 2019 huangsj. All rights reserved.
 */
 
-CFBundleDisplayName = "Video Camera";
+CFBundleDisplayName = "비디오 카메라";
 
-NSMicrophoneUsageDescription = "Video Camera need to access microphone to record audio";
-NSCameraUsageDescription = "Video Camera need to access phone camera to record video";
+NSMicrophoneUsageDescription = "비디오 카메라가 오디오를 녹음하려면 마이크에 액세스해야합니다.";
+NSCameraUsageDescription = "비디오 카메라가 비디오를 녹화하려면 카메라에 액세스해야합니다.";

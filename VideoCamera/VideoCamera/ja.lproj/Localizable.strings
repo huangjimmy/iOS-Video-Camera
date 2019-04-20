@@ -8,28 +8,34 @@
 
 "AWB" = "AWB";
 "WB" = "WB";
-"Exposure" = "Exposure";
+"Exposure" = "露出補正";
 "Shutter" = "Shutter";
 "ISO" = "ISO";
 "Focus" = "Focus";
-"Zoom" = "Zoom";
-"Format" = "Format";
-"Frame rate" = "Frame rate";
-"Microphone" = "Microphone";
+"Zoom" = "ズーム";
+"Format" = "解像度";
+"Frame rate" = "フレームレート";
+"Microphone" = "マイクロフォン";
 
-"Current Camera:" = "Current Camera:";
-"Back" = "Back";
-"Front" = "Front";
-"WideAngle" = "Wide Angle";
-"DualCamera" = "Dual Camera";
-"Telephoto" = "Telephoto";
+"Current Camera:" = "現在 レンズ:";
+"Back" = "後部";
+"Front" = "正面";
+"WideAngle" = "広角";
+"DualCamera" = "二重";
+"Telephoto" = "望遠";
 "TrueDepth" = "TrueDepth";
 
 "OK" = "OK";
-"Cancel" = "Cancel";
+"Cancel" = "取り消す";
 
 "Documents" = "Video Library";
-"Search" = "Search";
+"Search" = "検索する";
 
 "Builtin" = "Builtin";
 "Builtin and Bluetooth" = "Builtin and Bluetooth";
+
+"On" = "On";
+"Off" = "オフ";
+"Auto" = "自動";
+"Standard" = "標準";
+"Cinematic" = "映画";
