@@ -402,53 +402,53 @@ class ViewController: UIViewController {
         self.recalcConstraints()
         self.view.setNeedsUpdateConstraints()
         
-//        DispatchQueue.global().async {
-//            
-//            if self.motionManager.isDeviceMotionAvailable {
-//                let camera = self.camera
-//                self.motionManager.deviceMotionUpdateInterval = 0.1
-//                self.motionManager.startDeviceMotionUpdates(to: self.motionQueue) { (motion, error) in
-//                    if let deviceMotion = motion{
-//                        let x = deviceMotion.gravity.x
-//                        let y = deviceMotion.gravity.y
-//                        if (fabs(y) >= fabs(x)) {
-//                            if (y >= 0) {
-//                                //UIDeviceOrientationPortraitUpsideDown;
-//                                camera.currentVideOrientation = .portraitUpsideDown
-//                            } else {
-//                                //UIDeviceOrientationPortrait;
-//                                camera.currentVideOrientation = .portrait
-//                            }
-//                        } else {
-//                            if (x >= 0) {
-//                                //UIDeviceOrientationLandscapeRight;    // Home to the left
-//                                camera.currentVideOrientation = .landscapeLeft
-//                            } else {
-//                                //UIDeviceOrientationLandscapeLeft;     // Home to the right
-//                                camera.currentVideOrientation = .landscapeRight
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//            else {
-//                /*
-//                 
-//                 Use the status bar orientation as the initial video orientation. Subsequent orientation changes are
-//                 handled by CameraViewController.viewWillTransition(to:with:).
-//                 */
-//                let statusBarOrientation = UIApplication.shared.statusBarOrientation
-//                let initialVideoOrientation: AVCaptureVideoOrientation = .portrait
-//                if statusBarOrientation != .unknown {
-//                    if let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: statusBarOrientation) {
-//                        self.camera.currentVideOrientation = videoOrientation
-//                    }
-//                    else{
-//                        self.camera.currentVideOrientation = initialVideoOrientation
-//                    }
-//                }
-//            }
-//        }
+        DispatchQueue.global().async {
+            
+            if self.motionManager.isDeviceMotionAvailable {
+                let camera = self.camera
+                self.motionManager.deviceMotionUpdateInterval = 0.2
+                self.motionManager.startDeviceMotionUpdates(to: self.motionQueue) { (motion, error) in
+                    if let deviceMotion = motion{
+                        let x = deviceMotion.gravity.x
+                        let y = deviceMotion.gravity.y
+                        if (fabs(y) >= fabs(x)) {
+                            if (y >= 0) {
+                                //UIDeviceOrientationPortraitUpsideDown;
+                                camera.currentVideOrientation = .portraitUpsideDown
+                            } else {
+                                //UIDeviceOrientationPortrait;
+                                camera.currentVideOrientation = .portrait
+                            }
+                        } else {
+                            if (x >= 0) {
+                                //UIDeviceOrientationLandscapeRight;    // Home to the left
+                                camera.currentVideOrientation = .landscapeLeft
+                            } else {
+                                //UIDeviceOrientationLandscapeLeft;     // Home to the right
+                                camera.currentVideOrientation = .landscapeRight
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                /*
+                 
+                 Use the status bar orientation as the initial video orientation. Subsequent orientation changes are
+                 handled by CameraViewController.viewWillTransition(to:with:).
+                 */
+                let statusBarOrientation = UIApplication.shared.statusBarOrientation
+                let initialVideoOrientation: AVCaptureVideoOrientation = .portrait
+                if statusBarOrientation != .unknown {
+                    if let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: statusBarOrientation) {
+                        self.camera.currentVideOrientation = videoOrientation
+                    }
+                    else{
+                        self.camera.currentVideOrientation = initialVideoOrientation
+                    }
+                }
+            }
+        }
         
     }
     
