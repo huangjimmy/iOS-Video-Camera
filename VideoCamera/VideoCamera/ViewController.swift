@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import Photos
 import CoreMotion
+import DeviceGuru
 
 class ViewController: UIViewController {
 
@@ -42,7 +43,8 @@ class ViewController: UIViewController {
     
     internal var cameraBottom: CameraBottomControl!
     private var recordTimeLabel: RecordTimerLabel!
-    private var landscapeTopBannerBackgroundView: UIView!
+    private var topStatusBarPlaceholderView: UIView!
+    private var topBannerBackgroundView: UIView!
     
     /*! The settings button is for 4k/1080p/720p resoltuon and fps configurations */
     internal var settingsButton: UIButton!
@@ -68,6 +70,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let isiPhoneXseries:Bool = {
+            switch DeviceGuru().hardware(){
+            case .iphoneX, .iphoneXR, .iphoneXS, .iphoneXSMax, .iphoneXSMaxChina:
+                return true
+            default:
+                return false
+            }
+        }()
         
         self.previewView = PreviewView()
         self.previewView.backgroundColor = .black
@@ -141,10 +152,16 @@ class ViewController: UIViewController {
         cameraBottom.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.4)
         self.view.addSubview(cameraBottom)
         
-        self.landscapeTopBannerBackgroundView = UIView(frame: .zero)
-        self.landscapeTopBannerBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-        self.landscapeTopBannerBackgroundView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-        self.view.addSubview(self.landscapeTopBannerBackgroundView)
+        self.topBannerBackgroundView = UIView(frame: .zero)
+        self.topBannerBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        self.topBannerBackgroundView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        self.view.addSubview(self.topBannerBackgroundView)
+        
+        self.topStatusBarPlaceholderView = UIView(frame: .zero)
+        self.topStatusBarPlaceholderView.translatesAutoresizingMaskIntoConstraints = false
+        self.topStatusBarPlaceholderView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        self.view.addSubview(self.topStatusBarPlaceholderView)
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[v]-0-|", options: .init(rawValue: 0), metrics: nil, views: ["v":self.topStatusBarPlaceholderView!]))
         
         self.recordTimeLabel = RecordTimerLabel(frame: .zero)
         self.recordTimeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -208,6 +225,7 @@ class ViewController: UIViewController {
             let button = CameraParameterButton()
             button.text2 = str
             button.translatesAutoresizingMaskIntoConstraints = false
+            button.bottomLabel.adjustsFontSizeToFitWidth = true
             self.view.addSubview(button)
             self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v(\(cameraParameterButtonWidth))]", options: .init(rawValue: 0), metrics: nil, views: ["v":button]));
             self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v(42)]", options: .init(rawValue: 0), metrics: nil, views: ["v":button]));
@@ -300,7 +318,7 @@ class ViewController: UIViewController {
         portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(80)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.recordTimeLabel!]));
         portraitConstraints.append(NSLayoutConstraint(item: self.recordTimeLabel!, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0))
         //portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-6-[v(18)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.recordTimeLabel!]));
-        self.view.addConstraint(NSLayoutConstraint(item: self.recordTimeLabel!, attribute: .centerY, relatedBy: .equal, toItem: self.landscapeTopBannerBackgroundView, attribute: .centerY, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.recordTimeLabel!, attribute: .centerY, relatedBy: .equal, toItem: self.topBannerBackgroundView, attribute: .centerY, multiplier: 1.0, constant: 0))
         
         landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(80)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.recordTimeLabel!]));
         landscapeConstraints.append(NSLayoutConstraint(item: self.recordTimeLabel!, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0))
@@ -308,50 +326,101 @@ class ViewController: UIViewController {
         
         landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(80)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.recordTimeLabel!]));
         ////////////////////////////
-        //position of landscapeTopBannerBackgroundView
-        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[v]-0-|", options: .alignAllCenterX, metrics: nil, views: ["v":self.landscapeTopBannerBackgroundView!]));
-        portraitConstraints.append(NSLayoutConstraint(item: self.landscapeTopBannerBackgroundView!, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0))
-        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.landscapeTopBannerBackgroundView!]));
-        portraitConstraints.append(NSLayoutConstraint(item: self.landscapeTopBannerBackgroundView!, attribute: .centerY, relatedBy: .equal, toItem: self.settingsButton, attribute: .centerY, multiplier: 1.0, constant: 0));
+        //position of topBannerBackgroundView
+        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[v]-0-|", options: .alignAllCenterX, metrics: nil, views: ["v":self.topBannerBackgroundView!]));
+        portraitConstraints.append(NSLayoutConstraint(item: self.topBannerBackgroundView!, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0))
+        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.topBannerBackgroundView!]));
+        portraitConstraints.append(NSLayoutConstraint(item: self.topBannerBackgroundView!, attribute: .centerY, relatedBy: .equal, toItem: self.settingsButton, attribute: .centerY, multiplier: 1.0, constant: 0));
         
-        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(309)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.landscapeTopBannerBackgroundView!]));
-        landscapeConstraints.append(NSLayoutConstraint(item: self.landscapeTopBannerBackgroundView!, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0))
-        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-16-[v(47)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.landscapeTopBannerBackgroundView!]));
+        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(309)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.topBannerBackgroundView!]));
+        landscapeConstraints.append(NSLayoutConstraint(item: self.topBannerBackgroundView!, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0))
+        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[v(47)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.topBannerBackgroundView!]));
         
-        landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(309)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.landscapeTopBannerBackgroundView!]));
+        landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(309)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.topBannerBackgroundView!]));
         /////////////////////////////
+        //position of topStatusBarPlaceholderView
+        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[topStatusBarPlaceholderView]-0-[topBannerBackgroundView]", options: .init(rawValue: 0), metrics: nil, views: ["topStatusBarPlaceholderView":self.topStatusBarPlaceholderView!, "topBannerBackgroundView":self.topBannerBackgroundView!]))
+        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[topStatusBarPlaceholderView(0)]", options: .init(rawValue: 0), metrics: nil, views: ["topStatusBarPlaceholderView":self.topStatusBarPlaceholderView!]))
+        landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[topStatusBarPlaceholderView(0)]", options: .init(rawValue: 0), metrics: nil, views: ["topStatusBarPlaceholderView":self.topStatusBarPlaceholderView!]))
         
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v]-(-30)-[batteryView(30)]", options: .init(rawValue: 0), metrics: nil, views: ["batteryView":self.batteryView!, "v":self.landscapeTopBannerBackgroundView!]))
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[batteryView(30)]", options: .alignAllCenterY, metrics: nil, views: ["batteryView":self.batteryView!, "v":self.landscapeTopBannerBackgroundView!]))
-        self.view.addConstraint(NSLayoutConstraint(item: self.batteryView!, attribute: .centerY, relatedBy: .equal, toItem: self.landscapeTopBannerBackgroundView, attribute: .centerY, multiplier: 1.0, constant: 0))
+        /////////////////////////////
+        // position of batteryView
         
+        if isiPhoneXseries {
+            portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[batteryView(45)]-|", options: .init(rawValue: 0), metrics: nil, views: ["batteryView":self.batteryView!]))
+            
+            portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[batteryView(45)]", options: .init(rawValue: 0), metrics: nil, views: ["batteryView":self.batteryView!]))
+            
+            landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v]-(-45)-[batteryView(45)]", options: .init(rawValue: 0), metrics: nil, views: ["batteryView":self.batteryView!, "v":self.topBannerBackgroundView!]))
+            landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:[batteryView(45)]", options: .init(rawValue: 0), metrics: nil, views: ["batteryView":self.batteryView!]))
+            landscapeConstraints.append(NSLayoutConstraint(item: self.batteryView!, attribute: .centerY, relatedBy: .equal, toItem: self.topBannerBackgroundView, attribute: .centerY, multiplier: 1.0, constant: 0))
+            
+            landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v]-(-45)-[batteryView(45)]", options: .init(rawValue: 0), metrics: nil, views: ["batteryView":self.batteryView!, "v":self.topBannerBackgroundView!]))
+            landscapeRightConstraints.append(NSLayoutConstraint(item: self.batteryView!, attribute: .centerY, relatedBy: .equal, toItem: self.topBannerBackgroundView, attribute: .centerY, multiplier: 1.0, constant: 0))
+        }
+        else{
+            portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[batteryView(45)]-|", options: .init(rawValue: 0), metrics: nil, views: ["batteryView":self.batteryView!]))
+            landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[topBannerBackgroundView]-(-50)-[batteryView(45)]", options: .init(rawValue: 0), metrics: nil, views: ["batteryView":self.batteryView!, "topBannerBackgroundView":self.topBannerBackgroundView!]))
+            self.view.addConstraint(NSLayoutConstraint(item: self.batteryView!, attribute: .centerY, relatedBy: .equal, toItem: self.topBannerBackgroundView, attribute: .centerY, multiplier: 1.0, constant: 0))
+            self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[batteryView(45)]", options: .alignAllCenterY, metrics: nil, views: ["batteryView":self.batteryView!, "v":self.topBannerBackgroundView!]))
+        }
         /////////////////////////////
         //position of settingsButton
-        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(88)]-0-[batteryView]", options: .alignAllCenterY, metrics: nil, views: ["v":self.settingsButton!, "batteryView":self.batteryView!]));
-        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.settingsButton!]));
+        if isiPhoneXseries {
+            portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(88)]-|", options: .alignAllCenterY, metrics: nil, views: ["v":self.settingsButton!]));
+            portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.settingsButton!]));
+            
+            landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(88)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.settingsButton!]));
+            landscapeConstraints.append(NSLayoutConstraint(item: self.settingsButton!, attribute: .right, relatedBy: .equal, toItem: self.batteryView!, attribute: .left, multiplier: 1.0, constant: 0))
+        }
+        else {
+            portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(88)]-0-[batteryView]", options: .alignAllCenterY, metrics: nil, views: ["v":self.settingsButton!, "batteryView":self.batteryView!]));
+            portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.settingsButton!]));
+            
+            landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(88)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.settingsButton!]));
+            landscapeConstraints.append(NSLayoutConstraint(item: self.settingsButton!, attribute: .right, relatedBy: .equal, toItem: self.batteryView!, attribute: .left, multiplier: 1.0, constant: 0))
+        }
         
-        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(88)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.settingsButton!]));
-        landscapeConstraints.append(NSLayoutConstraint(item: self.settingsButton!, attribute: .right, relatedBy: .equal, toItem: self.batteryView!, attribute: .left, multiplier: 1.0, constant: 0))
-        //landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:-[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.settingsButton!]));
-        self.view.addConstraint(NSLayoutConstraint(item: self.settingsButton!, attribute: .centerY, relatedBy: .equal, toItem: self.landscapeTopBannerBackgroundView, attribute: .centerY, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.settingsButton!, attribute: .centerY, relatedBy: .equal, toItem: self.topBannerBackgroundView, attribute: .centerY, multiplier: 1.0, constant: 0))
         
         landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(88)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.settingsButton!]));
         /////////////////////////////
         //position of flashButton
         portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[v(30)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.flashButton!]));
-        portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.flashButton!]));
+        if isiPhoneXseries {
+            portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.flashButton!]));
+        }
+        else{
+            portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.flashButton!]));
+        }
         
-        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(30)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.flashButton!]));
-        landscapeConstraints.append(NSLayoutConstraint(item: self.flashButton!, attribute: .left, relatedBy: .equal, toItem: self.landscapeTopBannerBackgroundView, attribute: .left, multiplier: 1.0, constant: 8))
+        landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.flashButton!]));
+        landscapeConstraints.append(NSLayoutConstraint(item: self.flashButton!, attribute: .left, relatedBy: .equal, toItem: self.topBannerBackgroundView, attribute: .left, multiplier: 1.0, constant: 8))
         landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-31-[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.flashButton!]));
+        landscapeConstraints.append(NSLayoutConstraint(item: self.flashButton!, attribute: .centerY, relatedBy: .equal, toItem: self.topBannerBackgroundView, attribute: .centerY, multiplier: 1.0, constant: 0));
         
-        landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(30)]", options: .alignAllCenterX, metrics: nil, views: ["v":self.flashButton!]));
+        landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(30)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.flashButton!]));
         
         /////////////////////////////////
         //position of lensButton
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[flashButton]-0-[lensButton(118)]", options: .init(rawValue: 0), metrics: nil, views: ["flashButton":self.flashButton!, "lensButton":self.lensButton!]))
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[lensButton(30)]", options: .init(rawValue: 0), metrics: nil, views: [ "lensButton":self.lensButton!]));
-        self.view.addConstraint(NSLayoutConstraint(item: self.lensButton!, attribute: .centerY, relatedBy: .equal, toItem: self.flashButton!, attribute: .centerY, multiplier: 1.0, constant: 0))
+        
+        self.view.addConstraint(NSLayoutConstraint(item: self.lensButton!, attribute: .centerY, relatedBy: .equal, toItem: self.topBannerBackgroundView, attribute: .centerY, multiplier: 1.0, constant: 0))
+        
+        if isiPhoneXseries {
+            
+            portraitConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[lensButton(59)]", options: .init(rawValue: 0), metrics: nil, views:  ["lensButton":self.lensButton!]))
+            
+            landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[flashButton]-4-[lensButton(59)]", options: .init(rawValue: 0), metrics: nil, views: ["flashButton":self.flashButton!, "lensButton":self.lensButton!]))
+            
+            landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[flashButton]-4-[lensButton(59)]", options: .init(rawValue: 0), metrics: nil, views: ["flashButton":self.flashButton!, "lensButton":self.lensButton!]))
+
+            self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[lensButton(30)]", options: .init(rawValue: 0), metrics: nil, views: [ "lensButton":self.lensButton!]))
+            
+        }
+        else {
+            self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[flashButton]-4-[lensButton(59)]", options: .init(rawValue: 0), metrics: nil, views: ["flashButton":self.flashButton!, "lensButton":self.lensButton!]))
+            self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[lensButton(30)]", options: .init(rawValue: 0), metrics: nil, views: [ "lensButton":self.lensButton!]));
+        }
         
         landscapeRightConstraints.forEach { (constraint) in
             if isLandscapeRight {

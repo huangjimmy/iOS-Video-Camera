@@ -307,6 +307,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VideoCamera/Pods-VideoCamera-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru/DeviceGuru.bundle",
 				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/documents@2x.png",
 				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/file@2x.png",
 				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/FileBrowser.xib",
@@ -321,6 +322,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DeviceGuru.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/documents@2x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/file@2x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FileBrowser.nib",

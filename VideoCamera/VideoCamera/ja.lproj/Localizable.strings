@@ -9,9 +9,9 @@
 "AWB" = "AWB";
 "WB" = "WB";
 "Exposure" = "露出補正";
-"Shutter" = "Shutter";
+"Shutter" = "シャッター";
 "ISO" = "ISO";
-"Focus" = "Focus";
+"Focus" = "フォーカス";
 "Zoom" = "ズーム";
 "Format" = "解像度";
 "Frame rate" = "フレームレート";
@@ -32,7 +32,7 @@
 "Search" = "検索する";
 
 "Builtin" = "Builtin";
-"Builtin and Bluetooth" = "Builtin and Bluetooth";
+"Builtin and Bluetooth" = "Builtin and ブルートゥース";
 
 "On" = "On";
 "Off" = "オフ";

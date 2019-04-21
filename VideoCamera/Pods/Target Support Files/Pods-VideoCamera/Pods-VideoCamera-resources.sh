@@ -97,6 +97,7 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru/DeviceGuru.bundle"
   install_resource "${PODS_ROOT}/FileBrowser/FileBrowser/Resources/documents@2x.png"
   install_resource "${PODS_ROOT}/FileBrowser/FileBrowser/Resources/file@2x.png"
   install_resource "${PODS_ROOT}/FileBrowser/FileBrowser/Resources/FileBrowser.xib"
@@ -108,6 +109,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/FileBrowser/FileBrowser/Resources/zip@2x.png"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru/DeviceGuru.bundle"
   install_resource "${PODS_ROOT}/FileBrowser/FileBrowser/Resources/documents@2x.png"
   install_resource "${PODS_ROOT}/FileBrowser/FileBrowser/Resources/file@2x.png"
   install_resource "${PODS_ROOT}/FileBrowser/FileBrowser/Resources/FileBrowser.xib"

@@ -13,9 +13,9 @@
 "ISO" = "ISO";
 "Focus" = "Focus";
 "Zoom" = "Zoom";
-"Format" = "Format";
-"Frame rate" = "Frame rate";
-"Microphone" = "Microphone";
+"Format" = "또는 화질";
+"Frame rate" = "프레임 속도";
+"Microphone" = "마이크로폰";
 
 "Current Camera:" = "지금 렌즈:";
 "Back" = "후면";

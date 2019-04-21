@@ -102,6 +102,7 @@ class FormatSettingsView: UIView {
         self.microphoneLabel.adjustsFontSizeToFitWidth = true
         
         self.resolutionSettingSegment.frame = CGRect(x: 16, y: 53, width: 288, height: 28)
+        
         self.microphoneSegment.frame = CGRect(x: 16, y: 222, width: 288, height: 28)
         
         self.resolutionSettingSegment.insertSegment(withTitle: NSLocalizedString("720p", comment: ""), at: 0, animated: false)

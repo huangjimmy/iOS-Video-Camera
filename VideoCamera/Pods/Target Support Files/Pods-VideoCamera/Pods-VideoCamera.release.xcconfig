@@ -1,12 +1,12 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FileBrowser" "${PODS_ROOT}/Headers/Public/PonyDebugger" "${PODS_ROOT}/Headers/Public/SocketRocket"
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser" "${PODS_CONFIGURATION_BUILD_DIR}/SocketRocket"
-OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser/FileBrowser.modulemap"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"FileBrowser" -l"SocketRocket" -l"icucore" -framework "CFNetwork" -framework "QuickLook" -framework "Security" -framework "WebKit"
-OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser/FileBrowser.modulemap"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru" "${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser" "${PODS_CONFIGURATION_BUILD_DIR}/SocketRocket"
+OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru/DeviceGuru.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser/FileBrowser.modulemap"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"DeviceGuru" -l"FileBrowser" -l"SocketRocket" -l"icucore" -framework "CFNetwork" -framework "QuickLook" -framework "Security" -framework "WebKit"
+OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru/DeviceGuru.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser/FileBrowser.modulemap"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods
-SWIFT_INCLUDE_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser"
+SWIFT_INCLUDE_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru" "${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser"

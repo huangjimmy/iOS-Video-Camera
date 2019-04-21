@@ -85,8 +85,8 @@
     [super layoutSubviews];
     
     [self->imageView setFrame:CGRectMake(0, 0, self.width, self.height)];
-    [batteryFill setFrame:CGRectMake(kBatteryFillX, kBatteryFillY, 20, kBatteryFillHeight)];
-    [self->batteryLabel setFrame:CGRectMake(self.width*0.12, self.height*0.2, self.width*0.7, self.height*0.5)];
+    [batteryFill setFrame:CGRectMake(kBatteryFillX, kBatteryFillY, batteryFill.width, kBatteryFillHeight)];
+    [self->batteryLabel setFrame:CGRectMake(self.width*0.12, self.height*0.22, self.width*0.7, self.height*0.5)];
 }
     
 #pragma mark - Battery level set
@@ -98,7 +98,7 @@
     CGFloat newBatteryLevel = (inPercent) ? batteryLevel : batteryLevel * 100;
     // Set the new width
     newWidth = kOnePercent * newBatteryLevel;
-    self->batteryLabel.text = [NSString stringWithFormat:@"%.0f", newBatteryLevel];
+    self->batteryLabel.text = [NSString stringWithFormat:@"%d%%", (int)newBatteryLevel];
     // If animated proceed with the animation
     // else assign the value without animates
     if (isAnimated)

@@ -62,7 +62,7 @@ extension ViewController {
         let currentCamera = "\(currentPositionDesc) \(currentDeviceName)"
         
         let currentLabel = NSLocalizedString("Current Camera:", comment: "")
-        let actionSheet = UIAlertController.init(title: "", message: "\(currentLabel)\(currentCamera)", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "", message: "\(currentLabel)\(currentCamera)", preferredStyle: .actionSheet)
         
         camera.devices.forEach { (device) in
             let position = device.position
@@ -71,7 +71,7 @@ extension ViewController {
             let positionDesc = position == .back ?NSLocalizedString("Back", comment: ""):NSLocalizedString("Front", comment: "")
             let deviceName = self.deviceName(of: type)
             
-            let action = UIAlertAction.init(title: "\(positionDesc) \(deviceName)", style: .default, handler: { (action) in
+            let action = UIAlertAction(title: "\(positionDesc) \(deviceName)", style: .default, handler: { (action) in
                 self.sessionQueue.async {
                     camera.changeCamera(to: device)
                     

@@ -1,4 +1,5 @@
 PODS:
+  - DeviceGuru (5.1.2)
   - FileBrowser (1.0.0)
   - PonyDebugger (0.4.5):
     - SocketRocket
@@ -6,12 +7,14 @@ PODS:
   - SocketRocket (0.5.1)
 
 DEPENDENCIES:
+  - DeviceGuru (~> 5.0)
   - FileBrowser (~> 1.0)
   - PonyDebugger (from `https://github.com/huangjimmy/PonyDebugger.git`)
   - Reveal-SDK (= 12)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - DeviceGuru
     - FileBrowser
     - Reveal-SDK
     - SocketRocket
@@ -26,11 +29,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/huangjimmy/PonyDebugger.git
 
 SPEC CHECKSUMS:
+  DeviceGuru: 65a794c0c5b4f600453bcfaf94c78fea66ba577e
   FileBrowser: 2ca91ff61c9ea09665eb3b8f9e64a7a77e66a0bf
   PonyDebugger: 1c60f7c876bdb6a8b6bf0f0269087f8a234fafa7
   Reveal-SDK: 58517b2a4d5d69dcb98e62aa4a5e62c84b5e0061
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
 
-PODFILE CHECKSUM: 04b459613e6aca537335776b8ee22537255ca7c8
+PODFILE CHECKSUM: 0998f7da3b7ee35debc10ff1396d61241a92d2e2
 
 COCOAPODS: 1.6.1

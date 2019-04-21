@@ -4,12 +4,12 @@ FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Reveal-SDK/RevealServer-12/i
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FileBrowser" "${PODS_ROOT}/Headers/Public/PonyDebugger" "${PODS_ROOT}/Headers/Public/SocketRocket"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser" "${PODS_CONFIGURATION_BUILD_DIR}/PonyDebugger" "${PODS_CONFIGURATION_BUILD_DIR}/SocketRocket"
-OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser/FileBrowser.modulemap"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"FileBrowser" -l"PonyDebugger" -l"SocketRocket" -l"icucore" -l"z" -framework "CFNetwork" -framework "CoreData" -framework "CoreGraphics" -framework "QuartzCore" -framework "QuickLook" -framework "RevealServer" -framework "Security" -framework "WebKit"
-OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser/FileBrowser.modulemap"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru" "${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser" "${PODS_CONFIGURATION_BUILD_DIR}/PonyDebugger" "${PODS_CONFIGURATION_BUILD_DIR}/SocketRocket"
+OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru/DeviceGuru.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser/FileBrowser.modulemap"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"DeviceGuru" -l"FileBrowser" -l"PonyDebugger" -l"SocketRocket" -l"icucore" -l"z" -framework "CFNetwork" -framework "CoreData" -framework "CoreGraphics" -framework "QuartzCore" -framework "QuickLook" -framework "RevealServer" -framework "Security" -framework "WebKit"
+OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru/DeviceGuru.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser/FileBrowser.modulemap"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods
-SWIFT_INCLUDE_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser"
+SWIFT_INCLUDE_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru" "${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser"
