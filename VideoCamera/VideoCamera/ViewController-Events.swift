@@ -150,6 +150,7 @@ extension ViewController : CRRulerControlDataSource{
                     }
                     
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(300)) {
+                        self.parameterRuler.isHidden = true
                         changeCameraButton.isEnabled = true
                         SVProgressHUD.dismiss()
                     }
@@ -568,6 +569,15 @@ extension ViewController : CRRulerControlDataSource{
         let centerFocusPoint = CGPoint(x: 0.5, y: 0.5)
         
         let camera = self.camera
+        
+        if camera.exposureMode == .custom || camera.exposureMode == .locked {
+            return
+        }
+        
+        if camera.focusMode == .locked {
+            return
+        }
+        
         camera.focusPointOfInterest = centerFocusPoint
         camera.exposurePointOfInterest = centerFocusPoint
         

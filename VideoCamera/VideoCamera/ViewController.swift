@@ -653,7 +653,7 @@ class ViewController: UIViewController {
             }
             
             let exposureTime = Float(device.exposureDuration.value) / Float(device.exposureDuration.timescale)
-            if !exposureTime.isNaN {
+            if !exposureTime.isNaN && exposureTime > 0 {
                 if exposureTime > 0.5 {
                     self.cameraParameterButtons[1].text1 = String(format: "%.4f", arguments: [exposureTime])
                 }

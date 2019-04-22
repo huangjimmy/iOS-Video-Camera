@@ -356,6 +356,7 @@ import Photos
                         try device.lockForConfiguration()
                         device.exposureMode = _exposureMode
                         device.unlockForConfiguration()
+                        self.updateFocusAndExposureIndicator()
                     }
                     catch {
                         print("Could not lock device for configuration: \(error)")
@@ -380,6 +381,7 @@ import Photos
                     try device.lockForConfiguration()
                     device.setExposureTargetBias(_exposureTargetBias, completionHandler: nil)
                     device.unlockForConfiguration()
+                    
                 }
                 catch {
                     print("Could not lock device for configuration: \(error)")
@@ -564,7 +566,9 @@ import Photos
                 else {
                     device.setFocusModeLocked(lensPosition: AVCaptureDevice.currentLensPosition, completionHandler: nil)
                 }
+                
                 device.unlockForConfiguration()
+                self.updateFocusAndExposureIndicator()
             }
             catch {
                 print("Could not lock device for configuration: \(error)")
@@ -621,9 +625,8 @@ import Photos
                 try device.lockForConfiguration()
                 device.setExposureModeCustom(duration: duration, iso: iso, completionHandler: nil)
                 device.unlockForConfiguration()
-                print("duration = \(duration.value) \(duration.timescale) \(Float(duration.value)/Float(duration.timescale))")
-                let expo = device.exposureDuration
-                print("exposure now \(expo.value) \(expo.timescale) \(Float(expo.value)/Float(expo.timescale))")
+                
+                self.updateFocusAndExposureIndicator()
             }
             catch {
                 print("Could not lock device for configuration: \(error)")
@@ -924,6 +927,7 @@ import Photos
         previewView.addConstraint(self.focusOfInterestConstraintCenterX!)
         previewView.addConstraint(self.focusOfInterestConstraintCenterY!)
         
+        
         previewView.addSubview(self.exposureOfInterestIndicator)
         previewView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v(46)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.exposureOfInterestIndicator]))
         previewView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v(46)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.exposureOfInterestIndicator]))
@@ -932,6 +936,12 @@ import Photos
         previewView.addConstraint(self.exposureOfInterestConstraintCenterX!)
         previewView.addConstraint(self.exposureOfInterestConstraintCenterY!)
         self.exposureOfInterestIndicator.layer.cornerRadius = 23
+        
+        self.focusOfInterestIndicator.addTarget(self, action: #selector(focusDrag(_:withEvent:)), for: .touchDragInside)
+        self.exposureOfInterestIndicator.addTarget(self, action: #selector(exposureDrag(_:withEvent:)), for: .touchDragInside)
+        
+        self.focusOfInterestIndicator.addTarget(self, action: #selector(focusLockUnlock(_:)), for: .valueChanged)
+        self.exposureOfInterestIndicator.addTarget(self, action: #selector(exposureLockUnlock(_:)), for: .valueChanged)
     }
     // Call this on the session queue.
     /// - Tag: ConfigureSession
@@ -1256,6 +1266,81 @@ import Photos
             keyValueObservation.invalidate()
         }
         keyValueObservations.removeAll()
+    }
+    
+    /////////////////////////////////////
+    //
+    //
+    @objc func focusDrag(_ control:UIControl?, withEvent event:UIEvent){
+        if let touch = event.allTouches?.first {
+            if let previewView = self.previewView {
+                let center = touch.location(in: previewView)
+                let devicePoint = previewView.videoPreviewLayer.captureDevicePointConverted(fromLayerPoint: center)
+                if  let device = self.videoDeviceInput?.device {
+                    if device.isFocusPointOfInterestSupported {
+                        self.focusPointOfInterest = devicePoint
+                        previewView.bringSubviewToFront(self.focusOfInterestIndicator)
+                    }
+                }
+            }
+        }
+    }
+    
+    @objc func exposureDrag(_ control:UIControl?, withEvent event:UIEvent){
+        if let touch = event.allTouches?.first {
+            if let previewView = self.previewView {
+                let center = touch.location(in: previewView)
+                let devicePoint = previewView.videoPreviewLayer.captureDevicePointConverted(fromLayerPoint: center)
+                if  let device = self.videoDeviceInput?.device {
+                    if device.isExposurePointOfInterestSupported {
+                        self.exposurePointOfInterest = devicePoint
+                        previewView.bringSubviewToFront(self.exposureOfInterestIndicator)
+                    }
+                }
+            }
+        }
+    }
+    
+    @objc func focusLockUnlock(_ sender: Any){
+        if let device = self.videoDeviceInput?.device {
+            switch device.focusMode {
+            case .locked:
+                self.focusMode = .continuousAutoFocus
+                break
+            case .continuousAutoFocus:
+                self.focusMode = .locked
+                break
+            default:
+                break
+            }
+            
+            self.updateFocusAndExposureIndicator()
+        }
+    }
+    
+    @objc func exposureLockUnlock(_ sender: Any){
+        if let device = self.videoDeviceInput?.device {
+            switch device.exposureMode {
+            case .custom, .locked:
+                self.exposureMode = .continuousAutoExposure
+                self.exposureTargetBias = 0
+                break
+            case .continuousAutoExposure:
+                self.exposureMode = .locked
+                break
+            default:
+                break
+            }
+            
+            self.updateFocusAndExposureIndicator()
+        }
+    }
+    
+    private func updateFocusAndExposureIndicator(){
+        if let device = self.videoDeviceInput?.device {
+            self.focusOfInterestIndicator.locked = device.focusMode == .locked
+            self.exposureOfInterestIndicator.locked = device.exposureMode == .locked || device.exposureMode == .custom
+        }
     }
     
 }
