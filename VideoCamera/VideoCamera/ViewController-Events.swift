@@ -151,6 +151,7 @@ extension ViewController : CRRulerControlDataSource{
                     
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(300)) {
                         self.parameterRuler.isHidden = true
+                        self.currentSelectedParameterIndex = -1
                         changeCameraButton.isEnabled = true
                         SVProgressHUD.dismiss()
                     }
