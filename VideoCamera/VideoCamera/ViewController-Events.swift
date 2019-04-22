@@ -123,7 +123,21 @@ extension ViewController : CRRulerControlDataSource{
         let currentLabel = NSLocalizedString("Current Camera:", comment: "")
         let actionSheet = UIAlertController(title: "", message: "\(currentLabel)\(currentCamera)", preferredStyle: .actionSheet)
         
-        camera.devices.forEach { (device) in
+        camera.devices.sorted(by: { (device1, device2) -> Bool in
+            if device1.position == .back {
+                return true
+            }
+            if device2.position == .back {
+                return false
+            }
+            if device1.deviceType == .builtInDualCamera {
+                return true
+            }
+            if device1.deviceType == .builtInWideAngleCamera {
+                return true
+            }
+            return false
+        }).forEach { (device) in
             let position = device.position
             let type = device.deviceType
             
