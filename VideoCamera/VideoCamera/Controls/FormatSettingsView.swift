@@ -341,9 +341,13 @@ class FormatSettingsView: UIView {
     }
     
     public func saveSettingsToCamera(){
+        SVProgressHUD.show()
         let camera = CameraManager.sharedInstance
         camera.videoFormat = (self.selectedResolution.0, self.selectedResolution.1, self.selectedFps)
         camera.useBluetoothMicrophone = self.selectedMicrophone == 1
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(300)) {
+            SVProgressHUD.dismiss()
+        }
     }
     
     @objc func chooseResolution(_ sender: Any){

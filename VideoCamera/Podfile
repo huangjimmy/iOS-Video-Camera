@@ -5,4 +5,5 @@ pod 'PonyDebugger', :git => 'https://github.com/huangjimmy/PonyDebugger.git', :c
 pod 'Reveal-SDK', '12', :configurations => ['Debug']
 pod 'FileBrowser', '~> 1.0'
 pod 'DeviceGuru', '~> 5.0'
+pod 'SVProgressHUD'
 end

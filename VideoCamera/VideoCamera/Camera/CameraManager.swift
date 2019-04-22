@@ -53,9 +53,14 @@ import Photos
     private let videoDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera, .builtInDualCamera, .builtInTrueDepthCamera, .builtInTelephotoCamera], mediaType: .video, position: .unspecified)
     
     private var previewView:PreviewView? = nil
+    
     private let focusOfInterestIndicator = FocusOfInterestIndicatorView()
     private var focusOfInterestConstraintCenterX:NSLayoutConstraint? = nil
     private var focusOfInterestConstraintCenterY:NSLayoutConstraint? = nil
+    
+    private let exposureOfInterestIndicator = ExposureOfInterestIndicatorView()
+    private var exposureOfInterestConstraintCenterX:NSLayoutConstraint? = nil
+    private var exposureOfInterestConstraintCenterY:NSLayoutConstraint? = nil
     
     public enum LivePhotoMode {
         case on
@@ -158,6 +163,42 @@ import Photos
                         })
                     }
                 }
+                else {
+                    DispatchQueue.main.async {
+                        self.focusOfInterestIndicator.isHidden = true
+                    }
+                }
+            }
+        }
+    }
+    
+    var _showExposureOfInterestIndicator = false
+    var showExposureOfInterestIndicator: Bool {
+        get {
+            return _showExposureOfInterestIndicator
+        }
+        
+        set {
+            if let previewView = self.previewView {
+                _showExposureOfInterestIndicator = newValue
+                if(_showExposureOfInterestIndicator){
+                    DispatchQueue.main.async {
+                        self.exposureOfInterestIndicator.isHidden = false
+                        let exposurePoint = self.exposurePointOfInterest
+                        let point = previewView.videoPreviewLayer.layerPointConverted(fromCaptureDevicePoint: exposurePoint)
+                        let previewCenter = previewView.center
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.exposureOfInterestConstraintCenterX?.constant = point.x - previewCenter.x
+                            self.exposureOfInterestConstraintCenterY?.constant = point.y - previewCenter.y
+                            previewView.layoutIfNeeded()
+                        })
+                    }
+                }
+                else{
+                    DispatchQueue.main.async {
+                        self.exposureOfInterestIndicator.isHidden = true
+                    }
+                }
             }
         }
     }
@@ -183,7 +224,15 @@ import Photos
                     return newValue
                 }()
                 
-                device.ramp(toVideoZoomFactor: CGFloat(zoom), withRate: 1)
+                do{
+                    try device.lockForConfiguration()
+                    device.ramp(toVideoZoomFactor: CGFloat(zoom), withRate: 1)
+                    device.unlockForConfiguration()
+                }
+                catch {
+                    print("Could not lock device for configuration: \(error)")
+                }
+                
             }
         }
     }
@@ -348,12 +397,40 @@ import Photos
         }
     }
     
+    
     public var minExposureTargetBias : Float {
         get {
             if let device = self.videoDeviceInput?.device {
                 return device.minExposureTargetBias
             }
             return 3.0
+        }
+    }
+    
+    public var exposureDuration : CMTime {
+        get {
+            if let device = self.videoDeviceInput?.device {
+                return device.exposureDuration
+            }
+            return CMTime.zero
+        }
+    }
+    
+    public var minExposureDuration: CMTime {
+        get {
+            if let device = self.videoDeviceInput?.device {
+                return device.activeFormat.minExposureDuration
+            }
+            return CMTime.zero
+        }
+    }
+    
+    public var maxExposureDuration: CMTime {
+        get {
+            if let device = self.videoDeviceInput?.device {
+                return device.activeFormat.maxExposureDuration
+            }
+            return CMTime.zero
         }
     }
     
@@ -392,6 +469,11 @@ import Photos
                         device.exposurePointOfInterest = _exposurePointOfInterest
                         device.exposureMode = exposureMode
                         device.unlockForConfiguration()
+                        
+                        if self.showExposureOfInterestIndicator {
+                            self.showExposureOfInterestIndicator = true
+                        }
+                        
                     }
                     catch {
                         print("Could not lock device for configuration: \(error)")
@@ -417,7 +499,7 @@ import Photos
                     _focusMode = newValue
                     do{
                         try device.lockForConfiguration()
-                        device.focusMode = focusMode
+                        device.focusMode = _focusMode
                         device.unlockForConfiguration()
                     }
                     catch {
@@ -432,6 +514,9 @@ import Photos
     public var focusPointOfInterest : CGPoint {
         get {
             if let device = self.videoDeviceInput?.device {
+                if device.isFocusPointOfInterestSupported == false || device.isFocusModeSupported(focusMode) == false {
+                    return CGPoint(x:0.5, y:0.5)
+                }
                 _focusPointOfInterest = device.focusPointOfInterest
             }
             return _focusPointOfInterest;
@@ -471,8 +556,14 @@ import Photos
     public func setFocusModeLocked(lensPosition: Float){
         if let device = self.videoDeviceInput?.device {
             do{
+                
                 try device.lockForConfiguration()
-                device.setFocusModeLocked(lensPosition: lensPosition, completionHandler: nil)
+                if device.isLockingFocusWithCustomLensPositionSupported {
+                    device.setFocusModeLocked(lensPosition: lensPosition, completionHandler: nil)
+                }
+                else {
+                    device.setFocusModeLocked(lensPosition: AVCaptureDevice.currentLensPosition, completionHandler: nil)
+                }
                 device.unlockForConfiguration()
             }
             catch {
@@ -530,6 +621,9 @@ import Photos
                 try device.lockForConfiguration()
                 device.setExposureModeCustom(duration: duration, iso: iso, completionHandler: nil)
                 device.unlockForConfiguration()
+                print("duration = \(duration.value) \(duration.timescale) \(Float(duration.value)/Float(duration.timescale))")
+                let expo = device.exposureDuration
+                print("exposure now \(expo.value) \(expo.timescale) \(Float(expo.value)/Float(expo.timescale))")
             }
             catch {
                 print("Could not lock device for configuration: \(error)")
@@ -632,6 +726,12 @@ import Photos
                 return (device.position, device.deviceType)
             }
             return (AVCaptureDevice.Position.back, AVCaptureDevice.DeviceType.builtInWideAngleCamera)
+        }
+    }
+    
+    var iso: Float {
+        get {
+            return self.videoDeviceInput.device.iso
         }
     }
     
@@ -819,10 +919,19 @@ import Photos
         previewView.addSubview(self.focusOfInterestIndicator)
         self.focusOfInterestConstraintCenterX = NSLayoutConstraint(item: self.focusOfInterestIndicator, attribute: .centerX, relatedBy: .equal, toItem: previewView, attribute: .centerX, multiplier: 1.0, constant: 0)
         self.focusOfInterestConstraintCenterY = NSLayoutConstraint(item: self.focusOfInterestIndicator, attribute: .centerY, relatedBy: .equal, toItem: previewView, attribute: .centerY, multiplier: 1.0, constant: 0)
-        previewView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v(45)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.focusOfInterestIndicator]))
-        previewView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v(45)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.focusOfInterestIndicator]))
+        previewView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v(56)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.focusOfInterestIndicator]))
+        previewView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v(56)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.focusOfInterestIndicator]))
         previewView.addConstraint(self.focusOfInterestConstraintCenterX!)
         previewView.addConstraint(self.focusOfInterestConstraintCenterY!)
+        
+        previewView.addSubview(self.exposureOfInterestIndicator)
+        previewView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v(46)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.exposureOfInterestIndicator]))
+        previewView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v(46)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.exposureOfInterestIndicator]))
+        self.exposureOfInterestConstraintCenterX = NSLayoutConstraint(item: self.exposureOfInterestIndicator, attribute: .centerX, relatedBy: .equal, toItem: previewView, attribute: .centerX, multiplier: 1.0, constant: 0)
+        self.exposureOfInterestConstraintCenterY = NSLayoutConstraint(item: self.exposureOfInterestIndicator, attribute: .centerY, relatedBy: .equal, toItem: previewView, attribute: .centerY, multiplier: 1.0, constant: 0)
+        previewView.addConstraint(self.exposureOfInterestConstraintCenterX!)
+        previewView.addConstraint(self.exposureOfInterestConstraintCenterY!)
+        self.exposureOfInterestIndicator.layer.cornerRadius = 23
     }
     // Call this on the session queue.
     /// - Tag: ConfigureSession
@@ -891,6 +1000,7 @@ import Photos
                         do {
                             try device.lockForConfiguration()
                             
+                            device.isSubjectAreaChangeMonitoringEnabled = true
                             device.activeFormat = desireFormat
                             device.activeVideoMinFrameDuration = CMTime(value: 1, timescale: CMTimeScale(desireVideoFormat.2), flags: .valid, epoch: 0)
                             device.activeVideoMaxFrameDuration = frameRates.maxFrameDuration
@@ -1073,6 +1183,7 @@ import Photos
                 do {
                     try device.lockForConfiguration()
 
+                    device.isSubjectAreaChangeMonitoringEnabled = true
                     device.activeFormat = deviceFormat
                     device.activeVideoMinFrameDuration = frameRates.minFrameDuration
                     device.activeVideoMaxFrameDuration = frameRates.maxFrameDuration
@@ -1102,6 +1213,8 @@ import Photos
                 }
             }
             self.session.commitConfiguration()
+            self.showFocusOfInterestIndicator = true
+            self.showExposureOfInterestIndicator = true
         }
         catch {
             print("Error occurred while creating video device input: \(error)")

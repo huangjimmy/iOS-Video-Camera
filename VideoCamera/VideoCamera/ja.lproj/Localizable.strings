@@ -32,10 +32,14 @@
 "Search" = "検索する";
 
 "Builtin" = "Builtin";
-"Builtin and Bluetooth" = "Builtin and ブルートゥース";
+"Builtin and Bluetooth" = "Builtin と ブルートゥース";
 
 "On" = "On";
 "Off" = "オフ";
 "Auto" = "自動";
 "Standard" = "標準";
 "Cinematic" = "映画";
+
+"Manual focus is not available in dual lens mode." = "手動焦点調節はデュアルカメラ使用時にはサポートされていません。";
+"Manual shutter is not available in dual lens mode." = "デュアルカメラを使用している場合、シャッター設定はサポートされていません。";
+"Manual ISO is not available in dual lens mode." = "手動感度設定はデュアルカメラ使用時にはサポートされていません。";

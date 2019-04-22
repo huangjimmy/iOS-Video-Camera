@@ -25,6 +25,11 @@
 		BFB4BB28224D0DE00056EFD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFB4BB26224D0DE00056EFD5 /* LaunchScreen.storyboard */; };
 		BFB4BB30224DE5810056EFD5 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB4BB2F224DE5810056EFD5 /* PreviewView.swift */; };
 		BFBDA97022677F0E00A9B35F /* RecordTimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBDA96F22677F0E00A9B35F /* RecordTimerLabel.swift */; };
+		BFD3434D226C2326009EA26F /* ExposureOfInterestIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD3434C226C2326009EA26F /* ExposureOfInterestIndicatorView.swift */; };
+		BFD34364226D2983009EA26F /* CRMark.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD3435B226D2983009EA26F /* CRMark.m */; };
+		BFD34366226D2983009EA26F /* CRRulerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD3435F226D2983009EA26F /* CRRulerLayer.m */; };
+		BFD34367226D2983009EA26F /* CRRulerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD34361226D2983009EA26F /* CRRulerControl.m */; };
+		BFD34368226D2983009EA26F /* CRRulerControl.podspec in Resources */ = {isa = PBXBuildFile; fileRef = BFD34363226D2983009EA26F /* CRRulerControl.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +74,14 @@
 		BFB4BB29224D0DE00056EFD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFB4BB2F224DE5810056EFD5 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		BFBDA96F22677F0E00A9B35F /* RecordTimerLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTimerLabel.swift; sourceTree = "<group>"; };
+		BFD3434C226C2326009EA26F /* ExposureOfInterestIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureOfInterestIndicatorView.swift; sourceTree = "<group>"; };
+		BFD3435B226D2983009EA26F /* CRMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRMark.m; sourceTree = "<group>"; };
+		BFD3435C226D2983009EA26F /* CRRulerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRRulerLayer.h; sourceTree = "<group>"; };
+		BFD3435E226D2983009EA26F /* CRRulerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRRulerControl.h; sourceTree = "<group>"; };
+		BFD3435F226D2983009EA26F /* CRRulerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRRulerLayer.m; sourceTree = "<group>"; };
+		BFD34360226D2983009EA26F /* CRMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRMark.h; sourceTree = "<group>"; };
+		BFD34361226D2983009EA26F /* CRRulerControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRRulerControl.m; sourceTree = "<group>"; };
+		BFD34363226D2983009EA26F /* CRRulerControl.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CRRulerControl.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,14 +181,46 @@
 		BFB4BB31224DE7EF0056EFD5 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				BFD34359226D2983009EA26F /* CRRulerControl */,
 				BF45CAE4226ABD4F00819F23 /* ALBatteryView */,
 				BF1A97062266655C006BEAF7 /* CameraBottomControl.swift */,
 				BFBDA96F22677F0E00A9B35F /* RecordTimerLabel.swift */,
 				BF45CAB4226904B900819F23 /* FocusOfInterestIndicatorView.swift */,
 				BF45CAB62269677700819F23 /* FormatSettingsView.swift */,
 				BF45CAB82269D7D000819F23 /* CameraParamterButton.swift */,
+				BFD3434C226C2326009EA26F /* ExposureOfInterestIndicatorView.swift */,
 			);
 			path = Controls;
+			sourceTree = "<group>";
+		};
+		BFD34359226D2983009EA26F /* CRRulerControl */ = {
+			isa = PBXGroup;
+			children = (
+				BFD3435A226D2983009EA26F /* Classes */,
+				BFD34362226D2983009EA26F /* 1.0.0 */,
+			);
+			path = CRRulerControl;
+			sourceTree = "<group>";
+		};
+		BFD3435A226D2983009EA26F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				BFD3435B226D2983009EA26F /* CRMark.m */,
+				BFD3435C226D2983009EA26F /* CRRulerLayer.h */,
+				BFD3435E226D2983009EA26F /* CRRulerControl.h */,
+				BFD3435F226D2983009EA26F /* CRRulerLayer.m */,
+				BFD34360226D2983009EA26F /* CRMark.h */,
+				BFD34361226D2983009EA26F /* CRRulerControl.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		BFD34362226D2983009EA26F /* 1.0.0 */ = {
+			isa = PBXGroup;
+			children = (
+				BFD34363226D2983009EA26F /* CRRulerControl.podspec */,
+			);
+			path = 1.0.0;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFD34368226D2983009EA26F /* CRRulerControl.podspec in Resources */,
 				BFB4BB28224D0DE00056EFD5 /* LaunchScreen.storyboard in Resources */,
 				BF45CAD1226A083C00819F23 /* Localizable.strings in Resources */,
 				BFB4BB25224D0DE00056EFD5 /* Assets.xcassets in Resources */,
@@ -317,6 +363,7 @@
 				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/PreviewTransitionViewController.xib",
 				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/WebviewPreviewViewContoller.xib",
 				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/zip@2x.png",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
@@ -332,6 +379,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PreviewTransitionViewController.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WebviewPreviewViewContoller.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zip@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -346,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF45CAB5226904B900819F23 /* FocusOfInterestIndicatorView.swift in Sources */,
+				BFD34366226D2983009EA26F /* CRRulerLayer.m in Sources */,
 				BF92C216225DE83800B246DA /* CameraManager.swift in Sources */,
 				BFB4BB20224D0DDD0056EFD5 /* ViewController.swift in Sources */,
 				BFB4BB1E224D0DDD0056EFD5 /* AppDelegate.swift in Sources */,
@@ -353,8 +402,11 @@
 				BF45CAEF226ABD4F00819F23 /* UIView+ALQuickFrame.m in Sources */,
 				BFB4BB30224DE5810056EFD5 /* PreviewView.swift in Sources */,
 				BFBDA97022677F0E00A9B35F /* RecordTimerLabel.swift in Sources */,
+				BFD3434D226C2326009EA26F /* ExposureOfInterestIndicatorView.swift in Sources */,
 				BF1A97072266655C006BEAF7 /* CameraBottomControl.swift in Sources */,
+				BFD34367226D2983009EA26F /* CRRulerControl.m in Sources */,
 				BF45CAF0226ABD4F00819F23 /* ALBatteryView.m in Sources */,
+				BFD34364226D2983009EA26F /* CRMark.m in Sources */,
 				BF8987D222674525002BAA70 /* ViewController-Events.swift in Sources */,
 				BF45CAB72269677700819F23 /* FormatSettingsView.swift in Sources */,
 			);

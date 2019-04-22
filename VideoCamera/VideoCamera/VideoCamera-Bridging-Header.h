@@ -10,5 +10,7 @@
 #define VideoCamera_Bridging_Header_h
 
 #import "ALBatteryView.h"
+#import "SVProgressHUD.h"
+#import "CRRulerControl.h"
 
 #endif /* VideoCamera_Bridging_Header_h */

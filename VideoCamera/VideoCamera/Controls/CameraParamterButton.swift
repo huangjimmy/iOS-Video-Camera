@@ -11,6 +11,7 @@ import UIKit
 class CameraParameterButton: UIControl {
     var upperLabel: UILabel
     var bottomLabel: UILabel
+    var lockedIndicator: UIView
     
     var text1:String? {
         get{
@@ -30,9 +31,35 @@ class CameraParameterButton: UIControl {
         }
     }
     
+    var parameterLocked:Bool {
+        get{
+            return self.lockedIndicator.isHidden == false
+        }
+        set {
+            self.lockedIndicator.isHidden = !newValue
+        }
+    }
+    
+    var _parameterSelected: Bool = false
+    var parameterSelected:Bool {
+        get{
+            return _parameterSelected
+        }
+        set {
+            _parameterSelected = newValue
+            if newValue {
+                self.backgroundColor = UIColor(red: 0xFF/255.0, green: 0x95/255, blue: 0, alpha: 1)
+            }
+            else{
+                self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.40)
+            }
+        }
+    }
+    
     init(){
         upperLabel = UILabel(frame: CGRect(x: 0,y: 0, width: 69, height: 21))
         bottomLabel = UILabel(frame: CGRect(x: 0,y: 21, width: 69, height: 21))
+        lockedIndicator = UIView(frame: CGRect(x: 0,y: 39, width: 69, height: 3))
         super.init(frame: .zero)
         
         self.createSubviews()
@@ -41,12 +68,14 @@ class CameraParameterButton: UIControl {
     override init(frame: CGRect) {
         upperLabel = UILabel(frame: CGRect(x: 0,y: 0, width: 69, height: 21))
         bottomLabel = UILabel(frame: CGRect(x: 0,y: 21, width: 69, height: 21))
+        lockedIndicator = UIView(frame: CGRect(x: 0,y: 39, width: 69, height: 3))
         super.init(frame: frame)
     }
     
     required init?(coder aDecoder: NSCoder) {
         upperLabel = UILabel(frame: CGRect(x: 0,y: 0, width: 69, height: 21))
         bottomLabel = UILabel(frame: CGRect(x: 0,y: 21, width: 69, height: 21))
+        lockedIndicator = UIView(frame: CGRect(x: 0,y: 39, width: 69, height: 3))
         super.init(coder: aDecoder)
         
         self.createSubviews()
@@ -65,5 +94,9 @@ class CameraParameterButton: UIControl {
         self.addSubview(upperLabel)
         self.addSubview(self.bottomLabel)
         self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.40)
+        
+        self.lockedIndicator.backgroundColor = UIColor(red: 0xff/255, green: 0x3b/255, blue: 0x30/255, alpha: 1)
+        self.lockedIndicator.isHidden = true
+        self.addSubview(self.lockedIndicator)
     }
 }

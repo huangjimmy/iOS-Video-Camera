@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     
     internal var batteryView:ALBatteryView!
     internal var previewView:PreviewView!
-    private let previewTapGestureRecognizer:UILongPressGestureRecognizer = UILongPressGestureRecognizer()
+    private let previewTapGestureRecognizer = UITapGestureRecognizer()
     
     internal var settingsContainerView:UIControl!
     internal var formatSettingsView:FormatSettingsView!
@@ -51,7 +51,12 @@ class ViewController: UIViewController {
     /*! The lens button is for lens configuration, such as Optical Image Stablization */
     internal var lensButton: UIButton!
     internal var flashButton: UIButton!
+    
+    internal var parameterRuler: CRRulerControl!
     internal var cameraParameterButtons:[CameraParameterButton] = []
+    /*! -1 none selected 0 exposure 1 shutter 2 ISO 3 WB 4 focus 5 zoom */
+    internal var currentSelectedParameterIndex = -1
+    let shutterSpeed = [8000, 6400, 5000, 4000, 3200, 2500, 2000, 1600, 1250, 1000, 800, 640, 500, 400, 320, 250, 160, 125, 100, 80, 60, 50, 30, 25]
     
     private var keyValueObservations = [NSKeyValueObservation]()
     
@@ -210,6 +215,9 @@ class ViewController: UIViewController {
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[v]-0-|", options: .init(rawValue: 0), metrics: nil, views: ["v":self.settingsContainerView!]))
         self.settingsContainerView.isHidden = true
         
+        
+        ///////////////////////////////////////////////
+        //position of camera parameter buttons
         let screenBounds = UIScreen.main.bounds
         let screenWidth = screenBounds.width <= screenBounds.height ? screenBounds.width:screenBounds.height
         let screenHeight = screenBounds.width >= screenBounds.height ? screenBounds.width:screenBounds.height
@@ -221,6 +229,7 @@ class ViewController: UIViewController {
             return 69
         }()
         
+        
         self.cameraParameterButtons = [NSLocalizedString("Exposure", comment: ""), NSLocalizedString("Shutter", comment: ""), NSLocalizedString("ISO", comment: ""), NSLocalizedString("WB", comment: ""), NSLocalizedString("Focus", comment: ""), NSLocalizedString("Zoom", comment: "")].map({ (str) -> CameraParameterButton in
             let button = CameraParameterButton()
             button.text2 = str
@@ -229,9 +238,9 @@ class ViewController: UIViewController {
             self.view.addSubview(button)
             self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v(\(cameraParameterButtonWidth))]", options: .init(rawValue: 0), metrics: nil, views: ["v":button]));
             self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v(42)]", options: .init(rawValue: 0), metrics: nil, views: ["v":button]));
+            button.addTarget(self, action: #selector(parameterButtonTapped(_:)), for: .touchUpInside)
             return button
         })
-        
         
         
         let landscapeSpacing = (screenHeight - 6*CGFloat(cameraParameterButtonWidth) - 100 - 44)/7
@@ -312,6 +321,24 @@ class ViewController: UIViewController {
         landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[v]-0-|", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom!]))
         landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(100)]-0-|", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom!]))
         landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[v(100)]", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom!]))
+        
+        self.parameterRuler = CRRulerControl()
+        self.parameterRuler.isHidden = true
+        self.parameterRuler.rangeFrom = -10
+        self.parameterRuler.rangeLength = 20
+        self.parameterRuler.tintColor = UIColor(red: 0xff/255.0, green: 0x3b/255.0, blue: 0x30/255.0, alpha: 1.0)
+        self.parameterRuler.setTextColor(.white, for: .all)
+        self.parameterRuler.setColor(.white, for: .all)
+        self.parameterRuler.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        self.parameterRuler.translatesAutoresizingMaskIntoConstraints = false
+        self.parameterRuler.dataSource = self
+        self.parameterRuler.addTarget(self, action: #selector(cameraParameterChanged(_:)), for: .valueChanged)
+        
+        self.view.addSubview(self.parameterRuler)
+        self.view.addConstraint(NSLayoutConstraint(item: self.parameterRuler!, attribute: .left, relatedBy: .equal, toItem: self.cameraParameterButtons[0], attribute: .left, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.parameterRuler!, attribute: .right, relatedBy: .equal, toItem: self.cameraParameterButtons[5], attribute: .right, multiplier: 1.0, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.parameterRuler!, attribute: .bottom, relatedBy: .equal, toItem: self.cameraParameterButtons[0], attribute: .top, multiplier: 1.0, constant: 0))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v(50)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.parameterRuler!]))
         
         ////////////////////////////
         //position of recordTimeLabel
@@ -455,9 +482,6 @@ class ViewController: UIViewController {
         self.cameraBottom.recordButton.addTarget(self, action: #selector(recordTapped(_:)), for: .touchUpInside)
         self.cameraBottom.changeCameraButton.addTarget(self, action: #selector(changeCameraTapped(_:)), for: .touchUpInside)
         
-        self.addObservers()
-        
-        self.previewTapGestureRecognizer.minimumPressDuration = 0
         self.previewView.addGestureRecognizer(self.previewTapGestureRecognizer)
         self.previewTapGestureRecognizer.addTarget(self, action: #selector(focusTap(_:)))
 
@@ -470,6 +494,8 @@ class ViewController: UIViewController {
         
         self.recalcConstraints()
         self.view.setNeedsUpdateConstraints()
+        
+        self.addObservers()
         
         DispatchQueue.global().async {
             
@@ -531,6 +557,7 @@ class ViewController: UIViewController {
                 //self.addObservers()
                 self.camera.startRunning()
                 self.camera.showFocusOfInterestIndicator = true
+                self.camera.showExposureOfInterestIndicator = true
                 
             case .notAuthorized:
                 DispatchQueue.main.async {
@@ -570,7 +597,7 @@ class ViewController: UIViewController {
         
         sessionQueue.async {
             DispatchQueue.main.async {
-                self.updateCameraParameterDisplay()
+                self.updateCameraParameterDisplay(true)
                 if let timer = self.timer {
                     timer.invalidate()
                     self.timer = nil
@@ -584,7 +611,6 @@ class ViewController: UIViewController {
         sessionQueue.async {
             if self.camera.setupResult == .success {
                 self.camera.stopRunning()
-                //self.removeObservers()
             }
         }
         
@@ -593,6 +619,8 @@ class ViewController: UIViewController {
             timer.invalidate()
             self.timer = nil
         }
+        
+        self.removeObservers()
         
         self.motionManager.stopDeviceMotionUpdates()
         
@@ -603,35 +631,83 @@ class ViewController: UIViewController {
         return .all
     }
     
-    func updateCameraParameterDisplay(){
+    func updateCameraParameterDisplay(_ updateParameterRuler: Bool){
         if let videoDeviceInput = self.camera.videoDeviceInput {
             let device = videoDeviceInput.device
-            self.cameraParameterButtons[0].text1 = String(format: "%.2f", arguments: [device.exposureTargetBias])
             
-            let exposureTime = Float(device.exposureDuration.value) / Float(device.exposureDuration.timescale)
-            if !exposureTime.isNaN {
-                if exposureTime >= 1 {
-                    self.cameraParameterButtons[1].text1 = String(format: "%.4f", arguments: [exposureTime])
-                }
-                else{
-                    let exposureDenominator = Int(1 / exposureTime)
-                    self.cameraParameterButtons[1].text1 = "1/\(exposureDenominator)"
+            for i in 0...5 {
+                let button = self.cameraParameterButtons[i]
+                button.parameterSelected = i == currentSelectedParameterIndex
+            }
+            
+            if device.exposureMode == .custom {
+                self.cameraParameterButtons[0].text1 = String(format: "%.2f", arguments: [device.exposureTargetOffset])
+            }
+            else {
+                self.cameraParameterButtons[0].text1 = String(format: "%.2f", arguments: [device.exposureTargetBias])
+            }
+            if currentSelectedParameterIndex == 0 {
+                if device.isAdjustingExposure == false && updateParameterRuler {
+                    self.parameterRuler.value = CGFloat(device.exposureTargetBias)
                 }
             }
             
+            let exposureTime = Float(device.exposureDuration.value) / Float(device.exposureDuration.timescale)
+            if !exposureTime.isNaN {
+                if exposureTime > 0.5 {
+                    self.cameraParameterButtons[1].text1 = String(format: "%.4f", arguments: [exposureTime])
+                }
+                else{
+                    let exposureDenominator = Int(round(1 / exposureTime))
+                    self.cameraParameterButtons[1].text1 = "1/\(exposureDenominator)"
+                }
+                
+                if currentSelectedParameterIndex == 1  && updateParameterRuler {
+                    self.parameterRuler.value = CGFloat(shutterSpeed2RulerMark(speed: Int(round(1/exposureTime))))
+                }
+                
+                self.cameraParameterButtons[0].parameterLocked = {
+                    switch camera.exposureMode {
+                    case .locked, .custom:
+                        return true
+                    default:
+                        return false
+                    }
+                }()
+            }
+        
+            self.cameraParameterButtons[1].parameterLocked = {
+                switch camera.exposureMode {
+                case .custom:
+                    return true
+                default:
+                    return false
+                }
+            }()
+            
             self.cameraParameterButtons[2].text1 = String(format: "%.0f", arguments: [device.iso])
+            self.cameraParameterButtons[2].parameterLocked = self.cameraParameterButtons[1].parameterLocked
+            
+            if currentSelectedParameterIndex == 2  && updateParameterRuler {
+                self.parameterRuler.value = CGFloat(device.iso)
+            }
+            
             switch (device.whiteBalanceMode) {
             case .autoWhiteBalance:
                 self.cameraParameterButtons[3].text2 = NSLocalizedString("AWB", comment: "")
+                self.cameraParameterButtons[3].parameterLocked = false
                 break
             case .continuousAutoWhiteBalance:
                 self.cameraParameterButtons[3].text2 = NSLocalizedString("AWB", comment: "")
+                self.cameraParameterButtons[3].parameterLocked = false
                 break
             case .locked:
                 self.cameraParameterButtons[3].text2 = NSLocalizedString("WB", comment: "")
+                self.cameraParameterButtons[3].parameterLocked = true
                 break
             default:
                 self.cameraParameterButtons[3].text2 = NSLocalizedString("WB", comment: "")
+                self.cameraParameterButtons[3].parameterLocked = false
                 break
             }
             
@@ -642,43 +718,36 @@ class ViewController: UIViewController {
                 && whiteBalanceGains.redGain >= 1
                 && whiteBalanceGains.greenGain >= 1
                 && whiteBalanceGains.blueGain >= 1 {
-                let wb = device.temperatureAndTintValues(for: device.deviceWhiteBalanceGains)
+                let wb = device.temperatureAndTintValues(for: whiteBalanceGains)
                 self.cameraParameterButtons[3].text1 = String(format: "%dK", Int(wb.temperature))
             }
             
             self.cameraParameterButtons[4].text1 = String(format: "%.2f", arguments: [device.lensPosition])
+            self.cameraParameterButtons[4].parameterLocked = camera.focusMode == .locked
+            if currentSelectedParameterIndex == 4  && updateParameterRuler {
+                self.parameterRuler.value = CGFloat(device.lensPosition)
+            }
+            
             self.cameraParameterButtons[5].text1 = String(format: "%.2f", arguments: [device.videoZoomFactor])
+            if currentSelectedParameterIndex == 5  && updateParameterRuler {
+                if device.isRampingVideoZoom == false {
+                    self.parameterRuler.value = CGFloat(device.videoZoomFactor)
+                }
+            }
             
             self.batteryView.setBatteryLevelWithAnimation(false, forValue: UIDevice.batteryLevelInPercentage(UIDevice.current)(), inPercent: true)
         }
         
-        switch self.camera.preferredVideoStabilizationMode {
-        case .auto:
-            self.lensButton.setImage(UIImage(named: "OIS"), for: .normal)
-            let lensTitle = NSLocalizedString("Auto", comment: "")
-            self.lensButton.setAttributedTitle(NSAttributedString(string: lensTitle, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor:UIColor.white]), for: .normal)
-            break
-        case .standard:
-            self.lensButton.setImage(UIImage(named: "OIS"), for: .normal)
-            let lensTitle = NSLocalizedString("Standard", comment: "")
-            self.lensButton.setAttributedTitle(NSAttributedString(string: lensTitle, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor:UIColor.white]), for: .normal)
-            break
-        case .cinematic:
-            self.lensButton.setImage(UIImage(named: "OIS"), for: .normal)
-            let lensTitle = NSLocalizedString("Cinematic", comment: "")
-            self.lensButton.setAttributedTitle(NSAttributedString(string: lensTitle, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor:UIColor.white]), for: .normal)
-            break
-        case .off:
+        let videoStabilizationMode = self.camera.preferredVideoStabilizationMode
+        if videoStabilizationMode == .off {
             self.lensButton.setImage(UIImage(named: "OISoff"), for: .normal)
-            let lensTitle = NSLocalizedString("Off", comment: "")
-            self.lensButton.setAttributedTitle(NSAttributedString(string: lensTitle, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor:UIColor.white]), for: .normal)
-            break
-        default:
-            self.lensButton.setImage(UIImage(named: "OISoff"), for: .normal)
-            let lensTitle = NSLocalizedString("Off", comment: "")
-            self.lensButton.setAttributedTitle(NSAttributedString(string: lensTitle, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor:UIColor.white]), for: .normal)
-            break
         }
+        else{
+            self.lensButton.setImage(UIImage(named: "OIS"), for: .normal)
+        }
+        
+        let lensTitle = self.videoStablizationModeDescription(videoStabilizationMode)
+        self.lensButton.setAttributedTitle(NSAttributedString(string: lensTitle, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor:UIColor.white]), for: .normal)
         
         switch self.camera.torchMode {
         case .auto:
@@ -844,11 +913,13 @@ class ViewController: UIViewController {
     }
     
     
-    deinit {
+    private func removeObservers(){
         keyValueObservations.forEach { (keyValueObservation) in
             keyValueObservation.invalidate()
         }
         keyValueObservations.removeAll()
+        
+        NotificationCenter.default.removeObserver(self)
     }
     
 }

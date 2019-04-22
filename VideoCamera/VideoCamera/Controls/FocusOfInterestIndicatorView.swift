@@ -58,7 +58,7 @@ class FocusOfInterestIndicatorView: UIControl {
         self.addConstraint(NSLayoutConstraint(item: self.crossVertical!, attribute: .centerX, relatedBy: .equal, toItem: self, attribute:.centerX, multiplier: 1, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: self.crossVertical!, attribute: .centerY, relatedBy: .equal, toItem: self, attribute:.centerY, multiplier: 1, constant: 0))
         
-        self.layer.borderWidth = 1
+        self.layer.borderWidth = 2
         self.layer.borderColor = UIColor(red: 0xff/255, green: 0xcc/255, blue: 0, alpha: 0.75).cgColor
         
         self.backgroundColor = .clear

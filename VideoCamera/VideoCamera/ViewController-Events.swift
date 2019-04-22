@@ -11,7 +11,54 @@ import UIKit
 import AVFoundation
 import FileBrowser
 
-extension ViewController {
+extension ViewController : CRRulerControlDataSource{
+    
+    func string(forMark numberMark: NSNumber!) -> String? {
+        switch currentSelectedParameterIndex {
+        case 0:
+            //Exposure
+            return nil
+        case 1:
+            //Shutter
+            let exposureTimeIndex = min(numberMark.intValue, 23)
+            if exposureTimeIndex < 0 || exposureTimeIndex >= shutterSpeed.count {
+                return nil
+            }
+            
+            let speed = shutterSpeed[exposureTimeIndex]
+            if speed == 25 ||
+                speed == 60 ||
+                speed == 125 ||
+                speed == 250 ||
+                speed == 500 ||
+                speed == 800 ||
+                speed == 1600 ||
+                speed == 2500 ||
+                speed == 5000 ||
+                speed == 8000 {
+                return "\(shutterSpeed[exposureTimeIndex])"
+            }
+            else {
+                return ""
+            }
+        case 2:
+            //ISO
+            break
+        case 3:
+            //WB
+            break
+        case 4:
+            //Focus
+            break
+        case 5:
+            //Zoom
+            break
+        default:
+            break
+        }
+        return nil
+    }
+    
     
     @objc func cameraRollTapped(_ sender : Any){
         let documentPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -51,7 +98,19 @@ extension ViewController {
         return NSLocalizedString("Unknow", comment: "")
     }
     
+    func currentCameraLocalizedName() -> String {
+        let (currentPosition, currentDevice) = camera.currentCamera
+        let currentPositionDesc = currentPosition == .back ?NSLocalizedString("Back", comment: ""):NSLocalizedString("Front", comment: "")
+        let currentDeviceName = NSLocalizedString(deviceName(of: currentDevice), comment: "")
+        
+        let currentCamera = "\(currentPositionDesc) \(currentDeviceName)"
+        
+        return currentCamera
+    }
+    
     @objc func changeCameraTapped(_ sender : Any){
+        
+        let changeCameraButton = sender as! UIButton
         
         let camera = CameraManager.sharedInstance
         
@@ -72,11 +131,29 @@ extension ViewController {
             let deviceName = self.deviceName(of: type)
             
             let action = UIAlertAction(title: "\(positionDesc) \(deviceName)", style: .default, handler: { (action) in
-                self.sessionQueue.async {
+                
+                changeCameraButton.isEnabled = false
+                SVProgressHUD.show()
+                
+                self.sessionQueue.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(50)) {
+                    
+                    let currentVideoDevice = camera.videoDeviceInput.device
+                    
                     camera.changeCamera(to: device)
                     
                     self.updateSettingsButton()
                     self.cameraBottom.reload()
+                    
+                    if let device = camera.videoDeviceInput?.device {
+                        NotificationCenter.default.removeObserver(self, name: .AVCaptureDeviceSubjectAreaDidChange, object: currentVideoDevice)
+                        NotificationCenter.default.addObserver(self, selector: #selector(self.subjectAreaDidChange), name: .AVCaptureDeviceSubjectAreaDidChange, object: device)
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(300)) {
+                        changeCameraButton.isEnabled = true
+                        SVProgressHUD.dismiss()
+                    }
+                    
                 }
             })
             actionSheet.addAction(action)
@@ -92,10 +169,12 @@ extension ViewController {
     }
     
     @objc func focusTap(_ gestureRecognizer: UITapGestureRecognizer) {
-        let devicePoint = previewView.videoPreviewLayer.captureDevicePointConverted(fromLayerPoint: gestureRecognizer.location(in: gestureRecognizer.view))
+        
+        let tapPoint = gestureRecognizer.location(in: gestureRecognizer.view)
+        let devicePoint = previewView.videoPreviewLayer.captureDevicePointConverted(fromLayerPoint: tapPoint)
         camera.focusPointOfInterest = devicePoint
-        camera.focusMode = camera.focusMode
-        //focus(with: .autoFocus, exposureMode: .autoExpose, at: devicePoint, monitorSubjectAreaChange: true)
+        camera.exposurePointOfInterest = devicePoint
+        
     }
     
     @objc func showSettingsView(_ sender:Any){
@@ -131,33 +210,371 @@ extension ViewController {
         }
     }
     
-    @objc func lensButtonTap(_ sender:Any) {
-        switch self.camera.preferredVideoStabilizationMode {
+    func videoStablizationModeDescription(_ mode:AVCaptureVideoStabilizationMode) -> String {
+        var lensTitle: String?
+        switch mode {
         case .auto:
-            self.camera.preferredVideoStabilizationMode = .standard
-            break
-        case .off:
-            self.camera.preferredVideoStabilizationMode = .auto
+            lensTitle = NSLocalizedString("Auto", comment: "")
             break
         case .standard:
-            self.camera.preferredVideoStabilizationMode = .cinematic
+            lensTitle = NSLocalizedString("Standard", comment: "")
             break
         case .cinematic:
-            self.camera.preferredVideoStabilizationMode = .off
+            lensTitle = NSLocalizedString("Cinematic", comment: "")
+            break
+        case .off:
+            lensTitle = NSLocalizedString("Off", comment: "")
             break
         default:
-            self.camera.preferredVideoStabilizationMode = .auto
+            lensTitle = NSLocalizedString("Off", comment: "")
             break
+        }
+        return lensTitle!
+    }
+    
+    @objc func lensButtonTap(_ sender:Any) {
+        self.lensButton.isEnabled = false
+        SVProgressHUD.show()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(50)) {
+            switch self.camera.preferredVideoStabilizationMode {
+            case .auto:
+                self.camera.preferredVideoStabilizationMode = .standard
+                break
+            case .off:
+                self.camera.preferredVideoStabilizationMode = .auto
+                break
+            case .standard:
+                self.camera.preferredVideoStabilizationMode = .cinematic
+                break
+            case .cinematic:
+                self.camera.preferredVideoStabilizationMode = .off
+                break
+            default:
+                self.camera.preferredVideoStabilizationMode = .auto
+                break
+            }
+            
+            SVProgressHUD.showInfo(withStatus: self.videoStablizationModeDescription(self.camera.preferredVideoStabilizationMode));
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(300)) {
+                self.lensButton.isEnabled = true
+                SVProgressHUD.dismiss()
+            }
+        }
+    }
+    
+    func toggleFocusLock(){
+        let button = self.cameraParameterButtons[4]
+        
+        if button.parameterLocked {
+            button.parameterLocked = false
+            camera.focusMode = .continuousAutoFocus
+        }
+        else {
+            button.parameterLocked = true
+            if camera.isLockingFocusWithCustomLensPositionSupported {
+                camera.setFocusModeLocked(lensPosition: AVCaptureDevice.currentLensPosition)
+            }
+            else {
+                camera.setFocusModeLocked(lensPosition: AVCaptureDevice.currentLensPosition)
+            }
+        }
+    }
+    
+    /*
+     rulerMark 0 means 8000, last one 25
+     */
+    func rulerMark2ShutterSpeed(rulerMark: Float) -> Int{
+        let markFloor = Int(floor(rulerMark))
+        let markCeil = Int(ceil(rulerMark))
+        if markCeil == markFloor {
+            return shutterSpeed[markFloor]
+        }
+        
+        //shutter speed between markFloor and markCeil
+        
+        let diff1 = shutterSpeed[markFloor] - shutterSpeed[markCeil]
+        let diff2 = Int(Float(diff1)*( (rulerMark - Float(markFloor)) / Float(markCeil - markFloor)))
+        let speed = shutterSpeed[markFloor] - diff2
+        
+        return speed
+    }
+    
+    func shutterSpeed2RulerMark(speed: Int) -> Float {
+        if  speed >= shutterSpeed[0] {
+            return 0.0
+        }
+        
+        if  speed <= shutterSpeed[shutterSpeed.count - 1] {
+            return Float(shutterSpeed.count - 1)
+        }
+        
+        for i in 1...(shutterSpeed.count - 1){
+            if speed == shutterSpeed[i]{
+                return Float(i)
+            }
+            if speed >= shutterSpeed[i] && speed <= shutterSpeed[i-1] {
+                return Float(i) - Float(speed - shutterSpeed[i])/Float(shutterSpeed[i-1]-shutterSpeed[i])
+            }
+        }
+        
+        return 0.0
+    }
+    
+    func shutterSpeed2Duration(speed: Int) -> Float {
+        if  speed > shutterSpeed[0] {
+            return 1.0 / Float(shutterSpeed[0])
+        }
+        
+        if  speed < shutterSpeed[shutterSpeed.count - 1] {
+            return 1.0 / Float(shutterSpeed[shutterSpeed.count - 1])
+        }
+        
+        return 1.0 / Float(speed)
+    }
+    
+    @objc func parameterButtonTapped(_ sender:Any) {
+        let button = sender as! CameraParameterButton
+        
+        func unselectParameter(_ i:Int) {
+            if(i >= 0 && i <= 5) {
+                self.cameraParameterButtons[i].parameterSelected = false
+            }
+        }
+        
+        func selectParameter(_ selectedIndex:Int){
+            
+            let oldSelectedIndex = currentSelectedParameterIndex
+            
+            if currentSelectedParameterIndex != selectedIndex && selectedIndex >= 0 && selectedIndex <= 5 {
+                
+                currentSelectedParameterIndex = selectedIndex
+                unselectParameter(oldSelectedIndex)
+                let button = self.cameraParameterButtons[selectedIndex]
+                button.parameterSelected = true
+            }
+            else{
+                currentSelectedParameterIndex = -1
+                unselectParameter(oldSelectedIndex)
+            }
+        }
+        
+        self.parameterRuler.isHidden = true
+        
+        self.parameterRuler.tintColor = UIColor(red: 0xff/255.0, green: 0x3b/255.0, blue: 0x30/255.0, alpha: 1.0)
+        self.parameterRuler.setTextColor(.white, for: .all)
+        self.parameterRuler.setColor(.white, for: .all)
+        
+        if button == self.cameraParameterButtons[0] {
+            //Exposure
+            let selectedIndex = 0
+            selectParameter(selectedIndex)
+            
+            if currentSelectedParameterIndex == 0 {
+                self.parameterRuler.rangeFrom = CGFloat(camera.minExposureTargetBias)
+                self.parameterRuler.rangeLength = CGFloat(camera.maxExposureTargetBias - camera.minExposureTargetBias)
+                self.parameterRuler.value = CGFloat(camera.exposureTargetBias)
+                self.parameterRuler.setFrequency(1, for: .minor)
+                self.parameterRuler.isHidden = false
+            }
+            else{
+                self.parameterRuler.isHidden = true
+            }
+        }
+        else if button == self.cameraParameterButtons[1] {
+            //Shutter
+            let selectedIndex = 1
+            selectParameter(selectedIndex)
+            
+            if currentSelectedParameterIndex == 1 {
+                
+                let exposureTimeMin = Float(camera.minExposureDuration.value)/Float(camera.minExposureDuration.timescale)
+                let exposureTime = Float(camera.exposureDuration.value)/Float(camera.exposureDuration.timescale)
+                
+                if !exposureTimeMin.isNaN && !exposureTime.isNaN && camera.isExposureModeSupported(.custom) {
+                    self.parameterRuler.rangeFrom = 0
+                    self.parameterRuler.rangeLength = CGFloat(shutterSpeed.count-1)
+                    self.parameterRuler.value = CGFloat(shutterSpeed2RulerMark(speed: Int(round(1/exposureTime))))
+                    self.parameterRuler.setFrequency(1, for: .minor)
+                    self.parameterRuler.value = 1
+                    self.parameterRuler.isHidden = false
+                }
+                else{
+                    self.parameterRuler.isHidden = true
+                }
+                
+                if !camera.isExposureModeSupported(.custom){
+                    selectParameter(-1)
+                    let deviceCapabilityDesc = NSLocalizedString("Manual shutter is not available in dual lens mode.", comment: "")
+                    SVProgressHUD.showInfo(withStatus: "\(deviceCapabilityDesc)")
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(2000)) {
+                        SVProgressHUD.dismiss()
+                    }
+                }
+                
+            }
+            else{
+                self.parameterRuler.isHidden = true
+            }
+        }
+        else if button == self.cameraParameterButtons[2] {
+            //ISO
+            let selectedIndex = 2
+            selectParameter(selectedIndex)
+            
+            if currentSelectedParameterIndex == 2 {
+                if let format = camera.videoDeviceInput?.device.activeFormat {
+                    if camera.isExposureModeSupported(.custom) {
+                        self.parameterRuler.rangeFrom = CGFloat(format.minISO)
+                        self.parameterRuler.rangeLength = CGFloat(format.maxISO - format.minISO)
+                        self.parameterRuler.setFrequency(self.parameterRuler.rangeLength/10, for: .minor)
+                        self.parameterRuler.value = CGFloat(camera.currentISO)
+                        self.parameterRuler.isHidden = false
+                    }
+                    else{
+                        selectParameter(-1)
+                        self.parameterRuler.isHidden = true
+                        if !camera.isExposureModeSupported(.custom){
+                            let deviceCapabilityDesc = NSLocalizedString("Manual ISO is not available in dual lens mode.", comment: "")
+                            SVProgressHUD.showInfo(withStatus: "\(deviceCapabilityDesc)")
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(2000)) {
+                                SVProgressHUD.dismiss()
+                            }
+                        }
+                    }
+                }
+                else{
+                    self.parameterRuler.isHidden = true
+                }
+                
+            }
+            else{
+                self.parameterRuler.isHidden = true
+            }
+        }
+        else if button == self.cameraParameterButtons[3] {
+            //White Balance
+            let selectedIndex = 3
+            selectParameter(selectedIndex)
+        }
+        else if button == self.cameraParameterButtons[4] {
+            //Focus
+            let selectedIndex = 4
+            
+            if camera.isLockingFocusWithCustomLensPositionSupported {
+                
+                selectParameter(selectedIndex)
+                
+                if currentSelectedParameterIndex == 4 {
+                    self.parameterRuler.rangeFrom = 0
+                    self.parameterRuler.rangeLength = 1
+                    self.parameterRuler.value = CGFloat(camera.lensPosition)
+                    self.parameterRuler.setFrequency(0.1, for: .minor)
+                    self.parameterRuler.isHidden = false
+                }
+                else{
+                    self.parameterRuler.isHidden = true
+                }
+            }
+            else {
+                selectParameter(-1)//custom focus mode not supported
+                self.parameterRuler.isHidden = true
+                /*if button.parameterLocked {
+                    camera.focusMode = .continuousAutoFocus
+                }
+                else {
+                    camera.setFocusModeLocked(lensPosition: AVCaptureDevice.currentLensPosition)
+                }*/
+                if !camera.isExposureModeSupported(.custom){
+                    let deviceCapabilityDesc = NSLocalizedString("Manual focus is not available in dual lens mode.", comment: "")
+                    SVProgressHUD.showInfo(withStatus: "\(deviceCapabilityDesc)")
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(2000)) {
+                        SVProgressHUD.dismiss()
+                    }
+                }
+            }
+        }
+        else if button == self.cameraParameterButtons[5] {
+            //Zoom
+            let selectedIndex = 5
+           selectParameter(selectedIndex)
+            
+            let (zoomMin, zoomMax) = camera.zoomFactorRange
+            if currentSelectedParameterIndex == 5 {
+                self.parameterRuler.rangeFrom = CGFloat(zoomMin)
+                self.parameterRuler.rangeLength = CGFloat(min(zoomMax, 10 ) - zoomMin)
+                self.parameterRuler.value = CGFloat(camera.zoomFactor)
+                self.parameterRuler.setFrequency(1, for: .minor)
+                self.parameterRuler.isHidden = false
+            }
+            else{
+                self.parameterRuler.isHidden = true
+            }
+        }
+    }
+    
+    @objc func cameraParameterChanged(_ sender:Any) {
+        let value:Float = {
+            var value = self.parameterRuler.value
+        
+            if value < self.parameterRuler.rangeFrom {
+                value = self.parameterRuler.rangeFrom
+            }
+            else if value > self.parameterRuler.rangeFrom + self.parameterRuler.rangeLength {
+                value = self.parameterRuler.rangeFrom + self.parameterRuler.rangeLength
+            }
+            
+            return Float(value)
+        }()
+        
+        switch currentSelectedParameterIndex {
+        case 0:
+            //Exposure
+            camera.exposureMode = .continuousAutoExposure
+            camera.exposureTargetBias = value
+            break
+        case 1:
+            //Shutter
+            let speed = rulerMark2ShutterSpeed(rulerMark: value)
+            let exposureDuration = CMTime(value: 1, timescale: CMTimeScale(speed), flags: .valid, epoch: 0)
+            camera.setExposureModeCustom(duration: exposureDuration, iso: camera.iso)
+//            let newExpDuration = camera.exposureDuration
+//            self.cameraParameterButtons[1].text1 = "1/\(Int64(newExpDuration.timescale)/newExpDuration.value)"
+            break
+        case 2:
+            //ISO
+            camera.setExposureModeCustom(duration: camera.exposureDuration, iso: value)
+            break
+        case 3:
+            //WB
+            break
+        case 4:
+            //Focus
+            camera.setFocusModeLocked(lensPosition: value)
+            break
+        case 5:
+            //Zoom
+            camera.zoomFactor = value
+            break
+        default:
+            break
+        }
+        
+        DispatchQueue.main.async {
+            self.updateCameraParameterDisplay(false)
         }
     }
     
     @objc func subjectAreaDidChange(notification: NSNotification) {
-        let _ = CGPoint(x: 0.5, y: 0.5)
+        let centerFocusPoint = CGPoint(x: 0.5, y: 0.5)
+        
+        let camera = self.camera
+        camera.focusPointOfInterest = centerFocusPoint
+        camera.exposurePointOfInterest = centerFocusPoint
         
     }
     
     @objc func onTimerEvent(timer: Timer) {
-        self.updateCameraParameterDisplay()
+        self.updateCameraParameterDisplay(true)
     }
     
     /// - Tag: HandleRuntimeError

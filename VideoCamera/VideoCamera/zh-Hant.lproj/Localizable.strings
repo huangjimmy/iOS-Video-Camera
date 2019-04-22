@@ -39,3 +39,9 @@
 "Auto" = "自動";
 "Standard" = "標準";
 "Cinematic" = "電影";
+
+"WB_Locked" = "鎖定";
+
+"Manual focus is not available in dual lens mode." = "使用雙鏡頭時不支持手動對焦。";
+"Manual shutter is not available in dual lens mode." = "使用雙鏡頭時不支持手動設置快門。";
+"Manual ISO is not available in dual lens mode." = "使用雙鏡頭時不支持手動設置感光度。";
