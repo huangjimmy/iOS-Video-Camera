@@ -668,7 +668,7 @@ class ViewController: UIViewController {
                 
                 self.cameraParameterButtons[0].parameterLocked = {
                     switch camera.exposureMode {
-                    case .locked, .custom:
+                    case .locked:
                         return true
                     default:
                         return false
@@ -832,6 +832,9 @@ class ViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        
+        self.parameterRuler.isHidden = true
+        self.currentSelectedParameterIndex = -1
         
         self.recalcConstraints()
         self.view.setNeedsUpdateConstraints()
