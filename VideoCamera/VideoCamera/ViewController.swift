@@ -916,7 +916,7 @@ class ViewController: UIViewController {
                 let size = self.bluetoothAndMiscView.bluetoothStatusLabel.sizeThatFits(CGSize(width: 100, height: 18))
                 self.bluetoothAndMiscViewWidthConstraint.constant = 64 + size.width
                 
-                self.camera.preferredVideoStabilizationMode = .off //disable video stabilization when gimbal is connected
+                //self.camera.preferredVideoStabilizationMode = .off //disable video stabilization when gimbal is connected
             }
             else{
                 self.bluetoothAndMiscView.bluetoothStatusLabel.text = ""
