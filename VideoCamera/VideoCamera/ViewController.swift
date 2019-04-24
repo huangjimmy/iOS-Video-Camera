@@ -915,6 +915,8 @@ class ViewController: UIViewController {
                 self.bluetoothAndMiscView.bluetoothStatusLabel.text = product.name
                 let size = self.bluetoothAndMiscView.bluetoothStatusLabel.sizeThatFits(CGSize(width: 100, height: 18))
                 self.bluetoothAndMiscViewWidthConstraint.constant = 64 + size.width
+                
+                self.camera.preferredVideoStabilizationMode = .off //disable video stabilization when gimbal is connected
             }
             else{
                 self.bluetoothAndMiscView.bluetoothStatusLabel.text = ""
@@ -955,6 +957,9 @@ class ViewController: UIViewController {
     }
     
     @objc func applicationDidBecomeActive(){
+        
+        self.searchAndConnectOsmoMobileProducts(false)
+        
         if self.reconnectOsmoMobile() == false {
             self.osmoMobileProduct = nil
         }

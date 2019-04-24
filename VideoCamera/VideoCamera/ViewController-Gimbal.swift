@@ -46,27 +46,40 @@ extension ViewController : DJISDKManagerDelegate, DJIAppActivationManagerDelegat
         }
     }
     
-    func searchAndConnectOsmoMobileProducts(){
+    func searchAndConnectOsmoMobileProducts(_ showSelectSheet: Bool = true){
         struct SearchOsmoStatic {
             static var searchStarted:Bool = false
         }
         if SearchOsmoStatic.searchStarted == false {
-            SVProgressHUD.show()
+            if showSelectSheet {
+                SVProgressHUD.show()
+            }
+            else {
+                SearchOsmoStatic.searchStarted = true
+            }
             OsmoMobileExternalHandheldController.shared.searchBluetooth(completion: { (products, error) in
                 if let _ = error {
-                    SVProgressHUD.showError(withStatus: error?.localizedDescription)
-                    SVProgressHUD.dismiss(withDelay: TimeInterval(1000))
+                    if showSelectSheet {
+                        SVProgressHUD.showError(withStatus: error?.localizedDescription)
+                        SVProgressHUD.dismiss(withDelay: TimeInterval(1000))
+                    }
                 }
                 else {
                     self.osmoMobileAvailableProducts = products!
-                    DispatchQueue.main.async {
-                        if SearchOsmoStatic.searchStarted == false {
-                            SearchOsmoStatic.searchStarted = true
-                            self.searchAndConnectOsmoMobileProducts()
+                    if showSelectSheet {
+                        DispatchQueue.main.async {
+                            if SearchOsmoStatic.searchStarted == false {
+                                SearchOsmoStatic.searchStarted = true
+                                self.searchAndConnectOsmoMobileProducts()
+                            }
                         }
                     }
                 }
             })
+            return
+        }
+        
+        if showSelectSheet == false {
             return
         }
         
@@ -212,13 +225,6 @@ extension ViewController : DJISDKManagerDelegate, DJIAppActivationManagerDelegat
             self.recordTapped(self.cameraBottom.recordButton)
             break
         case .shutterLongClick:
-            switch self.camera.preferredVideoStabilizationMode {
-            case .off:
-                self.camera.preferredVideoStabilizationMode = .auto
-                break
-            default:
-                self.camera.preferredVideoStabilizationMode = .off
-            }
             break
         default:
             break
@@ -270,6 +276,8 @@ extension ViewController : DJISDKManagerDelegate, DJIAppActivationManagerDelegat
             default:
                 break
             }
+            break
+        case .doubleClick:
             break
         default:
             break
