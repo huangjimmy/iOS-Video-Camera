@@ -11,7 +11,7 @@ import UIKit
 import AVFoundation
 import FileBrowser
 
-extension ViewController : CRRulerControlDataSource{
+extension ViewController : CRRulerControlDataSource {
     
     func string(forMark numberMark: NSNumber!) -> String? {
         switch currentSelectedParameterIndex {
@@ -109,7 +109,7 @@ extension ViewController : CRRulerControlDataSource{
     }
     
     @objc func changeCameraTapped(_ sender : Any){
-        
+    
         let changeCameraButton = sender as! UIButton
         
         let camera = CameraManager.sharedInstance

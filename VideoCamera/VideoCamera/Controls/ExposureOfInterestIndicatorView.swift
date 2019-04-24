@@ -18,19 +18,19 @@ class ExposureOfInterestIndicatorView: UIControl {
     required init() {
         super.init(frame: .zero)
         
-        createSubViews()
+        initSubViews()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        createSubViews()
+        initSubViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        createSubViews()
+        initSubViews()
     }
     
     private var _locked = false
@@ -52,7 +52,7 @@ class ExposureOfInterestIndicatorView: UIControl {
     
     let exposureColor = UIColor(red: 0xff/255, green: 0x3b/255, blue: 0x30/255, alpha: 0.75)
     
-    private func createSubViews(){
+    private func initSubViews(){
         
         self.lockUnockButton = UIButton(type: .custom)
         self.lockUnockButton!.setImage(unlockImage, for: .normal)

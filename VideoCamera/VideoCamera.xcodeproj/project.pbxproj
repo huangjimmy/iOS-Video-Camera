@@ -16,6 +16,8 @@
 		BF45CAD1226A083C00819F23 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF45CAD3226A083C00819F23 /* Localizable.strings */; };
 		BF45CAEF226ABD4F00819F23 /* UIView+ALQuickFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45CAEA226ABD4F00819F23 /* UIView+ALQuickFrame.m */; };
 		BF45CAF0226ABD4F00819F23 /* ALBatteryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45CAEC226ABD4F00819F23 /* ALBatteryView.m */; };
+		BF57C591227007080008E438 /* ViewController-Gimbal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF57C590227007080008E438 /* ViewController-Gimbal.swift */; };
+		BF57C59322700E060008E438 /* BluetoothAndMiscHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF57C59222700E060008E438 /* BluetoothAndMiscHomeView.swift */; };
 		BF8987D222674525002BAA70 /* ViewController-Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8987D122674525002BAA70 /* ViewController-Events.swift */; };
 		BF92C216225DE83800B246DA /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF92C215225DE83800B246DA /* CameraManager.swift */; };
 		BFB4BB1E224D0DDD0056EFD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB4BB1D224D0DDD0056EFD5 /* AppDelegate.swift */; };
@@ -30,6 +32,7 @@
 		BFD34366226D2983009EA26F /* CRRulerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD3435F226D2983009EA26F /* CRRulerLayer.m */; };
 		BFD34367226D2983009EA26F /* CRRulerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD34361226D2983009EA26F /* CRRulerControl.m */; };
 		BFD34368226D2983009EA26F /* CRRulerControl.podspec in Resources */ = {isa = PBXBuildFile; fileRef = BFD34363226D2983009EA26F /* CRRulerControl.podspec */; };
+		BFD3436A226EE6D6009EA26F /* BluetoothHandheldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD34369226EE6D6009EA26F /* BluetoothHandheldController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +66,8 @@
 		BF45CAEB226ABD4F00819F23 /* UIView+ALQuickFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ALQuickFrame.h"; sourceTree = "<group>"; };
 		BF45CAEC226ABD4F00819F23 /* ALBatteryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALBatteryView.m; sourceTree = "<group>"; };
 		BF45CAF4226ABF1500819F23 /* VideoCamera-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VideoCamera-Bridging-Header.h"; sourceTree = "<group>"; };
+		BF57C590227007080008E438 /* ViewController-Gimbal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController-Gimbal.swift"; sourceTree = "<group>"; };
+		BF57C59222700E060008E438 /* BluetoothAndMiscHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothAndMiscHomeView.swift; sourceTree = "<group>"; };
 		BF8987D122674525002BAA70 /* ViewController-Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ViewController-Events.swift"; path = "VideoCamera/ViewController-Events.swift"; sourceTree = SOURCE_ROOT; };
 		BF92C215225DE83800B246DA /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		BFB4BB1A224D0DDD0056EFD5 /* VideoCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +87,7 @@
 		BFD34360226D2983009EA26F /* CRMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRMark.h; sourceTree = "<group>"; };
 		BFD34361226D2983009EA26F /* CRRulerControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRRulerControl.m; sourceTree = "<group>"; };
 		BFD34363226D2983009EA26F /* CRRulerControl.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CRRulerControl.podspec; sourceTree = "<group>"; };
+		BFD34369226EE6D6009EA26F /* BluetoothHandheldController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothHandheldController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +143,7 @@
 			children = (
 				BFB4BB2F224DE5810056EFD5 /* PreviewView.swift */,
 				BF92C215225DE83800B246DA /* CameraManager.swift */,
+				BFD34369226EE6D6009EA26F /* BluetoothHandheldController.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -167,6 +174,7 @@
 				BFB4BB1D224D0DDD0056EFD5 /* AppDelegate.swift */,
 				BFB4BB1F224D0DDD0056EFD5 /* ViewController.swift */,
 				BF8987D122674525002BAA70 /* ViewController-Events.swift */,
+				BF57C590227007080008E438 /* ViewController-Gimbal.swift */,
 				BFB4BB21224D0DDD0056EFD5 /* Main.storyboard */,
 				BFB4BB24224D0DE00056EFD5 /* Assets.xcassets */,
 				BFB4BB26224D0DE00056EFD5 /* LaunchScreen.storyboard */,
@@ -189,6 +197,7 @@
 				BF45CAB62269677700819F23 /* FormatSettingsView.swift */,
 				BF45CAB82269D7D000819F23 /* CameraParamterButton.swift */,
 				BFD3434C226C2326009EA26F /* ExposureOfInterestIndicatorView.swift */,
+				BF57C59222700E060008E438 /* BluetoothAndMiscHomeView.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -258,6 +267,11 @@
 				TargetAttributes = {
 					BFB4BB19224D0DDD0056EFD5 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.DataProtection = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -331,12 +345,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VideoCamera/Pods-VideoCamera-frameworks.sh",
+				"${PODS_ROOT}/DJI-SDK-iOS/iOS_Mobile_SDK/DJISDK.framework",
 				"${PODS_ROOT}/Reveal-SDK/RevealServer-12/iOS/RevealServer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DJISDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,9 +419,12 @@
 				BFB4BB30224DE5810056EFD5 /* PreviewView.swift in Sources */,
 				BFBDA97022677F0E00A9B35F /* RecordTimerLabel.swift in Sources */,
 				BFD3434D226C2326009EA26F /* ExposureOfInterestIndicatorView.swift in Sources */,
+				BF57C591227007080008E438 /* ViewController-Gimbal.swift in Sources */,
 				BF1A97072266655C006BEAF7 /* CameraBottomControl.swift in Sources */,
+				BFD3436A226EE6D6009EA26F /* BluetoothHandheldController.swift in Sources */,
 				BFD34367226D2983009EA26F /* CRRulerControl.m in Sources */,
 				BF45CAF0226ABD4F00819F23 /* ALBatteryView.m in Sources */,
+				BF57C59322700E060008E438 /* BluetoothAndMiscHomeView.swift in Sources */,
 				BFD34364226D2983009EA26F /* CRMark.m in Sources */,
 				BF8987D222674525002BAA70 /* ViewController-Events.swift in Sources */,
 				BF45CAB72269677700819F23 /* FormatSettingsView.swift in Sources */,
@@ -591,6 +610,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BC3N63B6U8;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = VideoCamera/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -612,6 +632,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BC3N63B6U8;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = VideoCamera/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (

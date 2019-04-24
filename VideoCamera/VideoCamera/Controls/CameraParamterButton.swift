@@ -62,7 +62,7 @@ class CameraParameterButton: UIControl {
         lockedIndicator = UIView(frame: CGRect(x: 0,y: 39, width: 69, height: 3))
         super.init(frame: .zero)
         
-        self.createSubviews()
+        self.initSubViews()
     }
     
     override init(frame: CGRect) {
@@ -78,10 +78,10 @@ class CameraParameterButton: UIControl {
         lockedIndicator = UIView(frame: CGRect(x: 0,y: 39, width: 69, height: 3))
         super.init(coder: aDecoder)
         
-        self.createSubviews()
+        self.initSubViews()
     }
     
-    func createSubviews(){
+    func initSubViews(){
         upperLabel.textColor = .white
         bottomLabel.textColor = .white
         

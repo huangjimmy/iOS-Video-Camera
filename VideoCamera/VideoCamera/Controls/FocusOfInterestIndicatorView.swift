@@ -36,23 +36,23 @@ class FocusOfInterestIndicatorView: UIControl {
     required init() {
         super.init(frame: .zero)
         
-        createSubViews()
+        initSubViews()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        createSubViews()
+        initSubViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        createSubViews()
+        initSubViews()
     }
     
     
-    private func createSubViews(){
+    private func initSubViews(){
         
         let focusColor = UIColor(red: 0xff/255, green: 0xcc/255, blue: 0, alpha: 0.75)
         

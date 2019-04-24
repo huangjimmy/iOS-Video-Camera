@@ -32,6 +32,8 @@ class ViewController: UIViewController {
     
     internal let camera = CameraManager.sharedInstance
     
+    internal var bluetoothAndMiscView: BluetoothAndMiscHomeView!
+    internal var bluetoothAndMiscViewWidthConstraint:NSLayoutConstraint!
     internal var batteryView:ALBatteryView!
     internal var previewView:PreviewView!
     private let previewTapGestureRecognizer = UITapGestureRecognizer()
@@ -167,6 +169,22 @@ class ViewController: UIViewController {
         self.topStatusBarPlaceholderView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
         self.view.addSubview(self.topStatusBarPlaceholderView)
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[v]-0-|", options: .init(rawValue: 0), metrics: nil, views: ["v":self.topStatusBarPlaceholderView!]))
+        
+        self.bluetoothAndMiscView = BluetoothAndMiscHomeView()
+        self.bluetoothAndMiscView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.bluetoothAndMiscView)
+        self.bluetoothAndMiscViewWidthConstraint = NSLayoutConstraint(item: self.bluetoothAndMiscView!, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1.0, constant: 64)
+        self.view.addConstraint(self.bluetoothAndMiscViewWidthConstraint)
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[topBannerBackgroundView]-[bluetoothAndMiscView(35)]", options: .init(rawValue: 0), metrics: nil, views: ["bluetoothAndMiscView":self.bluetoothAndMiscView!, "topBannerBackgroundView":self.topBannerBackgroundView!]))
+        self.view.addConstraint(NSLayoutConstraint(item: self.bluetoothAndMiscView!, attribute: .centerX, relatedBy: .equal, toItem: self.topBannerBackgroundView!, attribute: .centerX, multiplier: 1.0, constant: 0))
+        
+        self.bluetoothAndMiscView.bluetoothTapped = {
+            self.searchAndConnectOsmoMobileProducts()
+        }
+        
+        self.bluetoothAndMiscView.settingsTapped = {
+            
+        }
         
         self.recordTimeLabel = RecordTimerLabel(frame: .zero)
         self.recordTimeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -545,7 +563,13 @@ class ViewController: UIViewController {
             }
         }
         
+        DispatchQueue.main.async {
+            DJISDKManager.registerApp(with: self)
+            DJISDKManager.beginAppRegistration()
+        }
+        
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -886,6 +910,19 @@ class ViewController: UIViewController {
         
         keyValueObservations.append(keyValueObservation)
         
+        let osmoProductObservation = self.observe(\.osmoMobileProduct) { (viewController, change) in
+            if let product = self.osmoMobileProduct {
+                self.bluetoothAndMiscView.bluetoothStatusLabel.text = product.name
+                let size = self.bluetoothAndMiscView.bluetoothStatusLabel.sizeThatFits(CGSize(width: 100, height: 18))
+                self.bluetoothAndMiscViewWidthConstraint.constant = 64 + size.width
+            }
+            else{
+                self.bluetoothAndMiscView.bluetoothStatusLabel.text = ""
+                self.bluetoothAndMiscViewWidthConstraint.constant = 64
+            }
+        }
+        keyValueObservations.append(osmoProductObservation)
+        
         if let videoDeviceInput = self.camera.videoDeviceInput {
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(subjectAreaDidChange),
@@ -913,8 +950,15 @@ class ViewController: UIViewController {
                                                selector: #selector(sessionInterruptionEnded),
                                                name: .AVCaptureSessionInterruptionEnded,
                                                object: self.previewView.session)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
+    @objc func applicationDidBecomeActive(){
+        if self.reconnectOsmoMobile() == false {
+            self.osmoMobileProduct = nil
+        }
+    }
     
     private func removeObservers(){
         keyValueObservations.forEach { (keyValueObservation) in

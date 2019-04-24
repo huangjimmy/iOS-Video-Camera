@@ -45,7 +45,7 @@ class FormatSettingsView: UIView {
         
         super.init(coder: aDecoder)
         
-        createSubviews()
+        initSubViews()
     }
     
     override init(frame: CGRect) {
@@ -60,7 +60,7 @@ class FormatSettingsView: UIView {
         
         super.init(frame: frame)
         
-        createSubviews()
+        initSubViews()
     }
     
     init(){
@@ -75,10 +75,10 @@ class FormatSettingsView: UIView {
         
         super.init(frame: .zero)
         
-        createSubviews()
+        initSubViews()
     }
     
-    private func createSubviews(){
+    private func initSubViews(){
         self.resolutionLabel.text = NSLocalizedString("Format", comment: "4k/1080p/720p")
         self.fpsLabel.text = NSLocalizedString("Frame rate", comment: "24/30/48/50/60/120/240")
         self.microphoneLabel.text = NSLocalizedString("Microphone", comment: "")

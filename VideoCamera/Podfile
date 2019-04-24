@@ -6,4 +6,5 @@ pod 'Reveal-SDK', '12', :configurations => ['Debug']
 pod 'FileBrowser', '~> 1.0'
 pod 'DeviceGuru', '~> 5.0'
 pod 'SVProgressHUD'
+pod 'DJI-SDK-iOS', '~> 4.9.1'
 end

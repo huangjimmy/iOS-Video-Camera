@@ -13,4 +13,7 @@
 #import "SVProgressHUD.h"
 #import "CRRulerControl.h"
 
+#import <Corebluetooth/CoreBluetooth.h>
+#import <DJISDK/DJISDK.h>
+
 #endif /* VideoCamera_Bridging_Header_h */

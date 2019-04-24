@@ -226,7 +226,7 @@ import Photos
                 
                 do{
                     try device.lockForConfiguration()
-                    device.ramp(toVideoZoomFactor: CGFloat(zoom), withRate: 1)
+                    device.videoZoomFactor = CGFloat(zoom)//ramp(toVideoZoomFactor: CGFloat(zoom), withRate: 1)
                     device.unlockForConfiguration()
                 }
                 catch {
@@ -1115,8 +1115,6 @@ import Photos
                 else {
                     //use default
                 }
-                    
-                print(movieFileOutput.outputSettings(for: connection))
             }
             
             self.movieFileOutput = movieFileOutput

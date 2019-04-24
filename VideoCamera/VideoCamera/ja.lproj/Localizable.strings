@@ -43,3 +43,6 @@
 "Manual focus is not available in dual lens mode." = "手動焦点調節はデュアルカメラ使用時にはサポートされていません。";
 "Manual shutter is not available in dual lens mode." = "デュアルカメラを使用している場合、シャッター設定はサポートされていません。";
 "Manual ISO is not available in dual lens mode." = "手動感度設定はデュアルカメラ使用時にはサポートされていません。";
+
+"Choose Gimbal" = "ジンバルを選ぶ";
+"Disconnect %@" = "切り離す %@";
