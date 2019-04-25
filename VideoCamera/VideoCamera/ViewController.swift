@@ -502,7 +502,7 @@ class ViewController: UIViewController {
         
         self.previewView.addGestureRecognizer(self.previewTapGestureRecognizer)
         self.previewTapGestureRecognizer.addTarget(self, action: #selector(focusTap(_:)))
-
+        
     }
     
     
