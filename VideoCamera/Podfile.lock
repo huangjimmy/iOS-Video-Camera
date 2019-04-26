@@ -2,17 +2,13 @@ PODS:
   - DeviceGuru (5.1.2)
   - DJI-SDK-iOS (4.9.1)
   - FileBrowser (1.0.0)
-  - PonyDebugger (0.4.5):
-    - SocketRocket
   - Reveal-SDK (12)
-  - SocketRocket (0.5.1)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - DeviceGuru (~> 5.0)
   - DJI-SDK-iOS (~> 4.9.1)
   - FileBrowser (~> 1.0)
-  - PonyDebugger (from `https://github.com/huangjimmy/PonyDebugger.git`)
   - Reveal-SDK (= 12)
   - SVProgressHUD
 
@@ -22,27 +18,15 @@ SPEC REPOS:
     - DJI-SDK-iOS
     - FileBrowser
     - Reveal-SDK
-    - SocketRocket
     - SVProgressHUD
-
-EXTERNAL SOURCES:
-  PonyDebugger:
-    :git: https://github.com/huangjimmy/PonyDebugger.git
-
-CHECKOUT OPTIONS:
-  PonyDebugger:
-    :commit: a59f4ba50101a349db04b81d8ae857d7b04c8fa7
-    :git: https://github.com/huangjimmy/PonyDebugger.git
 
 SPEC CHECKSUMS:
   DeviceGuru: 65a794c0c5b4f600453bcfaf94c78fea66ba577e
   DJI-SDK-iOS: 2c7f4cc888909dd0996c4ae38bb25b979d76ce19
   FileBrowser: 2ca91ff61c9ea09665eb3b8f9e64a7a77e66a0bf
-  PonyDebugger: 1c60f7c876bdb6a8b6bf0f0269087f8a234fafa7
   Reveal-SDK: 58517b2a4d5d69dcb98e62aa4a5e62c84b5e0061
-  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: dc0a5ab2659e211d5eab236503d9419a89464541
+PODFILE CHECKSUM: 2e3852d449e088a3d45b0334b6f0dd439a13775b
 
 COCOAPODS: 1.6.1

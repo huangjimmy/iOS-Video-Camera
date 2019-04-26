@@ -1,12 +1,11 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
-ENABLE_NS_ASSERTIONS = YES
 FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/DJI-SDK-iOS/iOS_Mobile_SDK" "${PODS_ROOT}/Reveal-SDK/RevealServer-12/iOS"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FileBrowser" "${PODS_ROOT}/Headers/Public/PonyDebugger" "${PODS_ROOT}/Headers/Public/SVProgressHUD" "${PODS_ROOT}/Headers/Public/SocketRocket"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FileBrowser" "${PODS_ROOT}/Headers/Public/SVProgressHUD"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru" "${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser" "${PODS_CONFIGURATION_BUILD_DIR}/PonyDebugger" "${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD" "${PODS_CONFIGURATION_BUILD_DIR}/SocketRocket"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru" "${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser" "${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD"
 OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru/DeviceGuru.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser/FileBrowser.modulemap"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"DeviceGuru" -l"FileBrowser" -l"PonyDebugger" -l"SVProgressHUD" -l"SocketRocket" -l"icucore" -l"z" -framework "CFNetwork" -framework "CoreData" -framework "CoreGraphics" -framework "DJISDK" -framework "QuartzCore" -framework "QuickLook" -framework "RevealServer" -framework "Security" -framework "WebKit"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"DeviceGuru" -l"FileBrowser" -l"SVProgressHUD" -l"z" -framework "CFNetwork" -framework "CoreGraphics" -framework "DJISDK" -framework "QuartzCore" -framework "QuickLook" -framework "RevealServer" -framework "WebKit"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru/DeviceGuru.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser/FileBrowser.modulemap"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

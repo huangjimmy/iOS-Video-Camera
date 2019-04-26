@@ -45,6 +45,7 @@
 "Manual focus is not available in dual lens mode." = "使用雙鏡頭時不支持手動對焦。";
 "Manual shutter is not available in dual lens mode." = "使用雙鏡頭時不支持手動設置快門。";
 "Manual ISO is not available in dual lens mode." = "使用雙鏡頭時不支持手動設置感光度。";
+"Manual white balance is not available in dual lens mode." = "使用雙鏡頭時不支持手動設置白平衡。";
 
 "Choose Gimbal" = "選擇手持穩定器";
 "Disconnect %@" = "斷開 %@";

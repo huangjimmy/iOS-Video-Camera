@@ -11,6 +11,16 @@ import UIKit
 import AVFoundation
 import Photos
 
+@objc public enum WhiteBalanceMode: Int {
+    case auto
+    case sunlight
+    case cloudy
+    case tungsten
+    case shade
+    case flash
+    case manual
+}
+
 
 @objc class CameraManager : NSObject,AVCaptureFileOutputRecordingDelegate{
     
@@ -601,19 +611,74 @@ import Photos
         }
     }
     
+    var _desiredWhiteBalanceMode: WhiteBalanceMode = .auto
+    var desiredWhiteBalanceMode: WhiteBalanceMode {
+        get {
+            return _desiredWhiteBalanceMode
+        }
+        
+        set {
+            _desiredWhiteBalanceMode = newValue
+        
+            guard let device = self.videoDeviceInput?.device else {
+                return
+            }
+            
+            let tempAndTint = self.temperatureAndTintValue
+            var temp: AVCaptureDevice.WhiteBalanceTemperatureAndTintValues?
+            switch _desiredWhiteBalanceMode {
+                case .auto:
+                    do {
+                        try device.lockForConfiguration()
+                        device.whiteBalanceMode = .continuousAutoWhiteBalance
+                        device.unlockForConfiguration()
+                    }
+                    catch {
+                        print("\(error)")
+                    }
+                    return
+                case .sunlight:
+                    temp = AVCaptureDevice.WhiteBalanceTemperatureAndTintValues.init(temperature: 5200, tint: tempAndTint.tint)
+                    break
+                case .cloudy:
+                    temp = AVCaptureDevice.WhiteBalanceTemperatureAndTintValues.init(temperature: 6000, tint: tempAndTint.tint)
+                    break
+                case .tungsten:
+                    temp = AVCaptureDevice.WhiteBalanceTemperatureAndTintValues.init(temperature: 3000, tint: tempAndTint.tint)
+                    break
+                case .shade:
+                    temp = AVCaptureDevice.WhiteBalanceTemperatureAndTintValues.init(temperature: 7500, tint: tempAndTint.tint)
+                    break
+                case .flash:
+                    temp = AVCaptureDevice.WhiteBalanceTemperatureAndTintValues.init(temperature: 4000, tint: tempAndTint.tint)
+                    break
+                case .manual:
+                    break
+                default:
+                    break
+            }
+            if temp != nil {
+                self.setWhiteBalanceModeLocked(with: temp!)
+            }
+            else{
+                self.setWhiteBalanceModeLocked(with: tempAndTint)
+            }
+        }
+    }
+    
     var whiteBalanceMode: AVCaptureDevice.WhiteBalanceMode {
         get{
             if let device = self.videoDeviceInput?.device {
                 return device.whiteBalanceMode
             }
-            return .autoWhiteBalance
+            return .continuousAutoWhiteBalance
         }
     }
     
     public var temperatureAndTintValue : AVCaptureDevice.WhiteBalanceTemperatureAndTintValues{
         get {
             if let device = self.videoDeviceInput?.device {
-                return device.temperatureAndTintValues(for: currentWhiteBalanceGains)
+                return device.temperatureAndTintValues(for: device.deviceWhiteBalanceGains)
             }
             return AVCaptureDevice.WhiteBalanceTemperatureAndTintValues.init()
         }
@@ -641,6 +706,7 @@ import Photos
                 let whiteBalanceGains = device.deviceWhiteBalanceGains(for: temperatureAndTintValue)
                 device.setWhiteBalanceModeLocked(with: whiteBalanceGains, completionHandler: nil)
                 device.unlockForConfiguration()
+                _desiredWhiteBalanceMode = .manual
             }
             catch {
                 print("Could not lock device for configuration: \(error)")

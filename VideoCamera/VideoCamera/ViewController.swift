@@ -54,6 +54,7 @@ class ViewController: UIViewController {
     internal var lensButton: UIButton!
     internal var flashButton: UIButton!
     
+    internal var whiteBalanceSettingsView: WhiteBalanceSettingsView!
     internal var parameterRuler: CRRulerControl!
     internal var cameraParameterButtons:[CameraParameterButton] = []
     /*! -1 none selected 0 exposure 1 shutter 2 ISO 3 WB 4 focus 5 zoom */
@@ -339,6 +340,16 @@ class ViewController: UIViewController {
         landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[v]-0-|", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom!]))
         landscapeConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[v(100)]-0-|", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom!]))
         landscapeRightConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[v(100)]", options: .init(rawValue: 0), metrics: nil, views: ["v":cameraBottom!]))
+        
+        self.whiteBalanceSettingsView = WhiteBalanceSettingsView()
+        self.whiteBalanceSettingsView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.whiteBalanceSettingsView)
+        self.whiteBalanceSettingsView.isHidden = true
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v(300)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.whiteBalanceSettingsView!]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v(240)]", options: .init(rawValue: 0), metrics: nil, views: ["v":self.whiteBalanceSettingsView!]))
+        self.view.addConstraint(NSLayoutConstraint(item: self.whiteBalanceSettingsView!, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.whiteBalanceSettingsView!, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1, constant: -50))
+        self.whiteBalanceSettingsView.addTarget(self, action: #selector(whiteBalanceChanged), for: .valueChanged)
         
         self.parameterRuler = CRRulerControl()
         self.parameterRuler.isHidden = true
@@ -744,6 +755,9 @@ class ViewController: UIViewController {
                 && whiteBalanceGains.blueGain >= 1 {
                 let wb = device.temperatureAndTintValues(for: whiteBalanceGains)
                 self.cameraParameterButtons[3].text1 = String(format: "%dK", Int(wb.temperature))
+                if currentSelectedParameterIndex == 3 && device.isAdjustingWhiteBalance == false && self.whiteBalanceSettingsView.whiteBalanceMode != .manual {
+                    self.parameterRuler.value = CGFloat(wb.temperature)
+                }
             }
             
             self.cameraParameterButtons[4].text1 = String(format: "%.2f", arguments: [device.lensPosition])

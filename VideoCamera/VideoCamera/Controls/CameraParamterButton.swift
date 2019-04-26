@@ -70,6 +70,8 @@ class CameraParameterButton: UIControl {
         bottomLabel = UILabel(frame: CGRect(x: 0,y: 21, width: 69, height: 21))
         lockedIndicator = UIView(frame: CGRect(x: 0,y: 39, width: 69, height: 3))
         super.init(frame: frame)
+        
+        self.initSubViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -91,7 +93,7 @@ class CameraParameterButton: UIControl {
         upperLabel.font = UIFont.systemFont(ofSize: 15)
         bottomLabel.font = UIFont.systemFont(ofSize: 15)
         
-        self.addSubview(upperLabel)
+        self.addSubview(self.upperLabel)
         self.addSubview(self.bottomLabel)
         self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.40)
         

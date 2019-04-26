@@ -6,6 +6,9 @@ An iOS video camera for vloggers that supports manually control of exposure, shu
 
 GPLv3
 
+ALBatteryView (https://github.com/andrealufino/ALBatteryView) used in this project is distributed under MIT license.
+ALQuickFrame (https://github.com/andrealufino/ALQuickFrame) is distributed under unspecified license.
+
 ## Features
 
 ### Manual adjustment of Shutter/ISO/Focus/Zoom

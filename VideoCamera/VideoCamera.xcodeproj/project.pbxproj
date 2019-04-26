@@ -18,6 +18,7 @@
 		BF45CAF0226ABD4F00819F23 /* ALBatteryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45CAEC226ABD4F00819F23 /* ALBatteryView.m */; };
 		BF57C591227007080008E438 /* ViewController-Gimbal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF57C590227007080008E438 /* ViewController-Gimbal.swift */; };
 		BF57C59322700E060008E438 /* BluetoothAndMiscHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF57C59222700E060008E438 /* BluetoothAndMiscHomeView.swift */; };
+		BF57C59F2272CC260008E438 /* WhiteBalanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF57C59E2272CC260008E438 /* WhiteBalanceSettingsView.swift */; };
 		BF8987D222674525002BAA70 /* ViewController-Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8987D122674525002BAA70 /* ViewController-Events.swift */; };
 		BF92C216225DE83800B246DA /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF92C215225DE83800B246DA /* CameraManager.swift */; };
 		BFB4BB1E224D0DDD0056EFD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB4BB1D224D0DDD0056EFD5 /* AppDelegate.swift */; };
@@ -68,6 +69,7 @@
 		BF45CAF4226ABF1500819F23 /* VideoCamera-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VideoCamera-Bridging-Header.h"; sourceTree = "<group>"; };
 		BF57C590227007080008E438 /* ViewController-Gimbal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController-Gimbal.swift"; sourceTree = "<group>"; };
 		BF57C59222700E060008E438 /* BluetoothAndMiscHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothAndMiscHomeView.swift; sourceTree = "<group>"; };
+		BF57C59E2272CC260008E438 /* WhiteBalanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBalanceSettingsView.swift; sourceTree = "<group>"; };
 		BF8987D122674525002BAA70 /* ViewController-Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ViewController-Events.swift"; path = "VideoCamera/ViewController-Events.swift"; sourceTree = SOURCE_ROOT; };
 		BF92C215225DE83800B246DA /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		BFB4BB1A224D0DDD0056EFD5 /* VideoCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,6 +200,7 @@
 				BF45CAB82269D7D000819F23 /* CameraParamterButton.swift */,
 				BFD3434C226C2326009EA26F /* ExposureOfInterestIndicatorView.swift */,
 				BF57C59222700E060008E438 /* BluetoothAndMiscHomeView.swift */,
+				BF57C59E2272CC260008E438 /* WhiteBalanceSettingsView.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				BF45CAB92269D7D000819F23 /* CameraParamterButton.swift in Sources */,
 				BF45CAEF226ABD4F00819F23 /* UIView+ALQuickFrame.m in Sources */,
 				BFB4BB30224DE5810056EFD5 /* PreviewView.swift in Sources */,
+				BF57C59F2272CC260008E438 /* WhiteBalanceSettingsView.swift in Sources */,
 				BFBDA97022677F0E00A9B35F /* RecordTimerLabel.swift in Sources */,
 				BFD3434D226C2326009EA26F /* ExposureOfInterestIndicatorView.swift in Sources */,
 				BF57C591227007080008E438 /* ViewController-Gimbal.swift in Sources */,

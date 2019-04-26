@@ -165,6 +165,7 @@ extension ViewController : CRRulerControlDataSource {
                     
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(300)) {
                         self.parameterRuler.isHidden = true
+                        self.whiteBalanceSettingsView.isHidden = true
                         self.currentSelectedParameterIndex = -1
                         changeCameraButton.isEnabled = true
                         SVProgressHUD.dismiss()
@@ -351,6 +352,7 @@ extension ViewController : CRRulerControlDataSource {
     @objc func parameterButtonTapped(_ sender:Any) {
         let button = sender as! CameraParameterButton
         
+        self.whiteBalanceSettingsView.isHidden = true
         func unselectParameter(_ i:Int) {
             if(i >= 0 && i <= 5) {
                 self.cameraParameterButtons[i].parameterSelected = false
@@ -470,7 +472,25 @@ extension ViewController : CRRulerControlDataSource {
         else if button == self.cameraParameterButtons[3] {
             //White Balance
             let selectedIndex = 3
-            selectParameter(selectedIndex)
+            
+            if currentSelectedParameterIndex == 3 {
+                currentSelectedParameterIndex = -1
+                self.whiteBalanceSettingsView.isHidden = true
+                self.parameterRuler.isHidden = true
+            }
+            else {
+                self.parameterRuler.isHidden = true
+                selectParameter(selectedIndex)
+                self.parameterRuler.isHidden = self.currentSelectedParameterIndex != 3
+                self.whiteBalanceSettingsView.isHidden = self.currentSelectedParameterIndex != 3
+                
+                self.parameterRuler.rangeFrom = 3000
+                self.parameterRuler.rangeLength = 6000
+                self.parameterRuler.setFrequency(self.parameterRuler.rangeLength/10, for: .minor)
+                self.parameterRuler.value = CGFloat(self.camera.temperatureAndTintValue.temperature)
+                self.parameterRuler.isHidden = false
+            }
+            
         }
         else if button == self.cameraParameterButtons[4] {
             //Focus
@@ -542,6 +562,8 @@ extension ViewController : CRRulerControlDataSource {
             return Float(value)
         }()
         
+        self.whiteBalanceSettingsView.isHidden = true
+        
         switch currentSelectedParameterIndex {
         case 0:
             //Exposure
@@ -562,6 +584,18 @@ extension ViewController : CRRulerControlDataSource {
             break
         case 3:
             //WB
+            self.whiteBalanceSettingsView.whiteBalanceMode = self.camera.desiredWhiteBalanceMode
+            self.whiteBalanceSettingsView.isHidden = false
+            if self.camera.isLockingWhiteBalanceWithCustomDeviceGainsSupported {
+
+                let tempAndTint = self.camera.temperatureAndTintValue
+                let temp = AVCaptureDevice.WhiteBalanceTemperatureAndTintValues.init(temperature: value, tint: tempAndTint.tint)
+                self.camera.setWhiteBalanceModeLocked(with: temp)
+            }
+            else {
+                SVProgressHUD.showInfo(withStatus: NSLocalizedString("Manual white balance is not available in dual lens mode.", comment: ""))
+                SVProgressHUD.dismiss(withDelay: TimeInterval(1000))
+            }
             break
         case 4:
             //Focus
@@ -578,6 +612,16 @@ extension ViewController : CRRulerControlDataSource {
         DispatchQueue.main.async {
             self.updateCameraParameterDisplay(false)
         }
+    }
+    
+    @objc func whiteBalanceChanged() {
+        if self.camera.isLockingWhiteBalanceWithCustomDeviceGainsSupported == false && self.whiteBalanceSettingsView.whiteBalanceMode != .auto {
+            SVProgressHUD.showInfo(withStatus: NSLocalizedString("Manual white balance is not available in dual lens mode.", comment: ""))
+            SVProgressHUD.dismiss(withDelay: TimeInterval(1000))
+            self.whiteBalanceSettingsView.whiteBalanceMode = .auto
+            return
+        }
+        self.camera.desiredWhiteBalanceMode = self.whiteBalanceSettingsView.whiteBalanceMode
     }
     
     @objc func subjectAreaDidChange(notification: NSNotification) {
