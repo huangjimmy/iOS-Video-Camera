@@ -33,3 +33,19 @@
 
 "Builtin" = "Builtin";
 "Builtin and Bluetooth" = "Builtin and Bluetooth";
+
+"On" = "On";
+"Off" = "Off";
+"Auto" = "Auto";
+"Standard" = "Standard";
+"Cinematic" = "Cinematic";
+
+"WB_Locked" = "Locked";
+
+"Manual focus is not available in dual lens mode." = "Manual focus is not available in dual lens mode.";
+"Manual shutter is not available in dual lens mode." = "Manual shutter is not available in dual lens mode.";
+"Manual ISO is not available in dual lens mode." = "Manual ISO is not available in dual lens mode.";
+"Manual white balance is not available in dual lens mode." = "Manual white balance is not available in dual lens mode.";
+
+"Choose Gimbal" = "Choose Gimbal";
+"Disconnect %@" = "Disconnect %@";
