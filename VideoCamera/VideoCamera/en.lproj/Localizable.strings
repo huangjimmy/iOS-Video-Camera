@@ -19,6 +19,7 @@
 
 "Current Camera:" = "Current Camera:";
 "Back" = "Back";
+"Go Back" = "Back";
 "Front" = "Front";
 "WideAngle" = "Wide Angle";
 "DualCamera" = "Dual Camera";
@@ -49,3 +50,16 @@
 
 "Choose Gimbal" = "Choose Gimbal";
 "Disconnect %@" = "Disconnect %@";
+
+"Select" = "Select";
+"Select All" = "Select All";
+"Select None" = "Select None";
+
+"Select video" = "Select video";
+"%d selected" = "%d selected";
+"%d videos" = "%d videos";
+
+"%d videos saved" = "%d videos saved in your photo library";
+
+"Open Settings" = "Open Settings";
+"Open Settings and authorize" = "Open settings and grant write access of photo library.";

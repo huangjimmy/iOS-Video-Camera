@@ -33,6 +33,8 @@
 	<string>Need to use camera</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Need to use microphone</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Need to save to Photo Library</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>

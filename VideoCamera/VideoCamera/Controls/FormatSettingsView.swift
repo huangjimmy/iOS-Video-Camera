@@ -146,7 +146,7 @@ class FormatSettingsView: UIView {
     
     func loadFpsButtons(){
         
-        let camera = CameraManager.sharedInstance
+        let camera = CameraManager.shared
         let format = camera.videoFormat
         let selectedFps = format.2
         
@@ -261,7 +261,7 @@ class FormatSettingsView: UIView {
     
     public func loadSettingsFromCamera(){
         
-        let camera = CameraManager.sharedInstance
+        let camera = CameraManager.shared
         let supportedFormats:[AVCaptureDevice.DeviceType:[(CMVideoDimensions, Int, Int)]] = camera.currentCameraSupportedFormats
         
         maxFps4k = 0
@@ -332,7 +332,7 @@ class FormatSettingsView: UIView {
         
         self.loadFpsButtons()
         
-        if CameraManager.sharedInstance.useBluetoothMicrophone {
+        if CameraManager.shared.useBluetoothMicrophone {
             self.microphoneSegment.selectedSegmentIndex = 1
         }
         else{
@@ -342,7 +342,7 @@ class FormatSettingsView: UIView {
     
     public func saveSettingsToCamera(){
         SVProgressHUD.show()
-        let camera = CameraManager.sharedInstance
+        let camera = CameraManager.shared
         camera.videoFormat = (self.selectedResolution.0, self.selectedResolution.1, self.selectedFps)
         camera.useBluetoothMicrophone = self.selectedMicrophone == 1
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(300)) {
@@ -388,7 +388,7 @@ class FormatSettingsView: UIView {
     @objc func chooseFps(_ sender: Any){
         let selectedFps = (sender as! UIButton).tag
         
-        let camera = CameraManager.sharedInstance
+        let camera = CameraManager.shared
         var supportedFormats:[AVCaptureDevice.DeviceType:[(CMVideoDimensions, Int, Int)]] = [:]
         
         switch (camera.videoDeviceInput.device.position){

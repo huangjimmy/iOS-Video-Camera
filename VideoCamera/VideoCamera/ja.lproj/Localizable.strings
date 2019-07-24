@@ -19,6 +19,7 @@
 
 "Current Camera:" = "現在 レンズ:";
 "Back" = "後部";
+"Go Back" = "戻る";
 "Front" = "正面";
 "WideAngle" = "広角";
 "DualCamera" = "二重";
@@ -49,3 +50,16 @@
 
 "Choose Gimbal" = "ジンバルを選ぶ";
 "Disconnect %@" = "切り離す %@";
+
+"Select" = "選択";
+"Select All" = "すべてを選択";
+"Select None" = "選択しない";
+
+"Select video" = "項目を選択";
+"%d selected" = "%d本のビデオを選択中";
+"%d videos" = "ビデオ(%d)";
+
+"%d videos saved" = "%d本の動画はアルバムにエクスポートされました";
+
+"Open Settings" = "設定を開く";
+"Open Settings and authorize" = "設定を開いて写真への書き込みアクセスを許可します。";

@@ -10,3 +10,5 @@ CFBundleDisplayName = "录像机";
 
 NSMicrophoneUsageDescription = "录像机需要访问麦克风";
 NSCameraUsageDescription = "录像机需要访问手机摄像头";
+
+NSPhotoLibraryAddUsageDescription = "录像机需要您的授权以便将视频存储到您的相册.";

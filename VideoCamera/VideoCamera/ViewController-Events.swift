@@ -61,15 +61,18 @@ extension ViewController : CRRulerControlDataSource {
     
     
     @objc func cameraRollTapped(_ sender : Any){
-        let documentPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentPath = documentPaths[0]
+//        let documentPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+//        let documentPath = documentPaths[0]
         
-        let fileBrowser = FileBrowser(initialPath: URL(fileURLWithPath: documentPath), allowEditing: true)
+//        let fileBrowser = FileBrowser(initialPath: URL(fileURLWithPath: documentPath), allowEditing: true)
+        let videoLibraryBrowser = self.storyboard!.instantiateViewController(withIdentifier: "VideoLibrary")
+        let fileBrowser = UINavigationController(rootViewController: videoLibraryBrowser)
+        
         present(fileBrowser, animated: true, completion: nil)
     }
     
     @objc func recordTapped(_ sender : Any){
-        let camera = CameraManager.sharedInstance
+        let camera = CameraManager.shared
         
         if(camera.isRecording){
             camera.stopRecording()
@@ -112,7 +115,7 @@ extension ViewController : CRRulerControlDataSource {
     
         let changeCameraButton = sender as! UIButton
         
-        let camera = CameraManager.sharedInstance
+        let camera = CameraManager.shared
         
         let (currentPosition, currentDevice) = camera.currentCamera
         let currentPositionDesc = currentPosition == .back ?NSLocalizedString("Back", comment: ""):NSLocalizedString("Front", comment: "")

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4759AE25B95981E5AB92B0B0 /* libPods-VideoCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEFFC01690CBC068A8B40D1 /* libPods-VideoCamera.a */; };
 		BF1A97072266655C006BEAF7 /* CameraBottomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1A97062266655C006BEAF7 /* CameraBottomControl.swift */; };
+		BF3D9D6122E792FA00825E8E /* VideoLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D9D6022E792FA00825E8E /* VideoLibraryViewController.swift */; };
+		BF3D9D6322E7B02A00825E8E /* VideoGroupSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D9D6222E7B02A00825E8E /* VideoGroupSectionHeaderView.swift */; };
 		BF45CAB5226904B900819F23 /* FocusOfInterestIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CAB4226904B900819F23 /* FocusOfInterestIndicatorView.swift */; };
 		BF45CAB72269677700819F23 /* FormatSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CAB62269677700819F23 /* FormatSettingsView.swift */; };
 		BF45CAB92269D7D000819F23 /* CameraParamterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF45CAB82269D7D000819F23 /* CameraParamterButton.swift */; };
@@ -16,10 +18,17 @@
 		BF45CAD1226A083C00819F23 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF45CAD3226A083C00819F23 /* Localizable.strings */; };
 		BF45CAEF226ABD4F00819F23 /* UIView+ALQuickFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45CAEA226ABD4F00819F23 /* UIView+ALQuickFrame.m */; };
 		BF45CAF0226ABD4F00819F23 /* ALBatteryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45CAEC226ABD4F00819F23 /* ALBatteryView.m */; };
+		BF4C2E2B22E8684D00A1237D /* MovFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4C2E2A22E8684D00A1237D /* MovFile.swift */; };
+		BF4C2E2D22E873D000A1237D /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4C2E2C22E873D000A1237D /* PreviewViewController.swift */; };
+		BF4C2E3622E8B43C00A1237D /* VideoLibraryViewController+ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4C2E3522E8B43C00A1237D /* VideoLibraryViewController+ObjC.m */; };
 		BF57C591227007080008E438 /* ViewController-Gimbal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF57C590227007080008E438 /* ViewController-Gimbal.swift */; };
 		BF57C59322700E060008E438 /* BluetoothAndMiscHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF57C59222700E060008E438 /* BluetoothAndMiscHomeView.swift */; };
 		BF57C59F2272CC260008E438 /* WhiteBalanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF57C59E2272CC260008E438 /* WhiteBalanceSettingsView.swift */; };
 		BF8987D222674525002BAA70 /* ViewController-Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8987D122674525002BAA70 /* ViewController-Events.swift */; };
+		BF91C90A22E5FE5E004AF4D7 /* UIVideoResolutionFPSCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF91C90922E5FE5E004AF4D7 /* UIVideoResolutionFPSCellView.swift */; };
+		BF91C90C22E5FE76004AF4D7 /* UIVideInfoLengthAndTimeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF91C90B22E5FE76004AF4D7 /* UIVideInfoLengthAndTimeCellView.swift */; };
+		BF91C90E22E5FE9B004AF4D7 /* UICollectionViewVideoInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF91C90D22E5FE9B004AF4D7 /* UICollectionViewVideoInfoCell.swift */; };
+		BF91C91022E5FEC9004AF4D7 /* UIVideoFrameCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF91C90F22E5FEC9004AF4D7 /* UIVideoFrameCellView.swift */; };
 		BF92C216225DE83800B246DA /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF92C215225DE83800B246DA /* CameraManager.swift */; };
 		BFB4BB1E224D0DDD0056EFD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB4BB1D224D0DDD0056EFD5 /* AppDelegate.swift */; };
 		BFB4BB20224D0DDD0056EFD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB4BB1F224D0DDD0056EFD5 /* ViewController.swift */; };
@@ -41,6 +50,8 @@
 		3AEFFC01690CBC068A8B40D1 /* libPods-VideoCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VideoCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A28DB1A3157184153D170DD0 /* Pods-VideoCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoCamera.release.xcconfig"; path = "Target Support Files/Pods-VideoCamera/Pods-VideoCamera.release.xcconfig"; sourceTree = "<group>"; };
 		BF1A97062266655C006BEAF7 /* CameraBottomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraBottomControl.swift; sourceTree = "<group>"; };
+		BF3D9D6022E792FA00825E8E /* VideoLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoLibraryViewController.swift; sourceTree = "<group>"; };
+		BF3D9D6222E7B02A00825E8E /* VideoGroupSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoGroupSectionHeaderView.swift; sourceTree = "<group>"; };
 		BF45CAB4226904B900819F23 /* FocusOfInterestIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusOfInterestIndicatorView.swift; sourceTree = "<group>"; };
 		BF45CAB62269677700819F23 /* FormatSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatSettingsView.swift; sourceTree = "<group>"; };
 		BF45CAB82269D7D000819F23 /* CameraParamterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraParamterButton.swift; sourceTree = "<group>"; };
@@ -67,10 +78,17 @@
 		BF45CAEB226ABD4F00819F23 /* UIView+ALQuickFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ALQuickFrame.h"; sourceTree = "<group>"; };
 		BF45CAEC226ABD4F00819F23 /* ALBatteryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALBatteryView.m; sourceTree = "<group>"; };
 		BF45CAF4226ABF1500819F23 /* VideoCamera-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VideoCamera-Bridging-Header.h"; sourceTree = "<group>"; };
+		BF4C2E2A22E8684D00A1237D /* MovFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovFile.swift; sourceTree = "<group>"; };
+		BF4C2E2C22E873D000A1237D /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		BF4C2E3522E8B43C00A1237D /* VideoLibraryViewController+ObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "VideoLibraryViewController+ObjC.m"; sourceTree = "<group>"; };
 		BF57C590227007080008E438 /* ViewController-Gimbal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController-Gimbal.swift"; sourceTree = "<group>"; };
 		BF57C59222700E060008E438 /* BluetoothAndMiscHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothAndMiscHomeView.swift; sourceTree = "<group>"; };
 		BF57C59E2272CC260008E438 /* WhiteBalanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBalanceSettingsView.swift; sourceTree = "<group>"; };
 		BF8987D122674525002BAA70 /* ViewController-Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ViewController-Events.swift"; path = "VideoCamera/ViewController-Events.swift"; sourceTree = SOURCE_ROOT; };
+		BF91C90922E5FE5E004AF4D7 /* UIVideoResolutionFPSCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVideoResolutionFPSCellView.swift; sourceTree = "<group>"; };
+		BF91C90B22E5FE76004AF4D7 /* UIVideInfoLengthAndTimeCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVideInfoLengthAndTimeCellView.swift; sourceTree = "<group>"; };
+		BF91C90D22E5FE9B004AF4D7 /* UICollectionViewVideoInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewVideoInfoCell.swift; sourceTree = "<group>"; };
+		BF91C90F22E5FEC9004AF4D7 /* UIVideoFrameCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVideoFrameCellView.swift; sourceTree = "<group>"; };
 		BF92C215225DE83800B246DA /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		BFB4BB1A224D0DDD0056EFD5 /* VideoCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB4BB1D224D0DDD0056EFD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +137,22 @@
 				3AEFFC01690CBC068A8B40D1 /* libPods-VideoCamera.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF09F5C722DED31A00EDC9FD /* VideoLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				BF91C90922E5FE5E004AF4D7 /* UIVideoResolutionFPSCellView.swift */,
+				BF91C90B22E5FE76004AF4D7 /* UIVideInfoLengthAndTimeCellView.swift */,
+				BF91C90D22E5FE9B004AF4D7 /* UICollectionViewVideoInfoCell.swift */,
+				BF91C90F22E5FEC9004AF4D7 /* UIVideoFrameCellView.swift */,
+				BF3D9D6022E792FA00825E8E /* VideoLibraryViewController.swift */,
+				BF3D9D6222E7B02A00825E8E /* VideoGroupSectionHeaderView.swift */,
+				BF4C2E2A22E8684D00A1237D /* MovFile.swift */,
+				BF4C2E2C22E873D000A1237D /* PreviewViewController.swift */,
+				BF4C2E3522E8B43C00A1237D /* VideoLibraryViewController+ObjC.m */,
+			);
+			path = VideoLibrary;
 			sourceTree = "<group>";
 		};
 		BF45CAE4226ABD4F00819F23 /* ALBatteryView */ = {
@@ -191,6 +225,7 @@
 		BFB4BB31224DE7EF0056EFD5 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				BF09F5C722DED31A00EDC9FD /* VideoLibrary */,
 				BFD34359226D2983009EA26F /* CRRulerControl */,
 				BF45CAE4226ABD4F00819F23 /* ALBatteryView */,
 				BF1A97062266655C006BEAF7 /* CameraBottomControl.swift */,
@@ -416,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF45CAB5226904B900819F23 /* FocusOfInterestIndicatorView.swift in Sources */,
+				BF4C2E3622E8B43C00A1237D /* VideoLibraryViewController+ObjC.m in Sources */,
 				BFD34366226D2983009EA26F /* CRRulerLayer.m in Sources */,
 				BF92C216225DE83800B246DA /* CameraManager.swift in Sources */,
 				BFB4BB20224D0DDD0056EFD5 /* ViewController.swift in Sources */,
@@ -423,15 +459,23 @@
 				BF45CAB92269D7D000819F23 /* CameraParamterButton.swift in Sources */,
 				BF45CAEF226ABD4F00819F23 /* UIView+ALQuickFrame.m in Sources */,
 				BFB4BB30224DE5810056EFD5 /* PreviewView.swift in Sources */,
+				BF91C91022E5FEC9004AF4D7 /* UIVideoFrameCellView.swift in Sources */,
+				BF91C90E22E5FE9B004AF4D7 /* UICollectionViewVideoInfoCell.swift in Sources */,
 				BF57C59F2272CC260008E438 /* WhiteBalanceSettingsView.swift in Sources */,
+				BF4C2E2B22E8684D00A1237D /* MovFile.swift in Sources */,
+				BF91C90C22E5FE76004AF4D7 /* UIVideInfoLengthAndTimeCellView.swift in Sources */,
 				BFBDA97022677F0E00A9B35F /* RecordTimerLabel.swift in Sources */,
 				BFD3434D226C2326009EA26F /* ExposureOfInterestIndicatorView.swift in Sources */,
 				BF57C591227007080008E438 /* ViewController-Gimbal.swift in Sources */,
+				BF3D9D6322E7B02A00825E8E /* VideoGroupSectionHeaderView.swift in Sources */,
 				BF1A97072266655C006BEAF7 /* CameraBottomControl.swift in Sources */,
 				BFD3436A226EE6D6009EA26F /* BluetoothHandheldController.swift in Sources */,
 				BFD34367226D2983009EA26F /* CRRulerControl.m in Sources */,
+				BF91C90A22E5FE5E004AF4D7 /* UIVideoResolutionFPSCellView.swift in Sources */,
 				BF45CAF0226ABD4F00819F23 /* ALBatteryView.m in Sources */,
 				BF57C59322700E060008E438 /* BluetoothAndMiscHomeView.swift in Sources */,
+				BF4C2E2D22E873D000A1237D /* PreviewViewController.swift in Sources */,
+				BF3D9D6122E792FA00825E8E /* VideoLibraryViewController.swift in Sources */,
 				BFD34364226D2983009EA26F /* CRMark.m in Sources */,
 				BF8987D222674525002BAA70 /* ViewController-Events.swift in Sources */,
 				BF45CAB72269677700819F23 /* FormatSettingsView.swift in Sources */,

@@ -10,3 +10,5 @@ CFBundleDisplayName = "ビデオカメラ";
 
 NSMicrophoneUsageDescription = "ビデオカメラは音声を記録するためにマイクにアクセスする必要があります";
 NSCameraUsageDescription = "ビデオカメラはビデオを記録するためにカメラにアクセスする必要があります";
+
+NSPhotoLibraryAddUsageDescription = "あなたのアルバムにあなたのビデオを保存するためにあなたの許可を必要とします。";

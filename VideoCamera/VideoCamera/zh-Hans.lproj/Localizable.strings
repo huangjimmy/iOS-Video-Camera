@@ -19,6 +19,7 @@
 
 "Current Camera:" = "当前镜头：";
 "Back" = "后置";
+"Go Back" = "返回";
 "Front" = "前置";
 "WideAngle" = "广角";
 "DualCamera" = "双摄";
@@ -49,3 +50,16 @@
 
 "Choose Gimbal" = "选择手持稳定器";
 "Disconnect %@" = "断开 %@";
+
+"Select" = "选择";
+"Select All" = "全选";
+"Select None" = "清除选择";
+
+"Select video" = "选择视频";
+"%d selected" = "已选择%d个视频";
+"%d videos" = "视频(%d)";
+
+"%d videos saved" = "%d个视频已导出到相册";
+
+"Open Settings" = "打开设置";
+"Open Settings and authorize" = "打开设置并授予应用添加照片的权限。";

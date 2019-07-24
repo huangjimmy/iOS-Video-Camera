@@ -6,8 +6,6 @@
 //  Copyright © 2019 huangsj. All rights reserved.
 //
 
-import UIKit
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,6 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let navigationBar = UINavigationBar.appearance()
+        navigationBar.barStyle = .black
+        navigationBar.tintColor = .white
+        navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
+        navigationBar.isTranslucent = false
+        navigationBar.barTintColor = .black
         return true
     }
 

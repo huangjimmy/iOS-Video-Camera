@@ -131,7 +131,7 @@ class CameraBottomControl: UIView {
     }
     
     public func reload(){
-        let camera = CameraManager.sharedInstance
+        let camera = CameraManager.shared
         if let device = camera.videoDeviceInput?.device {
             DispatchQueue.main.async {
                 if device.position == .back {

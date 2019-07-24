@@ -46,5 +46,90 @@
             </objects>
             <point key="canvasLocation" x="132" y="131.52709359605913"/>
         </scene>
+        <!--Video Library View Controller-->
+        <scene sceneID="DZm-KM-Ppu">
+            <objects>
+                <viewController storyboardIdentifier="VideoLibrary" id="yA0-G8-T3q" customClass="VideoLibraryViewController" customModule="VideoCamera" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eZP-pk-uBZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="89P-Gz-v8s">
+                                <rect key="frame" x="0.0" y="44" width="375" height="719"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="0.0" id="vFa-LK-h3I">
+                                    <size key="itemSize" width="375" height="86"/>
+                                    <size key="headerReferenceSize" width="50" height="34"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UICollectionViewVideoInfoCell" id="Ofa-ez-Led" customClass="UICollectionViewVideoInfoCell" customModule="VideoCamera" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="34" width="375" height="86"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="VideoGroupSectionHeaderView" id="zoa-7c-Ctj" customClass="VideoGroupSectionHeaderView" customModule="VideoCamera" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="34"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="yA0-G8-T3q" id="tBL-5x-Dev"/>
+                                    <outlet property="delegate" destination="yA0-G8-T3q" id="yrX-hd-k5F"/>
+                                </connections>
+                            </collectionView>
+                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUu-iC-P5U">
+                                <rect key="frame" x="0.0" y="729" width="375" height="49"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <barButtonItem systemItem="save" id="lLg-bJ-nl8">
+                                        <connections>
+                                            <action selector="saveSelected:" destination="yA0-G8-T3q" id="Ixy-4j-Hhl"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="TiR-tS-BvZ"/>
+                                    <barButtonItem systemItem="action" id="d4w-hQ-zwV">
+                                        <connections>
+                                            <action selector="shareSelected:" destination="yA0-G8-T3q" id="U45-eF-E1P"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="3rN-o2-fPp"/>
+                                    <barButtonItem systemItem="trash" id="1gF-3U-XbI">
+                                        <connections>
+                                            <action selector="trashSelected:" destination="yA0-G8-T3q" id="dOV-ka-jTB"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="gUu-iC-P5U" firstAttribute="trailing" secondItem="GVC-rD-62F" secondAttribute="trailing" id="2Ux-dW-fwW"/>
+                            <constraint firstItem="89P-Gz-v8s" firstAttribute="trailing" secondItem="GVC-rD-62F" secondAttribute="trailing" id="JZP-JU-zaS"/>
+                            <constraint firstItem="89P-Gz-v8s" firstAttribute="top" secondItem="GVC-rD-62F" secondAttribute="top" id="NaE-WQ-bii"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="gUu-iC-P5U" secondAttribute="bottom" id="R9J-z9-jNt"/>
+                            <constraint firstItem="gUu-iC-P5U" firstAttribute="top" secondItem="89P-Gz-v8s" secondAttribute="bottom" constant="-34" id="cT7-2c-buO"/>
+                            <constraint firstItem="gUu-iC-P5U" firstAttribute="leading" secondItem="GVC-rD-62F" secondAttribute="leading" id="pG3-vb-ssE"/>
+                            <constraint firstItem="89P-Gz-v8s" firstAttribute="leading" secondItem="GVC-rD-62F" secondAttribute="leading" id="wMY-MW-Fzx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GVC-rD-62F"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="89P-Gz-v8s" id="mra-PS-uc2"/>
+                        <outlet property="toolbar" destination="gUu-iC-P5U" id="jLZ-S0-qnk"/>
+                        <outletCollection property="toolbarButtons" destination="1gF-3U-XbI" collectionClass="NSMutableArray" id="Atg-Si-QCw"/>
+                        <outletCollection property="toolbarButtons" destination="d4w-hQ-zwV" collectionClass="NSMutableArray" id="aVx-l1-czl"/>
+                        <outletCollection property="toolbarButtons" destination="lLg-bJ-nl8" collectionClass="NSMutableArray" id="cA3-ic-fge"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xvF-Hv-NDK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1111.2" y="134.48275862068965"/>
+        </scene>
     </scenes>
 </document>

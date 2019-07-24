@@ -24,7 +24,7 @@ import Photos
 
 @objc class CameraManager : NSObject,AVCaptureFileOutputRecordingDelegate{
     
-    class var sharedInstance : CameraManager {
+    class var shared : CameraManager {
         struct Singleton {
             static let camera = CameraManager()
         }

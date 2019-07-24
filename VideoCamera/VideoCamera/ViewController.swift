@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         }
     }
     
-    internal let camera = CameraManager.sharedInstance
+    internal let camera = CameraManager.shared
     
     internal var bluetoothAndMiscView: BluetoothAndMiscHomeView!
     internal var bluetoothAndMiscViewWidthConstraint:NSLayoutConstraint!
@@ -561,14 +561,16 @@ class ViewController: UIViewController {
                  Use the status bar orientation as the initial video orientation. Subsequent orientation changes are
                  handled by CameraViewController.viewWillTransition(to:with:).
                  */
-                let statusBarOrientation = UIApplication.shared.statusBarOrientation
-                let initialVideoOrientation: AVCaptureVideoOrientation = .portrait
-                if statusBarOrientation != .unknown {
-                    if let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: statusBarOrientation) {
-                        self.camera.currentVideOrientation = videoOrientation
-                    }
-                    else{
-                        self.camera.currentVideOrientation = initialVideoOrientation
+                DispatchQueue.main.async {
+                    let statusBarOrientation = UIApplication.shared.statusBarOrientation
+                    let initialVideoOrientation: AVCaptureVideoOrientation = .portrait
+                    if statusBarOrientation != .unknown {
+                        if let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: statusBarOrientation) {
+                            self.camera.currentVideOrientation = videoOrientation
+                        }
+                        else{
+                            self.camera.currentVideOrientation = initialVideoOrientation
+                        }
                     }
                 }
             }

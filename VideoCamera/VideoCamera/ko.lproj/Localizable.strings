@@ -19,6 +19,7 @@
 
 "Current Camera:" = "지금 렌즈:";
 "Back" = "후면";
+"Go Back" = "돌아 가기";
 "Front" = "정면";
 "WideAngle" = "광각";
 "DualCamera" = "이중 렌즈";
@@ -49,3 +50,12 @@
 
 "Choose Gimbal" = "Choose Gimbal";
 "Disconnect %@" = "Disconnect %@";
+
+"Select" = "Select";
+"Select All" = "Select All";
+"Select None" = "Select None";
+
+"%d videos saved" = "%d 개의 비디오가 앨범으로 내보내기되었습니다.";
+
+"Open Settings"= "열기 설정";
+"Open Settings and authorize" = "설정을 열고 사진의 쓰기 권한을 부여하십시오.";
