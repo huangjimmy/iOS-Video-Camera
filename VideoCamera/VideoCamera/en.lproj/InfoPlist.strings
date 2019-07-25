@@ -12,3 +12,5 @@ NSMicrophoneUsageDescription = "Video Camera need to access microphone to record
 NSCameraUsageDescription = "Video Camera need to access phone camera to record video";
 
 NSPhotoLibraryAddUsageDescription = "Video Camera need authorization in order to save video to photo/video library.";
+
+NSBluetoothAlwaysUsageDescription = "Video Camera need to use bluetooth to connect to DJI gimbal";

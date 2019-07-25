@@ -2,6 +2,7 @@ platform :ios, '11.0'
 
 target 'VideoCamera' do
 pod 'Reveal-SDK', '12', :configurations => ['Debug']
+#pod 'LookinServer', :configurations => ['Debug']
 pod 'FileBrowser', '~> 1.0'
 pod 'DeviceGuru', '~> 5.0'
 pod 'SVProgressHUD'

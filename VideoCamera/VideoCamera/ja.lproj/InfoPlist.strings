@@ -12,3 +12,5 @@ NSMicrophoneUsageDescription = "ビデオカメラは音声を記録するため
 NSCameraUsageDescription = "ビデオカメラはビデオを記録するためにカメラにアクセスする必要があります";
 
 NSPhotoLibraryAddUsageDescription = "あなたのアルバムにあなたのビデオを保存するためにあなたの許可を必要とします。";
+
+ NSBluetoothAlwaysUsageDescription ="このアプリはBluetoothをOsmo MobileのハンドヘルドスタビライザーOsmo Mobileに接続する必要があります。 ";

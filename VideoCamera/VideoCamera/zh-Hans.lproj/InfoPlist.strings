@@ -12,3 +12,5 @@ NSMicrophoneUsageDescription = "录像机需要访问麦克风";
 NSCameraUsageDescription = "录像机需要访问手机摄像头";
 
 NSPhotoLibraryAddUsageDescription = "录像机需要您的授权以便将视频存储到您的相册.";
+
+NSBluetoothAlwaysUsageDescription = "本应用需要使用蓝牙以连接到大疆的手持稳定器Osmo Mobile";
