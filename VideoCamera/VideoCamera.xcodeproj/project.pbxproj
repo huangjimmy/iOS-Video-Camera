@@ -43,6 +43,7 @@
 		BFD34367226D2983009EA26F /* CRRulerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD34361226D2983009EA26F /* CRRulerControl.m */; };
 		BFD34368226D2983009EA26F /* CRRulerControl.podspec in Resources */ = {isa = PBXBuildFile; fileRef = BFD34363226D2983009EA26F /* CRRulerControl.podspec */; };
 		BFD3436A226EE6D6009EA26F /* BluetoothHandheldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD34369226EE6D6009EA26F /* BluetoothHandheldController.swift */; };
+		BFE6767A22E9EA2F00AAF249 /* VideoLibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6767922E9EA2F00AAF249 /* VideoLibraryManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,7 @@
 		BFD34361226D2983009EA26F /* CRRulerControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRRulerControl.m; sourceTree = "<group>"; };
 		BFD34363226D2983009EA26F /* CRRulerControl.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CRRulerControl.podspec; sourceTree = "<group>"; };
 		BFD34369226EE6D6009EA26F /* BluetoothHandheldController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothHandheldController.swift; sourceTree = "<group>"; };
+		BFE6767922E9EA2F00AAF249 /* VideoLibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoLibraryManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,9 +150,10 @@
 				BF91C90F22E5FEC9004AF4D7 /* UIVideoFrameCellView.swift */,
 				BF3D9D6022E792FA00825E8E /* VideoLibraryViewController.swift */,
 				BF3D9D6222E7B02A00825E8E /* VideoGroupSectionHeaderView.swift */,
-				BF4C2E2A22E8684D00A1237D /* MovFile.swift */,
 				BF4C2E2C22E873D000A1237D /* PreviewViewController.swift */,
 				BF4C2E3522E8B43C00A1237D /* VideoLibraryViewController+ObjC.m */,
+				BF4C2E2A22E8684D00A1237D /* MovFile.swift */,
+				BFE6767922E9EA2F00AAF249 /* VideoLibraryManager.swift */,
 			);
 			path = VideoLibrary;
 			sourceTree = "<group>";
@@ -411,15 +414,6 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VideoCamera/Pods-VideoCamera-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru/DeviceGuru.bundle",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/documents@2x.png",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/file@2x.png",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/FileBrowser.xib",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/folder@2x.png",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/image@2x.png",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/pdf@2x.png",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/PreviewTransitionViewController.xib",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/WebviewPreviewViewContoller.xib",
-				"${PODS_ROOT}/FileBrowser/FileBrowser/Resources/zip@2x.png",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -427,15 +421,6 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DeviceGuru.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/documents@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/file@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FileBrowser.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/folder@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/image@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/pdf@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PreviewTransitionViewController.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WebviewPreviewViewContoller.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zip@2x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,6 +452,7 @@
 				BFBDA97022677F0E00A9B35F /* RecordTimerLabel.swift in Sources */,
 				BFD3434D226C2326009EA26F /* ExposureOfInterestIndicatorView.swift in Sources */,
 				BF57C591227007080008E438 /* ViewController-Gimbal.swift in Sources */,
+				BFE6767A22E9EA2F00AAF249 /* VideoLibraryManager.swift in Sources */,
 				BF3D9D6322E7B02A00825E8E /* VideoGroupSectionHeaderView.swift in Sources */,
 				BF1A97072266655C006BEAF7 /* CameraBottomControl.swift in Sources */,
 				BFD3436A226EE6D6009EA26F /* BluetoothHandheldController.swift in Sources */,

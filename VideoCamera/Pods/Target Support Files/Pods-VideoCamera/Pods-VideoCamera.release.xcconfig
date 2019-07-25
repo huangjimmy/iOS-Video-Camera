@@ -1,14 +1,14 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
 FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/DJI-SDK-iOS/iOS_Mobile_SDK"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FileBrowser" "${PODS_ROOT}/Headers/Public/SVProgressHUD"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/SQLite.swift" "${PODS_ROOT}/Headers/Public/SVProgressHUD"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru" "${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser" "${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD"
-OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru/DeviceGuru.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser/FileBrowser.modulemap"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"DeviceGuru" -l"FileBrowser" -l"SVProgressHUD" -framework "DJISDK" -framework "QuartzCore" -framework "QuickLook" -framework "WebKit"
-OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru/DeviceGuru.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser/FileBrowser.modulemap"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru" "${PODS_CONFIGURATION_BUILD_DIR}/SQLite.swift" "${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD"
+OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru/DeviceGuru.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/SQLite.swift/SQLite.modulemap"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"DeviceGuru" -l"SQLite.swift" -l"SVProgressHUD" -l"sqlite3" -framework "DJISDK" -framework "QuartzCore"
+OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru/DeviceGuru.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/SQLite.swift/SQLite.modulemap"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods
-SWIFT_INCLUDE_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru" "${PODS_CONFIGURATION_BUILD_DIR}/FileBrowser"
+SWIFT_INCLUDE_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/DeviceGuru" "${PODS_CONFIGURATION_BUILD_DIR}/SQLite.swift"

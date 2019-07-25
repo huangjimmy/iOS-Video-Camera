@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import AVFoundation
-import FileBrowser
 
 extension ViewController : CRRulerControlDataSource {
     
@@ -72,16 +71,26 @@ extension ViewController : CRRulerControlDataSource {
     }
     
     @objc func recordTapped(_ sender : Any){
+        
+        self.cameraBottom.recordButton.isEnabled = false
+        
         let camera = CameraManager.shared
         
         if(camera.isRecording){
             camera.stopRecording()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(2000)){
+                self.cameraBottom.recordButton.isEnabled = true
+            }
             return
         }
         
         let documentPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentPath = documentPaths[0]
         camera.recordVideo(at: documentPath)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(2000)){
+            self.cameraBottom.recordButton.isEnabled = true
+        }
     }
     
     func deviceName(of deviceType:AVCaptureDevice.DeviceType) -> String {

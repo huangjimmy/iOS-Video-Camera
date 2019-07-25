@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
         navigationBar.isTranslucent = false
         navigationBar.barTintColor = .black
+        
         return true
     }
 

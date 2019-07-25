@@ -60,7 +60,7 @@ class UICollectionViewVideoInfoCell: UICollectionViewCell, UICollectionViewDataS
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UIVideoResolutionFPSCellView", for: indexPath) as! UIVideoResolutionFPSCellView
             cell.resolutionLabel.text = self.movFile.resolution
-            cell.fpsLabel.text = self.movFile.fps
+            cell.fpsLabel.text = "\(self.movFile.fps) FPS"
             cell.backgroundColor = .clear
             return cell
         case 1:

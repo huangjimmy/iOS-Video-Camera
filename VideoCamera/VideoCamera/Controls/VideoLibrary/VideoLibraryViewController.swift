@@ -13,12 +13,7 @@ import Photos
 
 @objc class VideoLibraryViewController: UIViewController {
     
-    /*    */
-    let fileManager = FileManager.default
-        
-    func documentsURL() -> URL {
-        return fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0] as URL
-    }
+    let videoLibrary = VideoLibraryManager.shared
     
     var movFiles:[MovFile] = []
     var movFileGroups:[MovFileGroup] = []
@@ -72,9 +67,17 @@ import Photos
         timeFormat.setLocalizedDateFormatFromTemplate("hh:mm")
 
         var group:MovFileGroup? = nil
-        let files = self.videoFiles()
+        let files = videoLibrary.videoFiles()
         self.movFiles = files
         for file in files {
+            
+            if !videoLibrary.isMovIndexed(fileURL: file.filePath) {
+                videoLibrary.indexMov(fileURL: file.filePath, fps: file.fps, resolution: file.resolution)
+            }
+            else{
+                videoLibrary.refreshFromCache(movFile: file)
+            }
+            
             if let group = group, group.groupName.compare(file.dateShot!) == .orderedSame {
                 group.files.append(file)
             }
@@ -220,29 +223,6 @@ import Photos
         // Pass the selected object to the new view controller.
     }
     */
-
-    func videoFiles() -> [MovFile]  {
-        var files = [MovFile]()
-        var filePaths = [URL]()
-        // Get contents
-        do  {
-            filePaths = try self.fileManager.contentsOfDirectory(at: self.documentsURL(), includingPropertiesForKeys: [], options: [.skipsHiddenFiles])
-        } catch {
-            return files
-        }
-        // Parse
-        for filePath in filePaths {
-            let file = MovFile(filePath: filePath)
-            if file.fileExtension.compare("mov") != .orderedSame {
-                continue
-            }
-
-            files.append(file)
-        }
-        return files.sorted { (mov1, mov2) -> Bool in
-            return mov1.creationDate!.timeIntervalSince1970 > mov2.creationDate!.timeIntervalSince1970
-        }
-    }
 }
 
 

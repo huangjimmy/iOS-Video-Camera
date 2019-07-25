@@ -1,32 +1,34 @@
 PODS:
   - DeviceGuru (5.1.2)
   - DJI-SDK-iOS (4.9.1)
-  - FileBrowser (1.0.0)
   - Reveal-SDK (12)
+  - SQLite.swift (0.12.2):
+    - SQLite.swift/standard (= 0.12.2)
+  - SQLite.swift/standard (0.12.2)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - DeviceGuru (~> 5.0)
   - DJI-SDK-iOS (~> 4.9.1)
-  - FileBrowser (~> 1.0)
   - Reveal-SDK (= 12)
+  - SQLite.swift (~> 0.12.0)
   - SVProgressHUD
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - DeviceGuru
     - DJI-SDK-iOS
-    - FileBrowser
     - Reveal-SDK
+    - SQLite.swift
     - SVProgressHUD
 
 SPEC CHECKSUMS:
   DeviceGuru: 65a794c0c5b4f600453bcfaf94c78fea66ba577e
   DJI-SDK-iOS: 2c7f4cc888909dd0996c4ae38bb25b979d76ce19
-  FileBrowser: 2ca91ff61c9ea09665eb3b8f9e64a7a77e66a0bf
   Reveal-SDK: 58517b2a4d5d69dcb98e62aa4a5e62c84b5e0061
+  SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: e9b8d7068a7d267b6a769dc5cd781278c837e644
+PODFILE CHECKSUM: 9498373cc573ff923e9780ca4b40a0858a5176cb
 
 COCOAPODS: 1.6.1

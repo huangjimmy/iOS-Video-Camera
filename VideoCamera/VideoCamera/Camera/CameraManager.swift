@@ -24,12 +24,12 @@ import Photos
 
 @objc class CameraManager : NSObject,AVCaptureFileOutputRecordingDelegate{
     
-    class var shared : CameraManager {
-        struct Singleton {
-            static let camera = CameraManager()
-        }
-        return Singleton.camera;
-    }
+     class var shared : CameraManager {
+         struct Singleton {
+             static let manager = CameraManager()
+         }
+         return Singleton.manager;
+     }
     
     public enum SessionSetupResult {
         case success
@@ -1296,6 +1296,7 @@ import Photos
     }
     
     public func recordVideo(at path:String){
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd_HH-mm-ss_ZZZZZ"
         let outputFileName = dateFormatter.string(from: Date())
@@ -1318,6 +1319,17 @@ import Photos
     }
     
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
+        let resolution:String = {
+            if self.videoFormat.0 >= 3840 {
+                return "4K"
+            }
+            if self.videoFormat.0 >= 1920 {
+                return "1080p"
+            }
+            return "720p"
+        }()
+        let fps = self.videoFormat.2
+        VideoLibraryManager.shared.indexMov(fileURL: outputFileURL, fps: fps, resolution: resolution)
         
     }
     
