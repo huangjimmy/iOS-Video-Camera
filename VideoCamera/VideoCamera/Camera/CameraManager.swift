@@ -1326,6 +1326,16 @@ import Photos
         keyValueObservations.removeAll()
     }
     
+    func audioLevel( block:(Float, Float)->Void ){
+        if let channels = self.movieFileOutput?.connection(with: .audio)?.audioChannels {
+            for channel in channels {
+                let avg = channel.averagePowerLevel
+                let peak = channel.peakHoldLevel
+                block(avg, peak)
+            }
+        }
+    }
+    
     /////////////////////////////////////
     //
     //

@@ -974,7 +974,7 @@ class ViewController: UIViewController {
     
     @objc func applicationDidBecomeActive(){
         
-        self.searchAndConnectOsmoMobileProducts(false)
+//        self.searchAndConnectOsmoMobileProducts(false)
         
         if self.reconnectOsmoMobile() == false {
             self.osmoMobileProduct = nil
