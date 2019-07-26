@@ -22,7 +22,7 @@ import Photos
 }
 
 
-@objc class CameraManager : NSObject,AVCaptureFileOutputRecordingDelegate{
+@objc class CameraManager : NSObject {
     
      class var shared : CameraManager {
          struct Singleton {
@@ -59,6 +59,7 @@ import Photos
     private var movieFileOutput: AVCaptureMovieFileOutput?
     
     private let photoOutput = AVCapturePhotoOutput()
+    private let videoDataOutput = AVCaptureVideoDataOutput()
     
     private let videoDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera, .builtInDualCamera, .builtInTrueDepthCamera, .builtInTelephotoCamera], mediaType: .video, position: .unspecified)
     
@@ -1318,25 +1319,6 @@ import Photos
         }
     }
     
-    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
-        let resolution:String = {
-            if self.videoFormat.0 >= 3840 {
-                return "4K"
-            }
-            if self.videoFormat.0 >= 1920 {
-                return "1080p"
-            }
-            return "720p"
-        }()
-        let fps = self.videoFormat.2
-        VideoLibraryManager.shared.indexMov(fileURL: outputFileURL, fps: fps, resolution: resolution)
-        
-    }
-    
-    func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection]) {
-        
-    }
-    
     deinit {
         keyValueObservations.forEach { (keyValueObservation) in
             keyValueObservation.invalidate()
@@ -1417,6 +1399,28 @@ import Photos
             self.focusOfInterestIndicator.locked = device.focusMode == .locked
             self.exposureOfInterestIndicator.locked = device.exposureMode == .locked || device.exposureMode == .custom
         }
+    }
+    
+}
+
+extension CameraManager : AVCaptureFileOutputRecordingDelegate {
+    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
+        let resolution:String = {
+            if self.videoFormat.0 >= 3840 {
+                return "4K"
+            }
+            if self.videoFormat.0 >= 1920 {
+                return "1080p"
+            }
+            return "720p"
+        }()
+        let fps = self.videoFormat.2
+        VideoLibraryManager.shared.indexMov(fileURL: outputFileURL, fps: fps, resolution: resolution)
+        
+    }
+    
+    func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection]) {
+        
     }
     
 }

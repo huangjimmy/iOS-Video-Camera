@@ -66,6 +66,7 @@ extension ViewController : CRRulerControlDataSource {
 //        let fileBrowser = FileBrowser(initialPath: URL(fileURLWithPath: documentPath), allowEditing: true)
         let videoLibraryBrowser = self.storyboard!.instantiateViewController(withIdentifier: "VideoLibrary")
         let fileBrowser = UINavigationController(rootViewController: videoLibraryBrowser)
+        fileBrowser.modalPresentationStyle = .fullScreen
         
         present(fileBrowser, animated: true, completion: nil)
     }
