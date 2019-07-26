@@ -303,6 +303,7 @@ extension ViewController : DJISDKManagerDelegate, DJIAppActivationManagerDelegat
                 break
             default:
                 if device.isRampingVideoZoom {
+                    try device.lockForConfiguration()
                     device.cancelVideoZoomRamp()
                     device.unlockForConfiguration()
                 }
