@@ -78,7 +78,7 @@ extension ViewController : CRRulerControlDataSource {
         
         if(camera.isRecording){
             camera.stopRecording()
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(2000)){
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(1000)){
                 self.cameraBottom.recordButton.isEnabled = true
             }
             return
@@ -88,7 +88,7 @@ extension ViewController : CRRulerControlDataSource {
         let documentPath = documentPaths[0]
         camera.recordVideo(at: documentPath)
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(2000)){
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(1000)){
             self.cameraBottom.recordButton.isEnabled = true
         }
     }

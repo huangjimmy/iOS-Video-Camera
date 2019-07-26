@@ -18,6 +18,7 @@ import Photos
     var movFiles:[MovFile] = []
     var movFileGroups:[MovFileGroup] = []
     var selectedMovs:Set<URL> = Set()
+    var selectedItems:Set<IndexPath> = Set()
     /*  Controls declaration  */
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -65,7 +66,12 @@ import Photos
         timeFormat.dateStyle = .none
         timeFormat.timeStyle = .short
         timeFormat.setLocalizedDateFormatFromTemplate("hh:mm")
-
+        
+        self.reloadMovGroups()
+    }
+    
+    func reloadMovGroups(){
+        self.movFileGroups = []
         var group:MovFileGroup? = nil
         let files = videoLibrary.videoFiles()
         self.movFiles = files
@@ -205,6 +211,16 @@ import Photos
     }
     
     @IBAction func trashSelected(_ sender: Any) {
+        self.selectedMovs.forEach { (url) in
+            videoLibrary.delete(fileURL: url)
+        }
+        
+        self.selectedMovs.removeAll()
+        self.reloadMovGroups()
+        self.collectionView.deleteItems(at: self.selectedItems.map({ (i) -> IndexPath in
+            return i
+        }))
+        self.reloadMenu()
     }
     
     @IBAction func shareSelected(_ sender: Any) {
@@ -293,9 +309,11 @@ extension VideoLibraryViewController : UICollectionViewDataSource, UICollectionV
             let url = self.movFileGroups[indexPath.section].files[indexPath.item].filePath
             if self.selectedMovs.contains(url) {
                 self.selectedMovs.remove(url)
+                self.selectedItems.remove(indexPath)
             }
             else{
                 self.selectedMovs.insert(url)
+                self.selectedItems.insert(indexPath)
             }
             collectionView.cellForItem(at: indexPath)?.isSelected = true
             self.reloadMenu()

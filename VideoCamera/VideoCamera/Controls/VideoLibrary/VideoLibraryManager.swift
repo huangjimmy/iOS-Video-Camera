@@ -270,6 +270,41 @@ class VideoLibraryManager {
         }
     }
     
+    func delete(fileURL:URL) {
+        if let db = self.db {
+            let video_info = Table("video_info")
+            let file_name = Expression<String>("filename")
+            let id = Expression<Int64>("id")
+            
+            let filePath = fileURL.lastPathComponent
+            
+            let mov_id:Int64 = {
+                do {
+                    if let mov_id = try db.pluck(video_info.select(id).where(file_name == filePath)) {
+                        let val = try mov_id.get(id)
+                        do {
+                            try db.run(video_info.where(id == val).delete())
+                        }catch { }
+                        return val
+                    }
+                    return -1
+                }
+                catch { return -1 }
+            }()
+            
+            if mov_id > 0 {
+                let frame_thumbnail = Table("frame_thumbnail")
+                do {
+                    try db.run(frame_thumbnail.where(id == mov_id).delete())
+                }catch { }
+            }
+        }
+        
+        do{
+            try self.fileManager.removeItem(at: fileURL)
+        }catch { }
+    }
+    
     lazy var db:Connection! = {
           do{
             let db = try Connection("\(self.documentsURL().appendingPathComponent("thumb.db").path)")
