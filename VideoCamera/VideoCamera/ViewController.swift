@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     var landscapeRightConstraints:[NSLayoutConstraint] = []
     
     var timer:Timer?
-    
+    var audioLevelTimer:Timer?
     
     var motionManager:CMMotionManager {
         get {
@@ -37,6 +37,8 @@ class ViewController: UIViewController {
     internal var batteryView:ALBatteryView!
     internal var previewView:PreviewView!
     private let previewTapGestureRecognizer = UITapGestureRecognizer()
+    
+    internal var audioLevelView:AudioLevelIndicatorView!
     
     internal var settingsContainerView:UIControl!
     internal var formatSettingsView:FormatSettingsView!
@@ -216,6 +218,10 @@ class ViewController: UIViewController {
         self.batteryView = ALBatteryView()
         self.batteryView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.batteryView)
+        
+        self.audioLevelView = AudioLevelIndicatorView(frame: CGRect(x: 12, y: 60, width:5, height: 320))
+        self.audioLevelView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.audioLevelView)
         
         self.settingsContainerView = UIControl()
         self.formatSettingsView = FormatSettingsView()
@@ -478,6 +484,22 @@ class ViewController: UIViewController {
             self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[lensButton(30)]", options: .init(rawValue: 0), metrics: nil, views: [ "lensButton":self.lensButton!]));
         }
         
+        self.view.addConstraint(self.view.centerYAnchor.constraint(equalTo: self.audioLevelView.centerYAnchor))
+        let audioLevelPortraitConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[v(10)]-|", options: .init(), metrics: nil, views: ["v":self.audioLevelView!])
+        portraitConstraints.append(contentsOf: audioLevelPortraitConstraints)
+        let audioLevelHeightConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:[v(300)]", options: .init(), metrics: nil, views: ["v":self.audioLevelView!])
+        portraitConstraints.append(contentsOf:audioLevelHeightConstraint)
+        
+        let audioLevelLandscapeConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[v(10)]", options: .init(), metrics: nil, views: ["v":self.audioLevelView!])
+        landscapeConstraints.append(contentsOf: audioLevelLandscapeConstraints)
+        
+        let audioLevelHeightLandscapeConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:[v(200)]", options: .init(), metrics: nil, views: ["v":self.audioLevelView!])
+        landscapeConstraints.append(contentsOf:audioLevelHeightLandscapeConstraint)
+        
+        let audioLevelLandscapeRightConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[v(10)]-|", options: .init(), metrics: nil, views: ["v":self.audioLevelView!])
+        landscapeRightConstraints.append(contentsOf: audioLevelLandscapeRightConstraints)
+        
+        
         landscapeRightConstraints.forEach { (constraint) in
             if isLandscapeRight {
                 constraint.priority = .defaultHigh
@@ -640,6 +662,8 @@ class ViewController: UIViewController {
                     self.timer = nil
                 }
                 self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.onTimerEvent(timer:)), userInfo: nil, repeats: true)
+                
+                self.audioLevelTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.onAudioLevelTimerEvent(timer:)), userInfo: nil, repeats: true)
             }
         }
     }
@@ -655,6 +679,11 @@ class ViewController: UIViewController {
         if let timer = self.timer {
             timer.invalidate()
             self.timer = nil
+        }
+        
+        if let timer = self.audioLevelTimer {
+            timer.invalidate()
+            self.audioLevelTimer = nil
         }
         
         self.removeObservers()

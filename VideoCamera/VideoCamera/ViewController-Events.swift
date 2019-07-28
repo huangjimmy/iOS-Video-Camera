@@ -659,6 +659,56 @@ extension ViewController : CRRulerControlDataSource {
         self.updateCameraParameterDisplay(true)
     }
     
+    @objc func onAudioLevelTimerEvent(timer: Timer) {
+            self.camera.audioLevel { (avg, peak) in
+                let peakLevel:Float = {
+                    var level:Float = 0.0
+                    let peak_bottom:Float = -160.0
+                    
+                    if avg < peak_bottom {
+                        return 0.0
+                    }
+                    if avg >= 0.0 {
+                        return 1.0
+                    }
+                    let root:Float              =   2.0
+                    let minAmp:Float            =   powf(10.0, 0.05 * peak_bottom)
+                    let inverseAmpRange:Float   =   1.0 / (1.0 - minAmp)
+                    let amp:Float               =   powf(10.0, 0.05 * peak)
+                    let adjAmp:Float            =   (amp - minAmp) * inverseAmpRange
+
+                    level = powf(adjAmp, 1.0 / root)
+//                    level = (peak - 60)/60.0
+                    return level
+                }()
+                let avgLevel:Float = {
+                    var level:Float = 0.0
+                    let peak_bottom:Float = -160.0
+                    
+                    if avg < peak_bottom {
+                        return 0.0
+                    }
+                    if avg >= 0.0 {
+                        return 1.0
+                    }
+                    let root:Float              =   2.0
+                    let minAmp:Float            =   powf(10.0, 0.05 * peak_bottom)
+                    let inverseAmpRange:Float   =   1.0 / (1.0 - minAmp)
+                    let amp:Float               =   powf(10.0, 0.05 * avg)
+                    let adjAmp:Float            =   (amp - minAmp) * inverseAmpRange
+
+                    level = powf(adjAmp, 1.0 / root)
+//                    level = (avg - 60)/60.0
+                    return level
+                }()
+                DispatchQueue.main.async {
+                    self.audioLevelView.peakLevel = peakLevel
+                    self.audioLevelView.averageLevel = avgLevel
+                    self.audioLevelView.setNeedsLayout()
+                }
+            }
+        }
+    
     /// - Tag: HandleRuntimeError
     @objc func sessionRuntimeError(notification: NSNotification) {
         guard let error = notification.userInfo?[AVCaptureSessionErrorKey] as? AVError else { return }
