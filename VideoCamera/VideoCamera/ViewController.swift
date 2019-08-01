@@ -19,7 +19,6 @@ class ViewController: UIViewController {
     var landscapeRightConstraints:[NSLayoutConstraint] = []
     
     var timer:Timer?
-    var audioLevelTimer:Timer?
     
     var motionManager:CMMotionManager {
         get {
@@ -662,8 +661,6 @@ class ViewController: UIViewController {
                     self.timer = nil
                 }
                 self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.onTimerEvent(timer:)), userInfo: nil, repeats: true)
-                
-                self.audioLevelTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.onAudioLevelTimerEvent(timer:)), userInfo: nil, repeats: true)
             }
         }
     }
@@ -679,11 +676,6 @@ class ViewController: UIViewController {
         if let timer = self.timer {
             timer.invalidate()
             self.timer = nil
-        }
-        
-        if let timer = self.audioLevelTimer {
-            timer.invalidate()
-            self.audioLevelTimer = nil
         }
         
         self.removeObservers()
